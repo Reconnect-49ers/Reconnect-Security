@@ -1,0 +1,281 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: #224a9b;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #122864;
+}
+
+body {
+    position: relative;
+}
+
+.navbar-brand img {
+    width: 155px;
+}
+
+.navbar-collapse {
+    justify-content: end;
+}
+
+#navbarNav>ul>.nav-item .nav-link:hover {
+    border-right: 1px solid rgba(255, 255, 255, 0.658);
+    border-left: 1px solid rgba(255, 255, 255, 0.658);
+    background-color: #10004f31;
+    color: white;
+}
+
+#navbarNav>ul>.nav-item .nav-link:last-child {
+    border-left: 0;
+}
+
+div ul li a {
+    font-size: 30px;
+}
+
+nav.navbar-expand-md {
+    background-color: #224a9b;
+}
+
+.navbar-nav .nav-link.active,
+.navbar-nav .nav-link.show {
+    color: rgba(255, 255, 255, 0.685);
+}
+
+.nav-link {
+    color: white;
+}
+
+.carousel-caption>h5,
+.carousel-caption p {
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.678);
+}
+
+.carousel-item>img,
+.capinha {
+    height: 400px;
+    object-fit: cover;
+}
+
+.btn-edit {
+	width: 72px;
+}
+
+.btn-primary {
+    background-color: #224a9b;
+    border: #224a9b;
+}
+
+.btn-primary:hover {
+    background-color: #1F3D8D;
+}
+
+.botao-pesquisa {
+    display: flex;
+}
+
+.username{
+	font-weight: bold;
+    text-decoration: none;
+    
+}
+
+footer {
+    background-color: #224a9b;
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    padding: 8px;
+    align-items: center;
+}
+
+footer>.compra-segura {
+    display: flex;
+    flex-direction: column;
+}
+
+.compra-segura>a {
+    text-decoration: none;
+    color: white;
+}
+
+footer>.contato {
+    display: flex;
+    flex-direction: column;
+}
+
+footer>.redes-sociais {
+    display: flex;
+    flex-direction: column;
+}
+
+footer>img {
+    width: 75px;
+}
+
+span>a>i {
+    color: rgb(255, 255, 255);
+    font-size: 30px;
+}
+
+span>a {
+    text-decoration: none;
+}
+
+
+/* site 49ers
+    cards página de cadastro
+*/
+
+.img-card {
+    border-radius: 15px;
+}
+
+.meu-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cada-card {
+    width: 250px;
+}
+
+.cada-card>p {
+    text-align: center;
+}
+
+/* cards página profissionais */
+
+.barra-pesquisar {
+    max-width: 1253px;
+}
+
+.sessao-profissionais {
+    max-width: 1320px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.card-pessoa {
+    display: flex;
+    width: 300px;
+    height: 300px;
+    border: 1px solid rgba(0, 0, 0, 0.349);
+    border-radius: 15px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 1px 1px 4px 0px rgba(0, 0, 0, 0.151);
+
+    transition: 1s ease;
+}
+
+.header-card {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.foto-perfil {
+    border-radius: 50%;
+    width: 100px;
+}
+
+.stars {
+    color: rgb(221, 187, 35);
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.63);
+}
+
+.stars-p {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stars-p>strong {
+    font-size: 18px;
+}
+
+.body-card {
+    width: 230px;
+}
+
+.footer-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.botoes-card {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-group {
+    width: 207px;
+}
+
+.efeito:hover {
+    cursor: pointer;
+    background: #c5d0d82f;
+    filter: initial;
+    -xpedu-filter: blur(5px);
+    transition: 1s ease;
+
+    box-shadow: inset 0 0 0 1px #1F3D8D;
+
+    box-shadow: 1px 1px #1F3D8D,
+        2px 2px #1F3D8D;
+    transform: translateX(-1px);
+}
+
+/* página cadastro cliente */
+
+.main-entrar {
+    height: 81.8vh;
+    display: flex;
+    align-items: center;
+}
+
+.cadastro-cliente {
+    max-width: 396px;
+    text-align: center;
+    padding: 30px;
+    border: 1px solid rgba(0, 0, 0, 0.171);
+    box-shadow: 0px -1px 3px  rgba(0, 0, 0, 0.24);
+    border-radius: 10px;
+    background-color: white;  
+}
+
+.cadastro-cliente a {
+    text-decoration: none;
+}
+
+.btn-criar {
+    background-color: #132a58;
+}
+
+.background-img {
+    background-image: url("../images/pagina-entrar.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}

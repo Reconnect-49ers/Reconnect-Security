@@ -1,0 +1,93 @@
+@media screen and (max-width: 600px) {
+	
+	body {
+    background-color: rgb(163, 106, 106);
+  }
+
+
+  footer {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+  footer .compra-segura {
+    text-align: end;
+  }
+
+  .carousel-item>img,
+  .capinha {
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .img-perfil{
+    height: 70px; 
+    width: 70px; 
+  }
+}
+
+@media screen and (min-width: 600px) {
+
+ 
+  .carousel-item>img,
+  .capinha {
+    height: 300px;
+    object-fit: cover;
+  }
+
+  .img-perfil{
+    height: 100px; 
+    width: 100px; 
+  }
+
+}
+
+@media screen and (min-width: 768px) {
+
+ 
+
+  .carousel-item>img,
+  .capinha {
+    height: 400px;
+    object-fit: cover;
+  }
+
+  .meu-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .col-md-5 {
+    flex: 0 0 auto;
+    width: 69%;
+  }
+
+  .img-perfil{
+    height: 200px; 
+    width: 200px; 
+  }
+}
+
+@media screen and (max-width: 1261px) {
+
+  .barra-pesquisar {
+    max-width: 945px;
+  }
+}
+
+@media screen and (max-width: 951px) {
+
+  .barra-pesquisar {
+    max-width: 634px;
+  }
+}
+
+@media screen and (max-width: 633px) {
+
+  .barra-pesquisar {
+    max-width: 595px;
+  }
+}
