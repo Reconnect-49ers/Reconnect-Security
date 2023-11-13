@@ -48,10 +48,12 @@ public class UsuarioController {
 		//imagem
 		 
 		@PostMapping("/cadastrar")
-		public ModelAndView cadastrar(Usuario usuario, @RequestParam("fileUsuario") MultipartFile file) throws IOException {
+		public ModelAndView cadastrar(Usuario usuario, @RequestParam("fileUsuario") MultipartFile fileUsuario, @RequestParam("fileCapa") MultipartFile fileCapa) throws IOException {
 	 
+
 			try {
-				usuario.setImagem(file.getBytes());
+				usuario.setImagem(fileUsuario.getBytes());
+				usuario.setCapa(fileCapa.getBytes());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -68,6 +70,13 @@ public class UsuarioController {
 		public byte[] exibirImagen(@PathVariable("id") Long id) {
 			Usuario usuario = this.usuarioRepository.getReferenceById(id);
 			return usuario.getImagem();
+		}
+		
+		@GetMapping("/capa/{id}")
+		@ResponseBody
+		public byte[] exibirCapa(@PathVariable("id") Long id) {
+			Usuario usuario = this.usuarioRepository.getReferenceById(id);
+			return usuario.getCapa();
 		}
 		
 		@GetMapping("/{id}/editar")
@@ -100,7 +109,7 @@ public class UsuarioController {
 		
 		@GetMapping("/{id}")
 		public ModelAndView detalhar(@PathVariable Long id) {
-			ModelAndView modelAndView = new ModelAndView("usuario/detalhar.html");
+			ModelAndView modelAndView = new ModelAndView("usuario/perfil.html");
 	 
 			Usuario usuario = usuarioRepository.getReferenceById(id);
 			modelAndView.addObject("usuario", usuario);

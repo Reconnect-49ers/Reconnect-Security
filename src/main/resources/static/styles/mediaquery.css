@@ -1,9 +1,4 @@
 @media screen and (max-width: 600px) {
-	
-	body {
-    background-color: rgb(163, 106, 106);
-  }
-
 
   footer {
     display: flex;

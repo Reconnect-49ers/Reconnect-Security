@@ -57,14 +57,14 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="cadastro.html">
+							<a class="nav-link" th:href="@{/usuario/cadastrar}">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 									class="bi bi-person-circle" viewBox="0 0 16 16">
 									<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
 									<path fill-rule="evenodd"
 										d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
 								</svg>
-								Seja um Profissional
+								Cadastre-se
 							</a>
 						</li>
 						<li class="nav-item">
@@ -100,56 +100,61 @@
 			<div class="col-sm-12" style="text-align: center;">
 				<i style="font-size: 40px;" class="bi bi-person-circle"></i>
 				<h1>Editar Usuário</h1>
-				<img alt="Image" class="img-fluid rounded-circle" height="200px" width="200px"
+				<div class="avatar-perfil">
+					
+					<img alt="Image" style="overflow: hidden; border-radius: 50%;" class="perfil-usuario-img" height="200px" width="200px"
 									th:src="|/usuario/imagem/${usuario.id}|" />
+				</div>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="col-sm-12">
+			<div class="class="col-md col-lg"">
 				<form method="POST" th:object="${usuario}" enctype="multipart/form-data">
-					<input type="hidden" th:field="*{id}">
-
-					<div class="mb-3">
-						<label for="nome" class="form-label">Nome</label>
-						<input type="text" class="form-control" id="nome" th:field="*{nome}">
-					</div>
-					<div class="mb-3">
-						<label for="email" class="form-label">E-mail</label>
-						<input type="email" class="form-control" id="email" th:field="*{email}">
-					</div>
-					<div class="mb-3">
-						<label for="senha" class="form-label">Senha</label>
-						<input type="password" class="form-control" id="senha" th:value="*{senha}" th:field="*{senha}" required>
-					</div>
-					<div class="mb-3">
-						<label for="telefone" class="form-label">Telefone</label>
-						<input type="text" class="form-control" id="telefone" th:field="*{telefone}">
-					</div>
-					<div class="mb-3">
-						<label for="profissao" class="form-label">Profissão</label>
-						<input type="text" class="form-control" id="profissao" th:field="*{profissao}">
-					</div>
-					<div class="mb-3">
-						<label for="cpf" class="form-label">CPF</label>
-						<input type="text" class="form-control" id="cpf" th:field="*{cpf}">
-					</div>
-					<div class="mb-3">
-						<label for="endereco" class="form-label">Endereço</label>
-						<input type="text" class="form-control" id="endereco" th:field="*{endereco}">
-					</div>
-					<div class="mb-3">
-						<label for="dataNascimento" class="form-label">Data de Nascimento</label>
-						<input required type="date" class="form-control" id="dataNascimento" th:field="*{dataNascimento}">
-					</div>
-					<div class="mb-3">
-						<label for="imagem">Foto do usuário</label>
-						<input type="file" class="form-control" id="imagem" name="fileUsuario">
-					</div>
-
-					<div class="d-flex justify-content-end gap-1">
-						<a href="/usuario" class=" btn btn-danger">Cancelar</a>
-						<button type="submit" class="btn btn-primary">Salvar</button>
+					<div class="row g-3">
+						<input type="hidden" th:field="*{id}">
+	
+						<div class="col-sm-6">
+							<label for="nome" class="form-label">Nome</label>
+							<input type="text" class="form-control" id="nome" th:field="*{nome}">
+						</div>
+						<div class="col-sm-6">
+							<label for="email" class="form-label">E-mail</label>
+							<input type="email" class="form-control" id="email" th:field="*{email}">
+						</div>
+						<div class="col-sm-6">
+							<label for="senha" class="form-label">Senha</label>
+							<input type="password" class="form-control" id="senha" th:value="*{senha}" th:field="*{senha}" required>
+						</div>
+						<div class="col-sm-6">
+							<label for="telefone" class="form-label">Telefone</label>
+							<input type="text" class="form-control" id="telefone" th:field="*{telefone}">
+						</div>
+						<div class="col-sm-6">
+							<label for="profissao" class="form-label">Profissão</label>
+							<input type="text" class="form-control" id="profissao" th:field="*{profissao}">
+						</div>
+						<div class="col-sm-6">
+							<label for="cpf" class="form-label">CPF</label>
+							<input type="text" class="form-control" id="cpf" th:field="*{cpf}">
+						</div>
+						<div class="col-sm-6">
+							<label for="endereco" class="form-label">Endereço</label>
+							<input type="text" class="form-control" id="endereco" th:field="*{endereco}">
+						</div>
+						<div class="col-sm-6">
+							<label for="dataNascimento" class="form-label">Data de Nascimento</label>
+							<input required type="date" class="form-control" id="dataNascimento" th:field="*{dataNascimento}">
+						</div>
+						<div class="mb-3">
+							<label for="imagem">Foto do usuário</label>
+							<input type="file" class="form-control" id="imagem" name="fileUsuario">
+						</div>
+	
+						<div class="d-flex justify-content-end gap-1">
+							<a href="/usuario" class=" btn btn-danger">Cancelar</a>
+							<button type="submit" class="btn btn-primary">Salvar</button>
+						</div>
 					</div>
 				</form>
 			</div>
