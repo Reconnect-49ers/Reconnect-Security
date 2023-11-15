@@ -28,6 +28,8 @@ public class FaleConoscoController {
 
 		List<FaleConosco> faleconosco = faleConoscoRepository.findAll();
 		modelAndView.addObject("faleconosco", faleconosco);
+		
+		modelAndView.addObject("faleconoscoedit", new FaleConosco());
 
 		return modelAndView;
 	}
@@ -52,16 +54,28 @@ public class FaleConoscoController {
 
 		return modelAndView;
 	}
+
 	
-	@GetMapping("/{id}/editar")
-	public ModelAndView editar(@PathVariable Long id) {
-		ModelAndView modelAndView = new ModelAndView("faleconosco/edicao");
+	@PostMapping("/editar")
+	public String editar(FaleConosco faleconosco) {	
+		System.out.println("Objeto: " + faleconosco.getNome());
+		
+		faleconosco.setStatus(true);
+		
+		faleConoscoRepository.save(faleconosco);
+		
+		return "redirect:/faleconosco";
+	}
+	
+	@GetMapping("/{id}/excluir")
+	public ModelAndView excluir(@PathVariable Long id) {
+		ModelAndView modelAndView = new ModelAndView("redirect:/faleconosco");
  
-		FaleConosco faleconosco = faleConoscoRepository.getReferenceById(id);
-		modelAndView.addObject("faleconosco", faleconosco);
+		faleConoscoRepository.deleteById(id);
  
 		return modelAndView;
 	}
+
 
 
 }
