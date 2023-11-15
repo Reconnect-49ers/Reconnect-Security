@@ -284,3 +284,9 @@ span>a {
     background-size: cover;
 }
 
+/*Pagina Cadastro Fale Conosco*/
+
+.capafale{
+	 height: 500px;
+    object-fit: cover;
+}
