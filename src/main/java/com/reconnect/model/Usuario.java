@@ -2,6 +2,7 @@ package com.reconnect.model;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -11,6 +12,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -52,6 +55,10 @@ public class Usuario {
 	private LocalDate dataNascimento;
 	
 	private String bio;
+	
+	@OneToMany
+	@JoinColumn(name="fk_id_usuario")
+	private List<Servico> servicos;
 
 	public Usuario(Long id, String nome, String email, String senha, byte[] imagem, byte[] capa, String telefone,
 			String profissao, String cpf, String endereco, LocalDate dataNascimento, String bio) {
