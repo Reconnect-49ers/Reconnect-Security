@@ -52,6 +52,10 @@ public class Usuario {
 	private LocalDate dataNascimento;
 	
 	private String bio;
+	
+//	@OneToMany
+//	@JoinColumn(name="fk_id_usuario")
+//	private List<Servico> servicos;
 
 	public Usuario(Long id, String nome, String email, String senha, byte[] imagem, byte[] capa, String telefone,
 			String profissao, String cpf, String endereco, LocalDate dataNascimento, String bio) {
