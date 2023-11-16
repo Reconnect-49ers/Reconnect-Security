@@ -29,8 +29,7 @@ public class Servico {
 	private byte[] imagem;
 	
 	@ManyToOne
-	@JoinColumn(name="fk_id_usuario")
-	@Column(nullable = false)
+	@JoinColumn(name="fk_id_usuario", nullable = false)
 	private Usuario usuario;
 	
 	public Servico() {
