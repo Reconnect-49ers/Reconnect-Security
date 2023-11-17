@@ -90,13 +90,21 @@ public class UsuarioController {
 		}
 		
 		@PostMapping("/{id}/editar")
-		public ModelAndView editar(Usuario usuario) {		
+		public ModelAndView editar(Usuario usuario, @RequestParam("fileUsuario") MultipartFile fileUsuario, @RequestParam("fileCapa") MultipartFile fileCapa) {		
 	 
+			try {
+				usuario.setImagem(fileUsuario.getBytes());
+				usuario.setCapa(fileCapa.getBytes());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
 			usuarioRepository.save(usuario);
 			ModelAndView modelAndView = new ModelAndView("redirect:/usuario");
 	 
 			return modelAndView;
 		}
+		
 		
 		@GetMapping("/{id}/excluir")
 		public ModelAndView excluir(@PathVariable Long id) {
