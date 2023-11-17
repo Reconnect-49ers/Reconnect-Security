@@ -45,9 +45,6 @@ div ul li a {
     font-size: 30px;
 }
 
-.dropdown-link{
-	font-size: 16px;
-}
 
 nav.navbar-expand-md {
     background-color: #224a9b;
@@ -290,3 +287,5 @@ span>a {
 	 height: 500px;
     object-fit: cover;
 }
+
+
