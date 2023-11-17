@@ -110,7 +110,7 @@
 				<div class="sombra"></div>
 				<div class="avatar-perfil">
 					<img class="perfil-usuario-img" th:src="|/usuario/imagem/${usuario.id}|" alt="img">
-					<a href="#" class="trocar-foto">
+					<a th:href="@{/usuario/{id}/editar (id=${usuario.id})}" class="trocar-foto">
 						<i class="fas fa-camera"></i>
 						<span>Trocar foto</span>
 					</a>
@@ -126,7 +126,7 @@
 					</ul>
 				</div>
 				<div class="opcoes-perfil">
-					<button type="">Trocar capa</button>
+					<!--					<button type="">Trocar capa</button>-->
 					<a th:href="@{/usuario/{id}/editar (id=${usuario.id})}"><i class="fas fa-wrench"></i></a>
 				</div>
 			</div>
@@ -135,7 +135,10 @@
 					<li><a href="#" title=""><i class="icone-perfil fas fa-bullhorn"></i> Publicações</a></li>
 					<li><a data-bs-toggle="modal" th:data-bs-target="'#contato' + ${usuario.id}" title=""><i
 								class="icone-perfil fas fa-info-circle"></i> Contato</a></li>
-					<li><a href="#" title=""><i class="icone-perfil fas fa-grin"></i> Serviços 43</a></li>
+
+					<li><a data-bs-toggle="modal" th:data-bs-target="'#contrato' + ${usuario.id}" title=""><i
+								class="icone-perfil fas fa-grin"></i> Contratar</a></li>
+
 					<li><a href="#" title=""><i class="icone-perfil fas fa-camera"></i> Avaliações</a></li>
 				</ul>
 			</div>
@@ -154,8 +157,8 @@
 			<p>Veja meu gracioso trabalho que finalizei hoje:</p>
 
 			<img class="img-capa" th:src="|/usuario/capa/${usuario.id}|" alt="img" style="border-radius: 0">
-			
-					
+
+
 			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore earum harum et quis, dolorum, nobis vero
 				alias sit cumque, quos aliquid facilis ipsum? Repudiandae maiores corporis accusantium corrupti
 				assumenda quam.</p>
@@ -164,35 +167,116 @@
 	</div> <!--	Fim Feed perfil-->
 
 	<!-- Modal Contato -->
-	<div class="modal fade" th:id="'contato' + ${usuario.id}" tabindex="-1" aria-labelledby="exampleModalLabel"
-		aria-hidden="true">
+	<div class="modal fade" th:id="'contato' + ${usuario.id}" tabindex="-1" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 
 				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="exampleModalLabel">Entre em contato com <span th:text="${usuario.nome}"></span></h1>
+					<h1 class="modal-title fs-5" id="exampleModalLabel">Entre em contato com <span
+							th:text="${usuario.nome}"></span></h1>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 
 				<div class="modal-body">
 
 					<div class="">
-						
+
 						<div>Profissão: <span th:text="${usuario.profissao}"></span></div>
 						<div>E-mail: <span th:text="${usuario.email}"></span></div>
 						<p>Telefone: <span th:text="${usuario.telefone}"></span></p>
 					</div>
 
-					<!-- enviar para a classe contato_serviço aqui:-->	
+					<!-- enviar para a classe contato_serviço aqui:-->
 					<!-- falta colocar o th:field="*{mensagem}"	no textearea-->
-					
-				<!-- <form method="POST" th:object="${contato}" enctype="multipart/form-data">-->
+
+					<form method="POST" th:object="${contrato}">
 						<div>
 							<label for="mensagem" class="form-label">Mensagem</label>
-							<textarea style="resize: none" placeholder="Marque serviços ou tire dúvidas direto com o profissional." type="text"
+							<textarea style="resize: none"
+								placeholder="Agende serviços ou tire dúvidas com o profissional." type="text"
 								class="form-control" id="mensagem" rows="3" required></textarea>
 						</div>
-				<!-- </form>-->
+					</form>
+
+
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-primary">Enviar</button>
+				</div>
+
+			</div>
+		</div>
+	</div> <!--	fim do modal-->
+
+	<!-- Modal Contrato -->
+	<div class="modal fade" th:id="'contrato' + ${usuario.id}" tabindex="-1" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel">Cantrate os serviços de <span
+							th:text="${usuario.nome}"></span></h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+
+				<div class="modal-body">
+
+<!--					<div class="">-->
+
+<!--						<div>Profissão: <span th:text="${usuario.profissao}"></span></div>-->
+<!--						<div>E-mail: <span th:text="${usuario.email}"></span></div>-->
+<!--						<p>Telefone: <span th:text="${usuario.telefone}"></span></p>-->
+<!--					</div>-->
+
+					<!-- enviar para a classe contrato_serviço aqui:-->
+					<!-- falta colocar o th:field="*{mensagem}"	no textearea-->
+
+<!--					<form method="POST" th:object="${contrato}">-->
+<!--						<div class="row g-3">-->
+<!--							<div class="col-sm-6">-->
+<!--								<label for="usuario" class="form-label">ID do Profissional</label>-->
+<!--								<input type="text" class="form-control" id="nome" th:text="${usuario.id}" required>-->
+								
+<!--								<select class="form-control" id="usuario" name="usuario">-->
+<!--									<option th:each="usuario : ${usuarios}" th:value="${usuario.id}" th:text="${usuario.nome}"></option>-->
+<!--								</select>-->
+<!--							</div>-->
+<!--							<div class="col-sm-6">-->
+<!--								<label for="nome" class="form-label">Nome</label>-->
+<!--								<input type="text" class="form-control" id="nome" th:field="*{nome}" required>-->
+<!--							</div>-->
+<!--							<div class="col-sm-6">-->
+<!--								<label for="email" class="form-label">E-mail</label>-->
+<!--								<input type="email" class="form-control" id="email" th:field="*{email}"-->
+<!--									placeholder="nome@exemplo.com" required>-->
+<!--							</div>-->
+							
+<!--							<div class="col-sm-6">-->
+<!--								<label for="endereco" class="form-label">Endereço</label>-->
+<!--								<input type="text" class="form-control" id="endereco" th:field="*{endereco}" required>-->
+<!--							</div>-->
+<!--							<div class="col-sm-6">-->
+<!--								<label for="data" class="form-label">Data</label>-->
+<!--								<input type="datetime-local" class="form-control" id="data" th:field="*{data}"-->
+<!--									required>-->
+<!--							</div>-->
+							
+
+							
+
+							
+
+<!--							<br>-->
+
+<!--							<button type="submit" class="w-100 btn btn-primary btn-lg">Cadastrar</button>-->
+
+<!--						</div>-->
+<!--					</form>-->
+
 
 
 

@@ -5,11 +5,14 @@ import java.time.LocalDateTime;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -35,15 +38,22 @@ public class Contrato {
 	
 	@Column
 	private boolean concluido;
-
-	public Contrato(Long id, String nome, String email, String endereco, LocalDateTime data, boolean concluido) {
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="usuario_id", nullable = false)
+	private Usuario usuario;
+	
+	public Contrato(Long id, String nome, String email, String endereco, LocalDateTime data, boolean concluido,
+			Usuario usuario) {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.endereco = endereco;
 		this.data = data;
 		this.concluido = concluido;
+		this.usuario = usuario;
 	}
+
 
 	public Contrato() {
 	}
@@ -96,13 +106,18 @@ public class Contrato {
 		this.concluido = concluido;
 	}
 
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	@Override
 	public String toString() {
 		return "Contrato [id=" + id + ", nome=" + nome + ", email=" + email + ", endereco=" + endereco + ", data="
-				+ data + ", concluido=" + concluido + "]";
+				+ data + ", concluido=" + concluido + ", usuario=" + usuario + "]";
 	}
-	
-	
-	
 
 }

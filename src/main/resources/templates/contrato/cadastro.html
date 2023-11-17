@@ -57,7 +57,7 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link active" th:href="@{/contrato/cadastrar}">
+							<a class="nav-link" th:href="@{/contrato/cadastrar}">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 									class="bi bi-person-circle" viewBox="0 0 16 16">
 									<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
@@ -116,6 +116,12 @@
 				<div class="col-md col-lg">
 					<form method="POST" th:object="${contrato}">
 						<div class="row g-3">
+							<div class="col-sm-6">
+								<label for="usuario" class="form-label">ID do Profissional</label>
+								<select class="form-control" id="usuario" name="usuario">
+									<option th:each="usuario : ${usuarios}" th:value="${usuario.id}" th:text="${usuario.nome}"></option>
+								</select>
+							</div>
 							<div class="col-sm-6">
 								<label for="nome" class="form-label">Nome</label>
 								<input type="text" class="form-control" id="nome" th:field="*{nome}" required>

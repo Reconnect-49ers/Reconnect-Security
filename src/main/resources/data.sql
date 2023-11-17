@@ -6,5 +6,5 @@ INSERT INTO usuario (nome, email, senha, imagem, capa, telefone, profissao, cpf,
 VALUES ('Pietra Maria','pietra@com', '123', LOAD_FILE('images/perfis/perfil10.jpg'), LOAD_FILE('classpath:images/perfis/perfil10.jpg'), '(85)9 71512-5252', 'Diarista', '123.456.789-14', 'Rua da Limpeza, n.11, Vice City', '1995-02-15', 'Limpo de tudo. Agenda livre para fins de semana!');
 
 
-INSERT INTO contrato (nome, email, endereco, data_hora, concluido)
-VALUES ('Irineu Júnior','irineu2@com', 'Rua 100 nome', '2023-11-16 15:30:00', false);
+INSERT INTO contrato (nome, email, endereco, data_hora, concluido, usuario_id)
+VALUES ('Steve Rogers','capamerica@com', 'Rua 100 nome', '2023-11-16 15:30:00', false, 1);
