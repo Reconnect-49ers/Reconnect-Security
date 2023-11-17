@@ -90,8 +90,13 @@ public class UsuarioController {
 		}
 		
 		@PostMapping("/{id}/editar")
+<<<<<<< HEAD
+		public ModelAndView editar(Usuario usuario, @RequestParam("fileUsuario") MultipartFile fileUsuario, @RequestParam("fileCapa") MultipartFile fileCapa) {		
+	 
+=======
 		public ModelAndView editar(Usuario usuario, @RequestParam("fileUsuario") MultipartFile fileUsuario, @RequestParam("fileCapa") MultipartFile fileCapa) {	
 			
+>>>>>>> 0e7589e3983385b5e51cd695cb2740b262c168b0
 			try {
 				usuario.setImagem(fileUsuario.getBytes());
 				usuario.setCapa(fileCapa.getBytes());
@@ -104,6 +109,7 @@ public class UsuarioController {
 	 
 			return modelAndView;
 		}
+		
 		
 		@GetMapping("/{id}/excluir")
 		public ModelAndView excluir(@PathVariable Long id) {
