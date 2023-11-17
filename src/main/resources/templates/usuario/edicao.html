@@ -146,11 +146,19 @@
 							<label for="dataNascimento" class="form-label">Data de Nascimento</label>
 							<input required type="date" class="form-control" id="dataNascimento" th:field="*{dataNascimento}">
 						</div>
-						<div class="mb-3">
+						<div>
+							<label for="bio" class="form-label">Bio</label>
+							<textarea style="resize: none"
+								placeholder="Fale um pouco de você e dos serviços que você pode oferecer." type="text"
+								class="form-control" id="bio" th:field="*{bio}"></textarea>
+						</div>
+						
+						<div class="mb-3 col-sm-6">
 							<label for="imagem">Foto do usuário</label>
 							<input type="file" class="form-control" id="imagem" name="fileUsuario" required>
 						</div>
-						<div class="mb-3">
+						
+						<div class="mb-3 col-sm-6">
 							<label for="capa">Foto do Capa</label>
 							<input type="file" class="form-control" id="capa" name="fileCapa" required>
 						</div>

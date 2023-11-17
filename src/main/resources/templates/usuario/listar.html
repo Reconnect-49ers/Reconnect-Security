@@ -130,13 +130,8 @@
 								<img alt="Image" class="img-fluid rounded" style="aspect-ratio: 1/1; width: 75px;"
 									th:src="|/usuario/imagem/${usuario.id}|" />
 							</td>
-							<td>
-								<a th:text="${usuario.email}"></a>
-							</td>
-							<td>
-								<a th:text="${usuario.telefone}"></a>
-							</td>
-							
+							<td th:text="${usuario.email}"></td>
+							<td th:text="${usuario.telefone}"></td>
 							<td th:text="${{usuario.dataNascimento}}"></td>
 							<td th:text="${usuario.profissao}"></td>
 							<td th:text="${usuario.cpf}"></td>
@@ -145,7 +140,6 @@
 								<a th:href="@{/usuario/{id}/editar (id=${usuario.id})}" class="btn btn-primary btn-edit mb-1">
 									Editar
 								</a>
-								
 								<a th:href="@{/usuario/{id}/excluir (id=${usuario.id})}" class="btn btn-danger btn-edit mb-1"
 									onclick="return confirm('Tem certeza que deseja excluir o usuário?');">
 									Excluir
