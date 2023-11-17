@@ -33,7 +33,7 @@ public class Contrato {
 	private String endereco;
 	
 	@Column(nullable = false, name = "data_hora")
-	@DateTimeFormat(iso = ISO.DATE, pattern = "dd/MM/yyyy HH:mm")
+	@DateTimeFormat(iso = ISO.DATE_TIME)
 	private LocalDateTime data;
 	
 	@Column
