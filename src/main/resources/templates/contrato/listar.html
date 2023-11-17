@@ -10,7 +10,7 @@
 	<link rel="stylesheet" href="styles/style.css">
 	<link rel="stylesheet" href="styles/mediaquery.css">
 	<script src="https://unpkg.com/@phosphor-icons/web"></script>
-	<title>Reconnect - Usuários</title>
+	<title>Reconnect - Contratos</title>
 </head>
 
 <body class="min-vh-100 d-flex flex-column justify-content-between">
@@ -103,10 +103,10 @@
 
 	<main class="container">
 		<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
-			<i style="font-size: 40px;" class="bi bi-people"></i>
+			<i style="font-size: 40px;" class="bi bi-file-text"></i>
 			<div class="container" style="display: flex; align-items: center; justify-content: space-between;">
-				<h1>Usuários</h1>
-				<a th:href="@{/usuario/cadastrar}" class="btn btn-primary">Cadastrar</a>
+				<h1>Contratos</h1>
+				<a th:href="@{/contrato/cadastrar}" class="btn btn-primary">Cadastrar</a>
 			</div>
 		</div>
 
@@ -117,44 +117,110 @@
 						<tr>
 							<th scope="col">#</th>
 							<th scope="col">Nome</th>
-							<th scope="col">Foto</th>
 							<th scope="col">E-mail</th>
-							<th scope="col">Telefone</th>
-							<th scope="col">Nascimento</th>
-							<th scope="col">Profissão</th>
-							<th scope="col">CPF</th>
+							<th scope="col">Data/Hora</th>
 							<th scope="col">Endereço</th>
+							<th scope="col">Profissional</th>
+							<th scope="col">Concluído</th>
 							<th scope="col">Ações</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="usuario : ${usuarios}">
-							<th scope="row" th:text="${usuario.id}"></th>
+						<tr th:each="contrato : ${contrato}">
+							<th scope="row" th:text="${contrato.id}"></th>
+							<td th:text="${contrato.nome}"></td>
+							<td th:text="${contrato.email}"></td>
+							<td th:text="${contrato.data}"></td>
+							<td th:text="${contrato.endereco}"></td>
+							<td > FK do Profissional</td>
 							<td>
-								<a class="username" th:text="${usuario.nome}"
-									th:href="@{/usuario/{id} (id=${usuario.id})}"></a>
+								<p th:text="${contrato.concluido ? 'Sim':'Não'}"></p>
 							</td>
 							<td>
-								<img alt="Image" class="img-fluid rounded" style="aspect-ratio: 1/1; width: 75px;"
-									th:src="|/usuario/imagem/${usuario.id}|" />
-							</td>
-							<td th:text="${usuario.email}"></td>
-							<td th:text="${usuario.telefone}"></td>
-							<td th:text="${{usuario.dataNascimento}}"></td>
-							<td th:text="${usuario.profissao}"></td>
-							<td th:text="${usuario.cpf}"></td>
-							<td th:text="${usuario.endereco}"></td>
-							<td>
-								<a th:href="@{/usuario/{id}/editar (id=${usuario.id})}"
-									class="btn btn-primary btn-edit mb-1">
+								<button data-bs-toggle="modal" class="btn btn-primary btn-edit mb-1"
+									th:data-bs-target="'#editar' + ${contrato.id}">
+
 									Editar
+								</button>
+
 								</a>
-								<a th:href="@{/usuario/{id}/excluir (id=${usuario.id})}"
+								<a th:href="@{/contrato/{id}/excluir (id=${contrato.id})}"
 									class="btn btn-danger btn-edit mb-1"
-									onclick="return confirm('Tem certeza que deseja excluir o usuário?');">
+									onclick="return confirm('Tem certeza que deseja excluir o contrato?');">
 									Excluir
 								</a>
 							</td>
+
+							<!-- Modal -->
+							<div class="modal fade" th:id="'editar' + ${contrato.id}" tabindex="-1">
+								<div class="modal-dialog modal-dialog-centered">
+									<div class="modal-content ">
+										<div class="modal-header">
+											<h1 class="modal-title fs-5">Deseja mudar o Status para Concluído?</h1>
+											<button type="button" class="btn-close" data-bs-dismiss="modal"
+												aria-label="Close"></button>
+										</div>
+										
+										<div class="modal-body">
+
+											<form th:action="@{'/contrato/editar'}" method="post"
+												th:object="${contratoedit}">
+
+												<div class="row">
+													<input type="hidden" id="id" name="id" class="form-control"
+														th:value="${contrato.id}" readonly />
+
+													<div class="col-12 mb-1">
+														<label>Nome:</label>
+														<input type="text" id="nome" name="nome" class="form-control"
+															th:value="${contrato.nome}" readonly />
+													</div>
+
+
+
+													<div class="col-12 mb-1">
+
+														<label>Email:</label>
+														<input type="email" id="email" name="email" class="form-control"
+															th:value="${contrato.email}" readonly />
+													</div>
+
+													<div class="col-12 mb-1">
+
+														<label for="endereco">Endereço:</label>
+														<input type="text" id="endereco" name="endereco"
+															class="form-control" th:value="${contrato.endereco}"
+															readonly />
+													</div>
+
+													<div class="col-12 col-sm-6 mb-1">
+
+														<label for="data">Data e Horário:</label>
+														<input type="datetime-local" id="data" name="data"
+															class="form-control" th:value="${contrato.data}" readonly />
+													</div>
+
+													<div class="col-12 col-sm-6 mb-1">
+
+														<label>Resolvido:</label>
+														<input type="text" id="concluido" name="concluido"
+															class="form-control"
+															th:value="${contrato.concluido ? 'true':'false'}" readonly/>
+													</div>
+
+
+												</div>
+												<input type="submit" value="Salvar" class="w-100 btn btn-primary btn-lg mt-2"/>
+												
+											</form>
+										</div>
+										
+									</div>
+								</div>
+							</div>
+							<!--			FIM MODAL-->
+
+
 						</tr>
 					</tbody>
 				</table>
