@@ -2,6 +2,7 @@ package com.reconnect.model;
 
 import java.util.Arrays;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,8 +29,8 @@ public class Servico {
 	@Column(columnDefinition = "longblob")
 	private byte[] imagem;
 	
-	@ManyToOne
-	@JoinColumn(name="fk_id_usuario", nullable = false)
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="usuario_id", nullable = false)
 	private Usuario usuario;
 	
 	public Servico() {

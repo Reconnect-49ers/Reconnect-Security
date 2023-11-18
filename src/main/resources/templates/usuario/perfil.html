@@ -50,7 +50,7 @@
 								Profissionais</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="servicos.html">
+							<a class="nav-link" th:href="@{/servicos}">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 									class="bi bi-tools" viewBox="0 0 16 16">
 									<path
@@ -70,18 +70,10 @@
 								Cadastre-se
 							</a>
 						</li>
+
+
 						<li class="nav-item">
-							<a class="nav-link" aria-current="page" href="/usuario">
-								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-									class="bi bi-people" viewBox="0 0 16 16">
-									<path
-										d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8Zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022ZM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816ZM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z" />
-								</svg>
-								Usuários
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="entrar.html">
+							<a class="nav-link" th:href="@{/entrar}">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 									class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
 									<path fill-rule="evenodd"
@@ -93,6 +85,21 @@
 							</a>
 						</li>
 					</ul>
+
+					<hr class="group-divider">
+					<div class="dropdown ms-2">
+						<button class="btn btn-outline-light btn-fundo dropdown-toggle " type="button"
+							data-bs-toggle="dropdown" aria-expanded="false">
+							Admin</button>
+						<ul class="dropdown-menu dropdown-menu-end">
+
+							<li><a class="dropdown-item dropdown-link" href="/usuario">Usuários</a></li>
+							<li><a class="dropdown-item dropdown-link" href="/contrato">Contratos</a></li>
+							<li><a class="dropdown-item dropdown-link" href="#">#</a></li>
+							<li><a class="dropdown-item dropdown-link" href="/faleconosco">Fale Conosco</a></li>
+						</ul>
+					</div>
+
 				</div>
 			</div>
 		</nav>
@@ -110,7 +117,7 @@
 				<div class="sombra"></div>
 				<div class="avatar-perfil">
 					<img class="perfil-usuario-img" th:src="|/usuario/imagem/${usuario.id}|" alt="img">
-					<a href="#" class="trocar-foto">
+					<a th:href="@{/usuario/{id}/editar (id=${usuario.id})}" class="trocar-foto">
 						<i class="fas fa-camera"></i>
 						<span>Trocar foto</span>
 					</a>
@@ -126,7 +133,7 @@
 					</ul>
 				</div>
 				<div class="opcoes-perfil">
-					<button type="">Trocar capa</button>
+					<!--					<button type="">Trocar capa</button>-->
 					<a th:href="@{/usuario/{id}/editar (id=${usuario.id})}"><i class="fas fa-wrench"></i></a>
 				</div>
 			</div>
@@ -135,7 +142,10 @@
 					<li><a href="#" title=""><i class="icone-perfil fas fa-bullhorn"></i> Publicações</a></li>
 					<li><a data-bs-toggle="modal" th:data-bs-target="'#contato' + ${usuario.id}" title=""><i
 								class="icone-perfil fas fa-info-circle"></i> Contato</a></li>
-					<li><a href="#" title=""><i class="icone-perfil fas fa-grin"></i> Serviços 43</a></li>
+
+					<li><a data-bs-toggle="modal" th:data-bs-target="'#contrato' + ${usuario.id}" title=""><i
+								class="icone-perfil fas fa-grin"></i> Contratar</a></li>
+
 					<li><a href="#" title=""><i class="icone-perfil fas fa-camera"></i> Avaliações</a></li>
 				</ul>
 			</div>
@@ -154,8 +164,8 @@
 			<p>Veja meu gracioso trabalho que finalizei hoje:</p>
 
 			<img class="img-capa" th:src="|/usuario/capa/${usuario.id}|" alt="img" style="border-radius: 0">
-			
-					
+
+
 			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore earum harum et quis, dolorum, nobis vero
 				alias sit cumque, quos aliquid facilis ipsum? Repudiandae maiores corporis accusantium corrupti
 				assumenda quam.</p>
@@ -164,35 +174,36 @@
 	</div> <!--	Fim Feed perfil-->
 
 	<!-- Modal Contato -->
-	<div class="modal fade" th:id="'contato' + ${usuario.id}" tabindex="-1" aria-labelledby="exampleModalLabel"
-		aria-hidden="true">
+	<div class="modal fade" th:id="'contato' + ${usuario.id}" tabindex="-1" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered">
 			<div class="modal-content">
 
 				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="exampleModalLabel">Entre em contato com <span th:text="${usuario.nome}"></span></h1>
+					<h1 class="modal-title fs-5" id="exampleModalLabel">Entre em contato com <span
+							th:text="${usuario.nome}"></span></h1>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 
 				<div class="modal-body">
 
 					<div class="">
-						
+
 						<div>Profissão: <span th:text="${usuario.profissao}"></span></div>
 						<div>E-mail: <span th:text="${usuario.email}"></span></div>
 						<p>Telefone: <span th:text="${usuario.telefone}"></span></p>
 					</div>
 
-					<!-- enviar para a classe contato_serviço aqui:-->	
+					<!-- enviar para a classe contato_serviço aqui:-->
 					<!-- falta colocar o th:field="*{mensagem}"	no textearea-->
-					
-				<!-- <form method="POST" th:object="${contato}" enctype="multipart/form-data">-->
+
+					<form method="POST" th:object="${contato}">
 						<div>
 							<label for="mensagem" class="form-label">Mensagem</label>
-							<textarea style="resize: none" placeholder="Marque serviços ou tire dúvidas direto com o profissional." type="text"
+							<textarea style="resize: none"
+								placeholder="Agende serviços ou tire dúvidas com o profissional." type="text"
 								class="form-control" id="mensagem" rows="3" required></textarea>
 						</div>
-				<!-- </form>-->
+					</form>
 
 
 
@@ -201,6 +212,66 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
 					<button type="button" class="btn btn-primary">Enviar</button>
+				</div>
+
+			</div>
+		</div>
+	</div> <!--	fim do modal-->
+
+	<!-- Modal Contrato -->
+	<div class="modal fade" th:id="'contrato' + ${usuario.id}" tabindex="-1" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h1 class="modal-title fs-5">Cantrate os serviços de <span
+							th:text="${usuario.nome}"></span></h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+
+				<div class="modal-body">
+					<form method="POST" th:action="@{/contrato/cadastrar}" th:object="${contrato}">
+						<div class="row g-3">
+							<div class="col-sm-6">
+<!--								<input type="hidden" th:field="*{id}">-->
+								<label for="usuario" class="form-label">Profissional</label>
+								<select class="form-control" id="usuario" name="usuario">
+									<option th:text="${usuario.nome}" th:value="${usuario.id}"></option>
+								</select>
+							</div>
+							
+							<div class="col-sm-6">
+								<label for="profissao" class="form-label">Profissão: </label>
+								<p th:text="${usuario.profissao}"></p>
+							</div>
+							
+							<div class="col-sm-6">
+								<label for="nome" class="form-label">Nome</label>
+								<input type="text" class="form-control" id="nome" th:field="*{nome}" required>
+							</div>
+							<div class="col-sm-6">
+								<label for="email" class="form-label">E-mail</label>
+								<input type="email" class="form-control" id="email" th:field="*{email}"
+									placeholder="nome@exemplo.com" required>
+							</div>
+
+							<div class="col-sm-6">
+								<label for="endereco" class="form-label">Endereço</label>
+								<input type="text" class="form-control" id="endereco" th:field="*{endereco}" required>
+							</div>
+							<div class="col-sm-6">
+								<label for="data" class="form-label">Data</label>
+								<input type="datetime-local" class="form-control" id="data" th:field="*{data}" required>
+							</div>
+
+							<br>
+
+							<button type="submit" class="w-100 btn btn-primary btn-lg">Cadastrar</button>
+
+						</div>
+					</form>
+
 				</div>
 
 			</div>

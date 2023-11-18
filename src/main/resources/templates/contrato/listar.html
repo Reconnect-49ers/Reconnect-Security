@@ -10,10 +10,10 @@
 	<link rel="stylesheet" href="styles/style.css">
 	<link rel="stylesheet" href="styles/mediaquery.css">
 	<script src="https://unpkg.com/@phosphor-icons/web"></script>
-	<title>Reconnect - Entre ou cadastre-se</title>
+	<title>Reconnect - Contratos</title>
 </head>
 
-<body>
+<body class="min-vh-100 d-flex flex-column justify-content-between">
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark">
 			<div class="container-fluid">
@@ -69,7 +69,7 @@
 
 
 						<li class="nav-item">
-							<a class="nav-link active" th:href="@{/entrar}">
+							<a class="nav-link" th:href="@{/entrar}">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 									class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
 									<path fill-rule="evenodd"
@@ -96,127 +96,148 @@
 						</ul>
 					</div>
 
-
-
-
 				</div>
 			</div>
 		</nav>
 	</header>
 
-	<main class="main-entrar background-img">
-
-		<section class="sessao-entrar container mb-3">
-
-			<!-- caixinha -->
-			<div class="container cadastro-cliente">
-				<form class="needs-validation" novalidate>
-					<div class="row g-3">
-
-						<div class="col-12">
-							<input type="text" class="form-control" id="email" placeholder="Email ou telefone">
-							<div class="invalid-feedback">
-								Insira um endereço de e-mail ou um celular válido.
-							</div>
-						</div>
-						<div class="col-12 mb-3">
-							<input type="password" class="form-control" id="email" placeholder="Senha">
-							<div class="invalid-feedback">
-								Insira uma senha válida.
-							</div>
-						</div>
-					</div>
-					<a href="/" class="w-100 btn btn-primary btn-lg mb-2" type="button">Entrar</button>
-						<a href=" #">Esqueceu a senha?</a>
-						<hr class="my-2">
-						<a class="w-100 btn btn-primary btn-lg btn-criar" type="button" th:href="@{/usuario/cadastrar}">Criar nova conta</a>
-				</form>
-			</div>
-			<!-- caixinha -->
-
-			<!-- modal -->
-<!--			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"-->
-<!--				aria-hidden="true">-->
-<!--				<div class="modal-dialog modal-dialog-centered">-->
-<!--					<div class="modal-content">-->
-<!--						<div class="modal-header">-->
-<!--							<h1 class="modal-title fs-5" id="exampleModalLabel">Cadastre-se</h1>-->
-<!--							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
-<!--						</div>-->
-
-<!--						<div class="modal-body">-->
-
-<!--							<form class="needs-validation" novalidate>-->
-<!--								<div class="row g-3">-->
-<!--									<div class="col-sm-6">-->
-<!--										<input type="text" class="form-control" id="firstName" placeholder="Nome"-->
-<!--											value="" required>-->
-<!--										<div class="invalid-feedback">-->
-<!--											Nome válido é obrigatório.-->
-<!--										</div>-->
-<!--									</div>-->
-
-<!--									<div class="col-sm-6">-->
-<!--										<input type="text" class="form-control" id="lastName" placeholder="Sobrenome"-->
-<!--											value="" required>-->
-<!--										<div class="invalid-feedback">-->
-<!--											Sobrenome válido é obrigatório.-->
-<!--										</div>-->
-<!--									</div>-->
-
-<!--									<div class="col-12">-->
-<!--										<input type="email" class="form-control" id="email"-->
-<!--											placeholder="Celular ou email">-->
-<!--										<div class="invalid-feedback">-->
-<!--											Insira um endereço de e-mail ou um celular válido.-->
-<!--										</div>-->
-<!--									</div>-->
-
-<!--									<div class="col-12 mb-3">-->
-<!--										<input type="password" class="form-control" id="email" placeholder="Nova senha">-->
-<!--										<div class="invalid-feedback">-->
-<!--											Insira uma senha válida.-->
-<!--										</div>-->
-<!--									</div>-->
-
-<!--								</div>-->
-<!--								<button class="w-100 btn btn-primary btn-lg" type="button" data-bs-toggle="modal"-->
-<!--									data-bs-target="#exampleModal2">Cadastre-se</button>-->
-<!--							</form>-->
-
-<!--						</div>-->
-
-<!--					</div>-->
-<!--				</div>-->
-<!--			</div>-->
-			<!-- fim do modal -->
-
-		</section>
-
-		<!-- modal 2-->
-		<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="exampleModalLabel">Cadastro realizado!</h1>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
-						Bem-vindo ao Reconnect!
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ok</button>
-					</div>
-
-				</div>
+	<main class="container">
+		<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
+			<i style="font-size: 40px;" class="bi bi-file-text"></i>
+			<div class="container" style="display: flex; align-items: center; justify-content: space-between;">
+				<h1>Contratos</h1>
+				<a th:href="@{/contrato/cadastrar}" class="btn btn-primary">Cadastrar</a>
 			</div>
 		</div>
-		<!-- fim do modal -->
+
+		<div class="row">
+			<div class="col-sm-12 overflow-x-auto">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Cliente</th>
+							<th scope="col">E-mail</th>
+							<th scope="col">Data/Hora</th>
+							<th scope="col">Endereço do Cliente</th>
+							<th scope="col">Profissional</th>
+							<th scope="col">Concluído</th>
+							<th scope="col">Ações</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="contrato : ${contrato}">
+							<th scope="row" th:text="${contrato.id}"></th>
+							<td th:text="${contrato.nome}"></td>
+							<td th:text="${contrato.email}"></td>
+							<td th:text="${contrato.data}"></td>
+							<td th:text="${contrato.endereco}"></td>
+							<td th:text="${contrato.usuario.nome}"> </td>
+							<td>
+								<p th:text="${contrato.concluido ? 'Sim':'Não'}"></p>
+							</td>
+							<td>
+								<button data-bs-toggle="modal" class="btn btn-primary btn-edit mb-1"
+									th:data-bs-target="'#editar' + ${contrato.id}">
+
+									Editar
+								</button>
+
+								</a>
+								<a th:href="@{/contrato/{id}/excluir (id=${contrato.id})}"
+									class="btn btn-danger btn-edit mb-1"
+									onclick="return confirm('Tem certeza que deseja excluir o contrato?');">
+									Excluir
+								</a>
+							</td>
+
+							<!-- Modal -->
+							<div class="modal fade" th:id="'editar' + ${contrato.id}" tabindex="-1">
+								<div class="modal-dialog modal-dialog-centered">
+									<div class="modal-content ">
+										<div class="modal-header">
+											<h1 class="modal-title fs-5">Deseja mudar o Status para Concluído?</h1>
+											<button type="button" class="btn-close" data-bs-dismiss="modal"
+												aria-label="Close"></button>
+										</div>
+										
+										<div class="modal-body">
+
+											<form th:action="@{'/contrato/editar'}" method="post"
+												th:object="${contratoedit}">
+
+												<div class="row">
+													<input type="hidden" id="id" name="id" th:value="${contrato.id}" readonly />
+														
+													<input type="hidden" id="usuario" name="usuario" th:value="${contrato.usuario.id}" readonly />
+
+													<div class="col-12 mb-1">
+														<label>Profissional:</label>
+														<input type="text" id="nome" class="form-control"
+															th:value="${contrato.usuario.nome}" readonly />
+													</div>
+													
+													<div class="col-12 mb-1">
+														<label>Cliente:</label>
+														<input type="text" id="nome" name="nome" class="form-control"
+															th:value="${contrato.nome}" readonly />
+													</div>
+
+
+
+													<div class="col-12 mb-1">
+
+														<label>Email:</label>
+														<input type="email" id="email" name="email" class="form-control"
+															th:value="${contrato.email}" readonly />
+													</div>
+
+													<div class="col-12 mb-1">
+
+														<label for="endereco">Endereço:</label>
+														<input type="text" id="endereco" name="endereco"
+															class="form-control" th:value="${contrato.endereco}"
+															readonly />
+													</div>
+
+													<div class="col-12 col-sm-6 mb-1">
+
+														<label for="data">Data e Horário:</label>
+														<input type="datetime-local" id="data" name="data"
+															class="form-control" th:value="${contrato.data}" readonly />
+													</div>
+
+													<div class="col-12 col-sm-6 mb-1">
+
+														<label>Resolvido:</label>
+														<input type="text" id="concluido" name="concluido"
+															class="form-control"
+															th:value="${contrato.concluido ? 'true':'false'}" readonly/>
+													</div>
+
+
+												</div>
+												<input type="submit" value="Salvar" class="w-100 btn btn-primary btn-lg mt-2"/>
+												
+											</form>
+										</div>
+										
+									</div>
+								</div>
+							</div>
+							<!--			FIM MODAL-->
+
+
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
 
 	</main>
 
-	<footer style="padding: 20px;">
-		<img src="images/reconnect-footer.png" alt="Imagem da Logo da Reconnect">
+	<footer>
+		<img src="../images/reconnect-footer.png" alt="Imagem da Logo da Reconnect">
 		<div class="compra-segura">
 			<strong>SERVIÇOS</strong>
 			<a href="profissionais.html">Profissionais</a>
@@ -227,7 +248,11 @@
 			<strong>CONTATO</strong>
 			<span><i class="ph ph-phone"></i> 85 3232-3232</span>
 			<span><i class="ph ph-at"></i>contato@reconnect.com</span>
-			<span><i class="ph ph-map-pin"></i> Rua Servidor Público, s/n</span>
+			<span><i class="ph ph-chat-centered"></i>
+				<a style="color: white;" th:href="@{/faleconosco/cadastrar}">
+					Fale Conosco
+				</a>
+			</span>
 		</div>
 		<div class="redes-sociais">
 			<strong>REDES SOCIAIS</strong>
@@ -245,6 +270,7 @@
 			</div>
 		</div>
 	</footer>
+
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
