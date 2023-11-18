@@ -58,6 +58,9 @@ public class Usuario {
 	@OneToMany(mappedBy = "usuario")
 	private List<Servico> servicos;
 	
+	@OneToMany
+	private List<Contrato> contratos;
+	
 	public List<Servico> getServico(){
 		return this.servicos;
 	}

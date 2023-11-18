@@ -47,7 +47,7 @@
 								Profissionais</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="servicos.html">
+							<a class="nav-link" th:href="@{/servicos}">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 									class="bi bi-tools" viewBox="0 0 16 16">
 									<path
@@ -70,7 +70,7 @@
 
 
 						<li class="nav-item">
-							<a class="nav-link" href="entrar.html">
+							<a class="nav-link" th:href="@{/entrar}">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 									class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
 									<path fill-rule="evenodd"
@@ -88,23 +88,21 @@
 						<button class="btn btn-outline-light btn-fundo dropdown-toggle " type="button"
 							data-bs-toggle="dropdown" aria-expanded="false">
 							Admin</button>
-						<ul class="dropdown-menu dropdown-menu-end">
+						<ul class="dropdown-menu dropdown-menu-end" style="font-size: 16px;">
 
-							<li><a class="dropdown-item dropdown-link" href="/usuario">Usuarios</a></li>
+							<li><a class="dropdown-item dropdown-link" href="/usuario">Usuários</a></li>
 							<li><a class="dropdown-item dropdown-link" href="/servico">Serviços</a></li>
+							<li><a class="dropdown-item dropdown-link" href="/contrato">Contratos</a></li>
 							<li><a class="dropdown-item dropdown-link" href="#">#</a></li>
 							<li><a class="dropdown-item dropdown-link" href="/faleconosco">Fale Conosco</a></li>
 						</ul>
 					</div>
 
-
-
-
 				</div>
 			</div>
 		</nav>
 	</header>
-
+	<main class="container">
 		<div class="position-relative overflow-hidden">
 			<img class="capinha card-img-top mb-3" src="../images/capa01.jpg"
 				alt="Imagem de um homem mecânico em baixo do carro.">
@@ -112,60 +110,62 @@
 				<h2 class="display-5">Cadastre Serviço</h2>
 				<p class="lead">Um texto qualquer</p>
 			</div>
-	
+
 			<div class="container" style="padding: 20px;">
-	
+
 				<div class="row">
 					<div class="col-md col-lg">
 						<form method="POST" th:object="${servico}" enctype="multipart/form-data">
 							<div class="row g-3">
-								
+
 								<div class="col-sm-6">
 									<label for="usuario" class="form-label">Selecione um usuário:</label>
-    								<select class="form-control" id="usuario" name="usuario">
-       									<option th:each="usuario : ${usuarios}" th:value="${usuario.id}" th:text="${usuario.nome}"></option>
-   									</select>
+									<select class="form-control" id="usuario" name="usuario">
+										<option th:each="usuario : ${usuarios}" th:value="${usuario.id}"
+											th:text="${usuario.nome}"></option>
+									</select>
 								</div>
-								
+
 								<div class="col-sm-6">
 									<label for="nome" class="form-label">Nome</label>
 									<input type="text" class="form-control" id="nome" th:field="*{nome}" required>
 								</div>
-								
+
 								<div class="col-sm-6">
 									<label for="descricao" class="form-label">Descrição</label>
-									<input type="text" class="form-control" id="descricao" th:field="*{descricao}" required>
+									<input type="text" class="form-control" id="descricao" th:field="*{descricao}"
+										required>
 								</div>
-								
-	
+
+
 								<div class="form-group col-sm-6">
 									<label for="imagem" class="form-label">Foto do Serviço</label>
 									<input type="file" class="form-control" id="imagem" name="file">
 								</div>
-								
+
 								<br>
-	
+
 								<button type="submit" class="w-100 btn btn-primary btn-lg">Cadastrar</button>
-	
+
 							</div>
 						</form>
 					</div>
 				</div>
-	
+
 				<hr class="my-4">
-	
+
 				<!-- benefícios -->
 				<h2 class="text-center display-6">Benefícios para você</h2>
-	
+
 				<section class="meu-container gap-2">
-	
+
 					<div class="cada-card">
 						<div class="text-center">
 							<img class="img-card" src="../images/celular.jpg" alt="Homem olhado o celular.">
 							<p class="p-cards">Os serviços chegam via notificação no seu celular.</p>
 						</div>
 					</div>
-	
+
 					<div class="cada-card">
 						<div class="text-center">
 							<img class="img-card" src="../images/aperto-mao.jpg"
@@ -173,7 +173,7 @@
 							<p class="p-cards">Faça serviços para as pessoas mais próximas.</p>
 						</div>
 					</div>
-	
+
 					<div class="cada-card">
 						<div class="text-center">
 							<img class="img-card" src="../images/feed.png"
@@ -181,16 +181,16 @@
 							<p class="p-cards">Publique seus trabalhos e habilidades no seu Feed!</p>
 						</div>
 					</div>
-	
+
 				</section> <!-- fim de benefícios -->
-	
+
 				<p class="text-center display-6">Dúvidas? Atendimento nos dias úteis, das 9 às 18h:</p>
 				<p class="text-center lead">SAC: (85) 3232-3232</p>
 				<p class="text-center lead">Whatsapp: (85) 98758-5885</p>
 				<p class="text-center lead">contato@reconnect.com</p>
 			</div>
 		</div>
-	
+	</main>
 	<footer>
 		<img src="../images/reconnect-footer.png" alt="Imagem da Logo da Reconnect">
 		<div class="compra-segura">

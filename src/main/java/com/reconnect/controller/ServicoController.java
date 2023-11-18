@@ -120,8 +120,10 @@ public class ServicoController {
 	@GetMapping("/{id}/excluir")
 	public ModelAndView excluir(@PathVariable Long id) {
 		ModelAndView modelAndView = new ModelAndView("redirect:/servico");
- 
-		servicoRepository.deleteById(id);
+		
+		Servico serv = servicoRepository.findById(id).orElse(null);
+		
+		servicoRepository.deleteById(serv.getId());
  
 		return modelAndView;
 	}
