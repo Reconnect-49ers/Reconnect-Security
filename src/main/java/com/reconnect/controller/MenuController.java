@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.reconnect.model.Servico;
 import com.reconnect.repository.ServicoRepository;
-//import com.reconnect.repository.UsuarioRepository;
+import com.reconnect.repository.UsuarioRepository;
 
 @Controller
 public class MenuController {
@@ -22,6 +22,21 @@ public class MenuController {
 	@Autowired
 	private ServicoRepository servicoRepository;
 	
+  @GetMapping("/profissionais")
+  public String showProfissionaisPage() {
+    return "profissionais";
+  }
+	
+	@GetMapping("/servicos")
+	public String showServicosPage() {
+		return "servicos";
+	}
+	
+	@GetMapping("/entrar")
+	public String showEntrarPage() {
+		return "entrar";
+	}
+  
 	@GetMapping
 	public ModelAndView listar() {
 		ModelAndView modelAndView = new ModelAndView("index.html");
@@ -38,5 +53,5 @@ public class MenuController {
 		Servico servico = this.servicoRepository.getReferenceById(id);
 		return servico.getImagem();
 	}
-	
+
 }

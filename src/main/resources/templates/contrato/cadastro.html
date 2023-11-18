@@ -7,13 +7,14 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-	<link rel="stylesheet" href="styles/style.css">
-	<link rel="stylesheet" href="styles/mediaquery.css">
+	<link rel="stylesheet" href="../styles/style.css">
+	<link rel="stylesheet" href="../styles/mediaquery.css">
 	<script src="https://unpkg.com/@phosphor-icons/web"></script>
-	<title>Reconnect - Entre ou cadastre-se</title>
+	<title>Reconnect - Cadastrar Usuário</title>
 </head>
 
-<body>
+<body class="min-vh-100 d-flex flex-column justify-content-between">
+
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark">
 			<div class="container-fluid">
@@ -69,7 +70,7 @@
 
 
 						<li class="nav-item">
-							<a class="nav-link active" th:href="@{/entrar}">
+							<a class="nav-link" th:href="@{/entrar}">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 									class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
 									<path fill-rule="evenodd"
@@ -96,127 +97,78 @@
 						</ul>
 					</div>
 
-
-
-
 				</div>
 			</div>
 		</nav>
 	</header>
 
-	<main class="main-entrar background-img">
+	<div class="position-relative overflow-hidden">
+		<img class="capinha card-img-top mb-3" src="../images/capa01.jpg"
+			alt="Imagem de um homem mecânico em baixo do carro.">
+		<div class="text-center">
+			<h2 class="display-5">CONTRATO</h2>
+			<p class="lead">Feche contrato com o profissional escolhido</p>
+		</div>
 
-		<section class="sessao-entrar container mb-3">
+		<div class="container" style="padding: 20px;">
 
-			<!-- caixinha -->
-			<div class="container cadastro-cliente">
-				<form class="needs-validation" novalidate>
-					<div class="row g-3">
-
-						<div class="col-12">
-							<input type="text" class="form-control" id="email" placeholder="Email ou telefone">
-							<div class="invalid-feedback">
-								Insira um endereço de e-mail ou um celular válido.
+			<div class="row">
+				<div class="col-md col-lg">
+					<form method="POST" th:object="${contrato}">
+						<div class="row g-3">
+							<div class="col-sm-6">
+								<label for="usuario" class="form-label">Profissional</label>
+								<select class="form-control" id="usuario" name="usuario">
+									<option th:each="usuario : ${usuarios}" th:value="${usuario.id}"
+										th:text="${usuario.nome}"></option>
+								</select>
 							</div>
-						</div>
-						<div class="col-12 mb-3">
-							<input type="password" class="form-control" id="email" placeholder="Senha">
-							<div class="invalid-feedback">
-								Insira uma senha válida.
+							<div class="col-sm-6">
+								<label for="nome" class="form-label">Nome</label>
+								<input type="text" class="form-control" id="nome" th:field="*{nome}" required>
 							</div>
+							<div class="col-sm-6">
+								<label for="email" class="form-label">E-mail</label>
+								<input type="email" class="form-control" id="email" th:field="*{email}"
+									placeholder="nome@exemplo.com" required>
+							</div>
+
+							<div class="col-sm-6">
+								<label for="endereco" class="form-label">Endereço</label>
+								<input type="text" class="form-control" id="endereco" th:field="*{endereco}" required>
+							</div>
+							<div class="col-sm-6">
+								<label for="data" class="form-label">Data</label>
+								<input type="datetime-local" class="form-control" id="data" th:field="*{data}" required>
+							</div>
+
+
+
+
+
+
+							<br>
+
+							<button type="submit" class="w-100 btn btn-primary btn-lg">Cadastrar</button>
+
 						</div>
-					</div>
-					<a href="/" class="w-100 btn btn-primary btn-lg mb-2" type="button">Entrar</button>
-						<a href=" #">Esqueceu a senha?</a>
-						<hr class="my-2">
-						<a class="w-100 btn btn-primary btn-lg btn-criar" type="button" th:href="@{/usuario/cadastrar}">Criar nova conta</a>
-				</form>
-			</div>
-			<!-- caixinha -->
-
-			<!-- modal -->
-<!--			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"-->
-<!--				aria-hidden="true">-->
-<!--				<div class="modal-dialog modal-dialog-centered">-->
-<!--					<div class="modal-content">-->
-<!--						<div class="modal-header">-->
-<!--							<h1 class="modal-title fs-5" id="exampleModalLabel">Cadastre-se</h1>-->
-<!--							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
-<!--						</div>-->
-
-<!--						<div class="modal-body">-->
-
-<!--							<form class="needs-validation" novalidate>-->
-<!--								<div class="row g-3">-->
-<!--									<div class="col-sm-6">-->
-<!--										<input type="text" class="form-control" id="firstName" placeholder="Nome"-->
-<!--											value="" required>-->
-<!--										<div class="invalid-feedback">-->
-<!--											Nome válido é obrigatório.-->
-<!--										</div>-->
-<!--									</div>-->
-
-<!--									<div class="col-sm-6">-->
-<!--										<input type="text" class="form-control" id="lastName" placeholder="Sobrenome"-->
-<!--											value="" required>-->
-<!--										<div class="invalid-feedback">-->
-<!--											Sobrenome válido é obrigatório.-->
-<!--										</div>-->
-<!--									</div>-->
-
-<!--									<div class="col-12">-->
-<!--										<input type="email" class="form-control" id="email"-->
-<!--											placeholder="Celular ou email">-->
-<!--										<div class="invalid-feedback">-->
-<!--											Insira um endereço de e-mail ou um celular válido.-->
-<!--										</div>-->
-<!--									</div>-->
-
-<!--									<div class="col-12 mb-3">-->
-<!--										<input type="password" class="form-control" id="email" placeholder="Nova senha">-->
-<!--										<div class="invalid-feedback">-->
-<!--											Insira uma senha válida.-->
-<!--										</div>-->
-<!--									</div>-->
-
-<!--								</div>-->
-<!--								<button class="w-100 btn btn-primary btn-lg" type="button" data-bs-toggle="modal"-->
-<!--									data-bs-target="#exampleModal2">Cadastre-se</button>-->
-<!--							</form>-->
-
-<!--						</div>-->
-
-<!--					</div>-->
-<!--				</div>-->
-<!--			</div>-->
-			<!-- fim do modal -->
-
-		</section>
-
-		<!-- modal 2-->
-		<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h1 class="modal-title fs-5" id="exampleModalLabel">Cadastro realizado!</h1>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-					</div>
-					<div class="modal-body">
-						Bem-vindo ao Reconnect!
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-primary" data-bs-dismiss="modal">Ok</button>
-					</div>
-
+					</form>
 				</div>
 			</div>
+
+			<hr class="my-4">
+
+
+
+			<p class="text-center display-6">Dúvidas? Atendimento nos dias úteis, das 9 às 18h:</p>
+			<p class="text-center lead">SAC: (85) 3232-3232</p>
+			<p class="text-center lead">Whatsapp: (85) 98758-5885</p>
+			<p class="text-center lead">contato@reconnect.com</p>
 		</div>
-		<!-- fim do modal -->
+	</div>
 
-	</main>
-
-	<footer style="padding: 20px;">
-		<img src="images/reconnect-footer.png" alt="Imagem da Logo da Reconnect">
+	<footer>
+		<img src="../images/reconnect-footer.png" alt="Imagem da Logo da Reconnect">
 		<div class="compra-segura">
 			<strong>SERVIÇOS</strong>
 			<a href="profissionais.html">Profissionais</a>
@@ -227,7 +179,11 @@
 			<strong>CONTATO</strong>
 			<span><i class="ph ph-phone"></i> 85 3232-3232</span>
 			<span><i class="ph ph-at"></i>contato@reconnect.com</span>
-			<span><i class="ph ph-map-pin"></i> Rua Servidor Público, s/n</span>
+			<span><i class="ph ph-chat-centered"></i>
+				<a style="color: white;" th:href="@{/faleconosco/cadastrar}">
+					Fale Conosco
+				</a>
+			</span>
 		</div>
 		<div class="redes-sociais">
 			<strong>REDES SOCIAIS</strong>
@@ -245,6 +201,7 @@
 			</div>
 		</div>
 	</footer>
+
 
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
