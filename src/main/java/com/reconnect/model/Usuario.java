@@ -12,7 +12,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -56,9 +55,12 @@ public class Usuario {
 	
 	private String bio;
 	
-	@OneToMany
-	@JoinColumn(name="fk_id_usuario")
+	@OneToMany(mappedBy = "usuario")
 	private List<Servico> servicos;
+	
+	public List<Servico> getServico(){
+		return this.servicos;
+	}
 
 	public Usuario(Long id, String nome, String email, String senha, byte[] imagem, byte[] capa, String telefone,
 			String profissao, String cpf, String endereco, LocalDate dataNascimento, String bio) {
