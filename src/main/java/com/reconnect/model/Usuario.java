@@ -2,6 +2,7 @@ package com.reconnect.model;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -11,6 +12,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -32,6 +35,9 @@ public class Usuario {
 	@Column(columnDefinition = "longblob")
 	private byte[] imagem;
 	
+	@Column(columnDefinition = "longblob")
+	private byte[] capa;
+	
 	@Column(nullable = false)
 	private String telefone;
 	
@@ -47,24 +53,31 @@ public class Usuario {
 	@Column(nullable = false, name = "data_nascimento")
 	@DateTimeFormat(iso = ISO.DATE, pattern = "dd/MM/yyyy")
 	private LocalDate dataNascimento;
+	
+	private String bio;
+	
+	@OneToMany
+	@JoinColumn(name="fk_id_usuario")
+	private List<Servico> servicos;
 
-	public Usuario(Long id, String nome, String email, String senha, byte[] imagem, String telefone, String profissao,
-			String cpf, String endereco, LocalDate dataNascimento) {
+	public Usuario(Long id, String nome, String email, String senha, byte[] imagem, byte[] capa, String telefone,
+			String profissao, String cpf, String endereco, LocalDate dataNascimento, String bio) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
 		this.imagem = imagem;
+		this.capa = capa;
 		this.telefone = telefone;
 		this.profissao = profissao;
 		this.cpf = cpf;
 		this.endereco = endereco;
 		this.dataNascimento = dataNascimento;
+		this.bio = bio;
 	}
 
 	public Usuario() {
-		super();
 	}
 
 	public Long getId() {
@@ -107,6 +120,14 @@ public class Usuario {
 		this.imagem = imagem;
 	}
 
+	public byte[] getCapa() {
+		return capa;
+	}
+
+	public void setCapa(byte[] capa) {
+		this.capa = capa;
+	}
+
 	public String getTelefone() {
 		return telefone;
 	}
@@ -146,7 +167,15 @@ public class Usuario {
 	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
-	
+
+	public String getBio() {
+		return bio;
+	}
+
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -189,12 +218,13 @@ public class Usuario {
 			return false;
 		return true;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", imagem="
-				+ Arrays.toString(imagem) + ", telefone=" + telefone + ", profissao=" + profissao + ", cpf=" + cpf
-				+ ", endereco=" + endereco + ", dataNascimento=" + dataNascimento + "]";
+				+ Arrays.toString(imagem) + ", capa=" + Arrays.toString(capa) + ", telefone=" + telefone
+				+ ", profissao=" + profissao + ", cpf=" + cpf + ", endereco=" + endereco + ", dataNascimento="
+				+ dataNascimento + ", bio=" + bio + "]";
 	}
 	
 	
