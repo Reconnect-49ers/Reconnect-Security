@@ -88,8 +88,9 @@
 								<ul class="dropdown-menu dropdown-menu-end">
 									
 									<li><a class="dropdown-item dropdown-link" href="/usuario">Usuários</a></li>
-									<li><a class="dropdown-item dropdown-link" href="/usuario">Contrato</a></li>
-									<li><a class="dropdown-item dropdown-link" href="#">#</a></li>
+									<li><a class="dropdown-item dropdown-link" href="/servico">Serviços</a></li>
+									<li><a class="dropdown-item dropdown-link" href="/contrato">Contratos</a></li>
+									<li><a class="dropdown-item dropdown-link" href="/contato">Contatos</a></li>
 									<li><a class="dropdown-item dropdown-link" href="/faleconosco">Fale Conosco</a></li>
 								</ul>
 							</div>
@@ -156,12 +157,12 @@
 				<div class="modal-dialog">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h1 class="modal-title fs-5">Editar</h1>
+							<h1 class="modal-title fs-5">Deseja mudar o Status para Resolvido?</h1>
 							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 						</div>
 						<div class="modal-body">
 					     <form th:action="@{'/faleconosco/editar'}" method="post" th:object="${faleconoscoedit}">
-							 <p>Deseja mudar o Status para Resolvido?</p>
+							 
 							 
 							 
 							 <input type="hidden" id="id" name="id" class="form-control" th:value="${faleconosco.id}" readonly/>
