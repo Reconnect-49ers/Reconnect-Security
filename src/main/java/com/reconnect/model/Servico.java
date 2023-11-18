@@ -29,7 +29,7 @@ public class Servico {
 	@Column(columnDefinition = "longblob")
 	private byte[] imagem;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="usuario_id", nullable = false)
 	private Usuario usuario;
 	
