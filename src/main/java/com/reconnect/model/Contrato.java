@@ -39,7 +39,8 @@ public class Contrato {
 	@Column
 	private boolean concluido;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+//	(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name="usuario_id", nullable = false)
 	private Usuario usuario;
 	
