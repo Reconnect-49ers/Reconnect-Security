@@ -225,7 +225,7 @@
 			<div class="modal-content">
 
 				<div class="modal-header">
-					<h1 class="modal-title fs-5" id="exampleModalLabel">Cantrate os serviços de <span
+					<h1 class="modal-title fs-5">Cantrate os serviços de <span
 							th:text="${usuario.nome}"></span></h1>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
@@ -234,10 +234,16 @@
 					<form method="POST" th:action="@{/contrato/cadastrar}" th:object="${contrato}">
 						<div class="row g-3">
 							<div class="col-sm-6">
+<!--								<input type="hidden" th:field="*{id}">-->
 								<label for="usuario" class="form-label">Profissional</label>
 								<select class="form-control" id="usuario" name="usuario">
 									<option th:text="${usuario.nome}" th:value="${usuario.id}"></option>
 								</select>
+							</div>
+							
+							<div class="col-sm-6">
+								<label for="profissao" class="form-label">Profissão: </label>
+								<p th:text="${usuario.profissao}"></p>
 							</div>
 							
 							<div class="col-sm-6">
@@ -266,11 +272,6 @@
 						</div>
 					</form>
 
-				</div>
-
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-					<button type="button" class="btn btn-primary">Enviar</button>
 				</div>
 
 			</div>
