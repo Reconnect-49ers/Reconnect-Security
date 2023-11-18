@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -75,22 +76,22 @@ public class ContatoController {
 //			return modelAndView;
 //		}
 //		
-//		@GetMapping("/{id}/excluir")
-//		public ModelAndView excluir(@PathVariable Long id) {
-//			ModelAndView modelAndView = new ModelAndView("redirect:/contato");
-//	 
-//			contatoRepository.deleteById(id);
-//	 
-//			return modelAndView;
-//		}
-//		
-//		@GetMapping("/{id}")
-//		public ModelAndView detalhar(@PathVariable Long id) {
-//			ModelAndView modelAndView = new ModelAndView("contato/detalhar.html");
-//	 
-//			Contato contato = contatoRepository.getReferenceById(id);
-//			modelAndView.addObject("contato", contato);
-//	 
-//			return modelAndView;
-//		}
+	@GetMapping("/{id}/excluir")
+	public ModelAndView excluir(@PathVariable Long id) {
+			ModelAndView modelAndView = new ModelAndView("redirect:/contato");
+ 
+			contatoRepository.deleteById(id);
+	 
+			return modelAndView;
+		}
+		
+	@GetMapping("/{id}")
+		public ModelAndView detalhar(@PathVariable Long id) {
+		ModelAndView modelAndView = new ModelAndView("contato/detalhar.html");
+ 
+		Contato contato = contatoRepository.getReferenceById(id);
+		modelAndView.addObject("contato", contato);
+ 
+		return modelAndView;
+	}
 }
