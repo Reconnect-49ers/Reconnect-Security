@@ -114,6 +114,7 @@
 			<div class="col-sm-12 overflow-x-auto">
 				<table class="table table-striped">
 					<thead>
+
 						<tr>
 							<th scope="col">#</th>
 							<th scope="col">Cliente</th>
@@ -128,15 +129,17 @@
 					<tbody>
 						<tr th:each="contrato : ${contrato}">
 							<th scope="row" th:text="${contrato.id}"></th>
-							<td th:text="${contrato.nome}"></td>
-							<td th:text="${contrato.email}"></td>
+							<td th:text="${contrato.usuario.nome}"></td>
+							<td th:text="${contrato.usuario.email}"></td>
 							<td th:text="${contrato.data}"></td>
 							<td th:text="${contrato.endereco}"></td>
-							<td th:text="${contrato.usuario.nome}"> </td>
+							<td th:text="${contrato.servico.usuario.nome}"> </td>
 							<td>
 								<p th:text="${contrato.concluido ? 'Sim':'Não'}"></p>
 							</td>
+
 							<td>
+
 								<button data-bs-toggle="modal" class="btn btn-primary btn-edit mb-1"
 									th:data-bs-target="'#editar' + ${contrato.id}">
 
@@ -160,23 +163,25 @@
 											<button type="button" class="btn-close" data-bs-dismiss="modal"
 												aria-label="Close"></button>
 										</div>
-										
+
 										<div class="modal-body">
 
 											<form th:action="@{'/contrato/editar'}" method="post"
 												th:object="${contratoedit}">
 
 												<div class="row">
-													<input type="hidden" id="id" name="id" th:value="${contrato.id}" readonly />
-														
-													<input type="hidden" id="usuario" name="usuario" th:value="${contrato.usuario.id}" readonly />
+													<input type="hidden" id="id" name="id" th:value="${contrato.id}"
+														readonly />
+
+													<input type="hidden" id="usuario" name="usuario"
+														th:value="${contrato.usuario.id}" readonly />
 
 													<div class="col-12 mb-1">
 														<label>Profissional:</label>
 														<input type="text" id="nome" class="form-control"
 															th:value="${contrato.usuario.nome}" readonly />
 													</div>
-													
+
 													<div class="col-12 mb-1">
 														<label>Cliente:</label>
 														<input type="text" id="nome" name="nome" class="form-control"
@@ -212,16 +217,18 @@
 														<label>Resolvido:</label>
 														<input type="text" id="concluido" name="concluido"
 															class="form-control"
-															th:value="${contrato.concluido ? 'true':'false'}" readonly/>
+															th:value="${contrato.concluido ? 'true':'false'}"
+															readonly />
 													</div>
 
 
 												</div>
-												<input type="submit" value="Salvar" class="w-100 btn btn-primary btn-lg mt-2"/>
-												
+												<input type="submit" value="Salvar"
+													class="w-100 btn btn-primary btn-lg mt-2" />
+
 											</form>
 										</div>
-										
+
 									</div>
 								</div>
 							</div>

@@ -125,5 +125,5 @@ public class UsuarioController {
 			modelAndView.addObject("usuario", usuario);
 	 
 			return modelAndView;
-		}
+		}	
 }
