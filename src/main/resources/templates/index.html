@@ -18,7 +18,7 @@
 		<nav class="navbar navbar-expand-md navbar-dark">
 			<div class="container-fluid">
 				<a class="navbar-brand" th:href="@{/}">
-					<img src="images/reconnect-header.png" alt="Imagem da Logo Reconnect">
+					<img src="../../images/reconnect-header.png" alt="Imagem da Logo Reconnect">
 				</a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
 					aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -37,7 +37,7 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" th:href="@{profissionais}">
+							<a class="nav-link" th:href="@{/profissionais}">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 									class="bi bi-people-fill" viewBox="0 0 16 16">
 									<path
@@ -46,7 +46,7 @@
 								Profissionais</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="servicos.html">
+							<a class="nav-link" th:href="@{/servicos}">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 									class="bi bi-tools" viewBox="0 0 16 16">
 									<path
@@ -55,19 +55,21 @@
 								Serviços
 							</a>
 						</li>
-						</li>
 						<li class="nav-item">
 							<a class="nav-link" th:href="@{/usuario/cadastrar}">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-									class="bi bi-people" viewBox="0 0 16 16">
-									<path
-										d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8Zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022ZM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816ZM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z" />
+									class="bi bi-person-circle" viewBox="0 0 16 16">
+									<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+									<path fill-rule="evenodd"
+										d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
 								</svg>
 								Cadastre-se
 							</a>
 						</li>
+
+
 						<li class="nav-item">
-							<a class="nav-link" href="entrar.html">
+							<a class="nav-link" th:href="@{/entrar}">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 									class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
 									<path fill-rule="evenodd"
@@ -77,25 +79,29 @@
 								</svg>
 								Entrar
 							</a>
+						</li>
 					</ul>
+
 					<hr class="group-divider">
-							<div class="dropdown ms-2">
-								<button class="btn btn-outline-light btn-fundo dropdown-toggle "
-									type="button" data-bs-toggle="dropdown" aria-expanded="false">
-									Admin</button>
-								<ul class="dropdown-menu dropdown-menu-end">
-									
-									<li><a class="dropdown-item dropdown-link" href="/usuario">Usuários</a></li>
-									<li><a class="dropdown-item dropdown-link" href="/servico">Serviços</a></li>
-									<li><a class="dropdown-item dropdown-link" href="/contrato">Contratos</a></li>
-									<li><a class="dropdown-item dropdown-link" href="/contato">Contatos</a></li>
-									<li><a class="dropdown-item dropdown-link" href="/faleconosco">Fale Conosco</a></li>
-								</ul>
-							</div>
+					<div class="dropdown ms-2">
+						<button class="btn btn-outline-light btn-fundo dropdown-toggle " type="button"
+							data-bs-toggle="dropdown" aria-expanded="false">
+							Admin</button>
+						<ul class="dropdown-menu dropdown-menu-end" style="font-size: 16px;">
+
+							<li><a class="dropdown-item dropdown-link" href="/usuario">Usuários</a></li>
+							<li><a class="dropdown-item dropdown-link" href="/servico">Serviços</a></li>
+							<li><a class="dropdown-item dropdown-link" href="/contrato">Contratos</a></li>
+							<li><a class="dropdown-item dropdown-link" href="#">#</a></li>
+							<li><a class="dropdown-item dropdown-link" href="/faleconosco">Fale Conosco</a></li>
+						</ul>
+					</div>
+
 				</div>
 			</div>
 		</nav>
 	</header>
+
 
 	<div id="carouselExampleCaptions" class="carousel slide carousel-fade">
 
@@ -170,35 +176,11 @@
 		<div class="container text-center">
 
 			<div class="row">
-				<div class="col-lg col-sm-6">
-					<img width="140" height="140" src="images/servicos/limpeza.jpg"
+				
+				<div th:each="serv : ${servicos}" class="col-lg col-sm-6">
+					<img width="140" height="140" th:src="|/imagem/${serv.id}|"
 						alt="imagem de uma mulher limpando a janela" class="rounded-circle" title="Limpeza">
-					<h2 class="fw-normal">Limpeza</h2>
-					<p><a class="btn btn-primary" href="profissionais.html">Listar profissionais &raquo;</a></p>
-				</div>
-
-				<div class="col-lg col-sm-6">
-					<img width="140" height="140" src="images/servicos/reforma.jpg"
-						alt="imagem de um homem reformando uma casa" class="rounded-circle" title="Reforma">
-
-					<h2 class="fw-normal">Reforma</h2>
-					<p><a class="btn btn-primary" href="profissionais.html">Listar profissionais &raquo;</a></p>
-				</div>
-
-				<div class="col-lg col-sm-6">
-					<img width="140" height="140" src="images/servicos/professor.jpg"
-						alt="imagem de um professor escrevendo em um  quadro branco" class="rounded-circle"
-						title="Ensino">
-
-					<h2 class="fw-normal">Ensino</h2>
-					<p><a class="btn btn-primary" href="profissionais.html">Listar profissionais &raquo;</a></p>
-				</div>
-
-				<div class="col-lg col-sm-6">
-					<img width="140" height="140" src="images/servicos/mecanico.jpg"
-						alt="imagem de um mecânico em baixo de um carro" class="rounded-circle" title="Mecânico">
-
-					<h2 class="fw-normal">Mecânico</h2>
+					<h2 class="fw-normal" th:text="${serv.nome}">Limpeza</h2>
 					<p><a class="btn btn-primary" href="profissionais.html">Listar profissionais &raquo;</a></p>
 				</div>
 
@@ -515,16 +497,11 @@
 			<strong>CONTATO</strong>
 			<span><i class="ph ph-phone"></i> 85 3232-3232</span>
 			<span><i class="ph ph-at"></i>contato@reconnect.com</span>
-			<span>
-							<a class="nav-link" th:href="@{/faleconosco/cadastrar}">
-						        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffffff" 
-						        class="bi bi-people" viewBox="0 0 256 256"><path d="M88,104a8,8,0,0,1,8-8h64a8,8,0,0,1,0,16H96A8,8,0,0,1,88,104Zm8,40h64a8,8,0,0,0,0-16H96a8,8,0,0,0,0,16ZM232,56V184a16,16,0,0,1-16,16H156.53l-14.84,24.29a16,16,0,0,1-27.41-.06L99.47,200H40a16,16,0,0,1-16-16V56A16,16,0,0,1,40,40H216A16,16,0,0,1,232,56Zm-16,0H40V184H99.47a16.08,16.08,0,0,1,13.7,7.73L128,216l14.82-24.32A16.07,16.07,0,0,1,156.53,184H216Z">	
-								</path>
-								</svg>
-								Fale Conosco
-							</a>
-						</span>
-			
+			<span><i class="ph ph-chat-centered"></i>
+				<a style="color: white;" th:href="@{/faleconosco/cadastrar}">
+					Fale Conosco
+				</a>
+			</span>
 		</div>
 		<div class="redes-sociais">
 			<strong>REDES SOCIAIS</strong>
