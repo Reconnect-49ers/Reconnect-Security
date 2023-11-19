@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.reconnect.model.Contrato;
 import com.reconnect.model.Usuario;
 import com.reconnect.repository.UsuarioRepository;
 
@@ -48,10 +49,12 @@ public class UsuarioController {
 		//imagem
 		 
 		@PostMapping("/cadastrar")
-		public ModelAndView cadastrar(Usuario usuario, @RequestParam("fileUsuario") MultipartFile file) throws IOException {
+		public ModelAndView cadastrar(Usuario usuario, @RequestParam("fileUsuario") MultipartFile fileUsuario, @RequestParam("fileCapa") MultipartFile fileCapa) throws IOException {
 	 
+
 			try {
-				usuario.setImagem(file.getBytes());
+				usuario.setImagem(fileUsuario.getBytes());
+				usuario.setCapa(fileCapa.getBytes());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -70,6 +73,13 @@ public class UsuarioController {
 			return usuario.getImagem();
 		}
 		
+		@GetMapping("/capa/{id}")
+		@ResponseBody
+		public byte[] exibirCapa(@PathVariable("id") Long id) {
+			Usuario usuario = this.usuarioRepository.getReferenceById(id);
+			return usuario.getCapa();
+		}
+		
 		@GetMapping("/{id}/editar")
 		public ModelAndView editar(@PathVariable Long id) {
 			ModelAndView modelAndView = new ModelAndView("usuario/edicao");
@@ -81,8 +91,15 @@ public class UsuarioController {
 		}
 		
 		@PostMapping("/{id}/editar")
-		public ModelAndView editar(Usuario usuario) {		
-	 
+		public ModelAndView editar(Usuario usuario, @RequestParam("fileUsuario") MultipartFile fileUsuario, @RequestParam("fileCapa") MultipartFile fileCapa) {	
+			
+			try {
+				usuario.setImagem(fileUsuario.getBytes());
+				usuario.setCapa(fileCapa.getBytes());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
 			usuarioRepository.save(usuario);
 			ModelAndView modelAndView = new ModelAndView("redirect:/usuario");
 	 
@@ -100,9 +117,11 @@ public class UsuarioController {
 		
 		@GetMapping("/{id}")
 		public ModelAndView detalhar(@PathVariable Long id) {
-			ModelAndView modelAndView = new ModelAndView("usuario/detalhar.html");
+			ModelAndView modelAndView = new ModelAndView("usuario/perfil.html");
 	 
 			Usuario usuario = usuarioRepository.getReferenceById(id);
+			Contrato contrato = new Contrato();
+			modelAndView.addObject("contrato", contrato);
 			modelAndView.addObject("usuario", usuario);
 	 
 			return modelAndView;

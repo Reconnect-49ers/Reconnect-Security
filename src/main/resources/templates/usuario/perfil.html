@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 
 <head>
 	<meta charset="UTF-8">
@@ -7,14 +7,17 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-	<link rel="stylesheet" href="../styles/style.css">
-	<link rel="stylesheet" href="../styles/mediaquery.css">
+	<link rel="stylesheet" href="../../styles/mediaquery.css">
+	<link rel="stylesheet" href="../../styles/perfil.css">
+	<link rel="stylesheet" href="../../styles/perfilmediaquery.css">
+	<link rel="stylesheet" href="../../styles/style.css">
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+		integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 	<script src="https://unpkg.com/@phosphor-icons/web"></script>
-	<title>Reconnect - Cadastrar Usuário</title>
+	<title>Reconnect - Perfil de usuário</title>
 </head>
 
-<body class="min-vh-100 d-flex flex-column justify-content-between">
-
+<body>
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark">
 			<div class="container-fluid">
@@ -57,7 +60,7 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link active" th:href="@{/usuario/cadastrar}">
+							<a class="nav-link" th:href="@{/usuario/cadastrar}">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 									class="bi bi-person-circle" viewBox="0 0 16 16">
 									<path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
@@ -102,20 +105,147 @@
 		</nav>
 	</header>
 
-	<div class="position-relative overflow-hidden">
-		<img class="capinha card-img-top mb-3" src="../images/capa01.jpg"
-			alt="Imagem de um homem mecânico em baixo do carro.">
-		<div class="text-center">
-			<h2 class="display-5">CRIE SUA CONTA</h2>
-			<p class="lead">Cadastre-se e feche muitos serviços direto do seu celular</p>
+	<!-- Capa perfil começa aqui -->
+	<section class="perfil-usuario">
+		<div class="container-perfil">
+			<div class="capa-perfil">
+
+				<div class="container-capa">
+					<img class="img-capa" th:src="|/usuario/capa/${usuario.id}|" alt="img">
+				</div>
+
+				<div class="sombra"></div>
+				<div class="avatar-perfil">
+					<img class="perfil-usuario-img" th:src="|/usuario/imagem/${usuario.id}|" alt="img">
+					<a th:href="@{/usuario/{id}/editar (id=${usuario.id})}" class="trocar-foto">
+						<i class="fas fa-camera"></i>
+						<span>Trocar foto</span>
+					</a>
+				</div>
+				<div class="dados-perfil">
+					<h4 class="titulo-usuario" th:text="${usuario.nome}"></h4>
+
+
+					<ul style="text-shadow: 1px 1px 10px black;" class="lista-perfil">
+						<li>35 Seguidores</li>
+						<li>7 Seguindo</li>
+						<li>32 Publicações</li>
+					</ul>
+				</div>
+				<div class="opcoes-perfil">
+					<!--					<button type="">Trocar capa</button>-->
+					<a th:href="@{/usuario/{id}/editar (id=${usuario.id})}"><i class="fas fa-wrench"></i></a>
+				</div>
+			</div>
+			<div class="menu-perfil">
+				<ul>
+					<li><a href="#" title=""><i class="icone-perfil fas fa-bullhorn"></i> Publicações</a></li>
+					<li><a data-bs-toggle="modal" th:data-bs-target="'#contato' + ${usuario.id}" title=""><i
+								class="icone-perfil fas fa-info-circle"></i> Contato</a></li>
+
+					<li><a data-bs-toggle="modal" th:data-bs-target="'#contrato' + ${usuario.id}" title=""><i
+								class="icone-perfil fas fa-grin"></i> Contratar</a></li>
+
+					<li><a href="#" title=""><i class="icone-perfil fas fa-camera"></i> Avaliações</a></li>
+				</ul>
+			</div>
 		</div>
 
-		<div class="container" style="padding: 20px;">
+	</section> <!-- fim Capa perfil -->
 
-			<div class="row">
-				<div class="col-md col-lg">
-					<form method="POST" th:object="${usuario}" enctype="multipart/form-data">
+
+	<!--	Feed perfil-->
+	<div class="container">
+
+		<div class="container-perfil" style=" margin: auto;">
+			<h5>Sobre mim</h5>
+			<p style="margin-left: 20px;" class="bio-usuario" th:text="${usuario.bio}"></p>
+
+			<p>Veja meu gracioso trabalho que finalizei hoje:</p>
+
+			<img class="img-capa" th:src="|/usuario/capa/${usuario.id}|" alt="img" style="border-radius: 0">
+
+
+			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore earum harum et quis, dolorum, nobis vero
+				alias sit cumque, quos aliquid facilis ipsum? Repudiandae maiores corporis accusantium corrupti
+				assumenda quam.</p>
+
+		</div>
+	</div> <!--	Fim Feed perfil-->
+
+	<!-- Modal Contato -->
+	<div class="modal fade" th:id="'contato' + ${usuario.id}" tabindex="-1" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel">Entre em contato com <span
+							th:text="${usuario.nome}"></span></h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+
+				<div class="modal-body">
+
+					<div class="">
+
+						<div>Profissão: <span th:text="${usuario.profissao}"></span></div>
+						<div>E-mail: <span th:text="${usuario.email}"></span></div>
+						<p>Telefone: <span th:text="${usuario.telefone}"></span></p>
+					</div>
+
+					<!-- enviar para a classe contato_serviço aqui:-->
+					<!-- falta colocar o th:field="*{mensagem}"	no textearea-->
+
+					<form method="POST" th:object="${contato}">
+						<div>
+							<label for="mensagem" class="form-label">Mensagem</label>
+							<textarea style="resize: none"
+								placeholder="Agende serviços ou tire dúvidas com o profissional." type="text"
+								class="form-control" id="mensagem" rows="3" required></textarea>
+						</div>
+					</form>
+
+
+
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+					<button type="button" class="btn btn-primary">Enviar</button>
+				</div>
+
+			</div>
+		</div>
+	</div> <!--	fim do modal-->
+
+	<!-- Modal Contrato -->
+	<div class="modal fade" th:id="'contrato' + ${usuario.id}" tabindex="-1" aria-labelledby="exampleModalLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+
+				<div class="modal-header">
+					<h1 class="modal-title fs-5">Cantrate os serviços de <span
+							th:text="${usuario.nome}"></span></h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+
+				<div class="modal-body">
+					<form method="POST" th:action="@{/contrato/cadastrar}" th:object="${contrato}">
 						<div class="row g-3">
+							<div class="col-sm-6">
+<!--								<input type="hidden" th:field="*{id}">-->
+								<label for="usuario" class="form-label">Profissional</label>
+								<select class="form-control" id="usuario" name="usuario">
+									<option th:text="${usuario.nome}" th:value="${usuario.id}"></option>
+								</select>
+							</div>
+							
+							<div class="col-sm-6">
+								<label for="profissao" class="form-label">Profissão: </label>
+								<p th:text="${usuario.profissao}"></p>
+							</div>
+							
 							<div class="col-sm-6">
 								<label for="nome" class="form-label">Nome</label>
 								<input type="text" class="form-control" id="nome" th:field="*{nome}" required>
@@ -125,47 +255,14 @@
 								<input type="email" class="form-control" id="email" th:field="*{email}"
 									placeholder="nome@exemplo.com" required>
 							</div>
-							<div class="col-sm-6">
-								<label for="telefone" class="form-label">Telefone</label>
-								<input type="text" class="form-control" id="telefone" th:field="*{telefone}"
-									placeholder="Ex.: 11 99999-9999" required>
-							</div>
-							<div class="col-sm-6">
-								<label for="cpf" class="form-label">CPF</label>
-								<input type="text" class="form-control" id="cpf" th:field="*{cpf}" required>
-							</div>
-							<div class="col-sm-6">
-								<label for="profissao" class="form-label">Profissão</label>
-								<input type="text" class="form-control" id="profissao" th:field="*{profissao}" required>
-							</div>
+
 							<div class="col-sm-6">
 								<label for="endereco" class="form-label">Endereço</label>
 								<input type="text" class="form-control" id="endereco" th:field="*{endereco}" required>
 							</div>
 							<div class="col-sm-6">
-								<label for="dataNascimento" class="form-label">Data de Nascimento</label>
-								<input type="date" class="form-control" id="dataNascimento" th:field="*{dataNascimento}"
-									required>
-							</div>
-							<div class="col-sm-6">
-								<label for="senha" class="form-label">Senha</label>
-								<input type="password" class="form-control" id="senha" th:field="*{senha}" required>
-							</div>
-							<div>
-								<label for="bio" class="form-label">Bio</label>
-								<textarea style="resize: none"
-									placeholder="Fale um pouco de você e dos serviços que você pode oferecer."
-									type="text" class="form-control" id="bio" th:field="*{bio}"></textarea>
-							</div>
-
-							<div class="form-group col-sm-6">
-								<label for="imagem">Foto do usuário</label>
-								<input type="file" class="form-control" id="imagem" name="fileUsuario">
-							</div>
-
-							<div class="form-group col-sm-6">
-								<label for="capa">Foto de capa do perfil</label>
-								<input type="file" class="form-control" id="capa" name="fileCapa">
+								<label for="data" class="form-label">Data</label>
+								<input type="datetime-local" class="form-control" id="data" th:field="*{data}" required>
 							</div>
 
 							<br>
@@ -174,50 +271,15 @@
 
 						</div>
 					</form>
+
 				</div>
+
 			</div>
-
-			<hr class="my-4">
-
-			<!-- benefícios -->
-			<h2 class="text-center display-6">Benefícios para você</h2>
-
-			<section class="meu-container gap-2">
-
-				<div class="cada-card">
-					<div class="text-center">
-						<img class="img-card" src="../images/celular.jpg" alt="Homem olhado o celular.">
-						<p class="p-cards">Os serviços chegam via notificação no seu celular.</p>
-					</div>
-				</div>
-
-				<div class="cada-card">
-					<div class="text-center">
-						<img class="img-card" src="../images/aperto-mao.jpg"
-							alt="Imagem de duas pessoas apertando as mãos.">
-						<p class="p-cards">Faça serviços para as pessoas mais próximas.</p>
-					</div>
-				</div>
-
-				<div class="cada-card">
-					<div class="text-center">
-						<img class="img-card" src="../images/feed.png"
-							alt="Imagem de um desenho de um celular com um feed na tela.">
-						<p class="p-cards">Publique seus trabalhos e habilidades no seu Feed!</p>
-					</div>
-				</div>
-
-			</section> <!-- fim de benefícios -->
-
-			<p class="text-center display-6">Dúvidas? Atendimento nos dias úteis, das 9 às 18h:</p>
-			<p class="text-center lead">SAC: (85) 3232-3232</p>
-			<p class="text-center lead">Whatsapp: (85) 98758-5885</p>
-			<p class="text-center lead">contato@reconnect.com</p>
 		</div>
-	</div>
+	</div> <!--	fim do modal-->
 
 	<footer>
-		<img src="../images/reconnect-footer.png" alt="Imagem da Logo da Reconnect">
+		<img src="../../images/reconnect-footer.png" alt="Imagem da Logo da Reconnect">
 		<div class="compra-segura">
 			<strong>SERVIÇOS</strong>
 			<a href="profissionais.html">Profissionais</a>
@@ -228,11 +290,7 @@
 			<strong>CONTATO</strong>
 			<span><i class="ph ph-phone"></i> 85 3232-3232</span>
 			<span><i class="ph ph-at"></i>contato@reconnect.com</span>
-			<span><i class="ph ph-chat-centered"></i>
-				<a style="color: white;" th:href="@{/faleconosco/cadastrar}">
-					Fale Conosco
-				</a>
-			</span>
+			<span><i class="ph ph-map-pin"></i> Rua Servidor Público, s/n</span>
 		</div>
 		<div class="redes-sociais">
 			<strong>REDES SOCIAIS</strong>
