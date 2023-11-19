@@ -38,10 +38,13 @@ public class Contrato {
 	@Column
 	private boolean concluido;
 	
-//	(cascade = CascadeType.ALL)
 	@ManyToOne
 	@JoinColumn(name="usuario_id", nullable = false)
 	private Usuario usuario;
+	
+	@ManyToOne
+	@JoinColumn(name = "servico_id", nullable = false)
+	private Servico servico;
 	
 	public Contrato(Long id, String nome, String email, String endereco, LocalDateTime data, boolean concluido,
 			Usuario usuario) {

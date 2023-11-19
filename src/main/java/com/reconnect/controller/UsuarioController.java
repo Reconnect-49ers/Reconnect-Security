@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.reconnect.model.Contrato;
+import com.reconnect.model.Servico;
 import com.reconnect.model.Usuario;
 import com.reconnect.repository.UsuarioRepository;
 
@@ -121,7 +122,9 @@ public class UsuarioController {
 	 
 			Usuario usuario = usuarioRepository.getReferenceById(id);
 			Contrato contrato = new Contrato();
+			Servico servico = new Servico();
 			modelAndView.addObject("contrato", contrato);
+			modelAndView.addObject("servico", servico); //verificar
 			modelAndView.addObject("usuario", usuario);
 	 
 			return modelAndView;
