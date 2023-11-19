@@ -41,9 +41,10 @@ body {
     border-left: 0;
 }
 
-div ul li a {
-    font-size: 30px;
-}
+/*div ul li a {
+    font-size: 20px;
+}*/
+
 
 nav.navbar-expand-md {
     background-color: #224a9b;
@@ -279,3 +280,7 @@ span>a {
     background-position: center center;
     background-size: cover;
 }
+
+
+
+
