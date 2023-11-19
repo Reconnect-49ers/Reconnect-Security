@@ -116,21 +116,21 @@
 				<div class="col-md col-lg">
 					<form method="POST" th:object="${contrato}">
 						<div class="row g-3">
+							
+							<div class="col-sm-6">
+								<label for="servico" class="form-label">Serviço: </label>
+								<select class="form-control" id="servico" name="servico">
+									<option th:each="serv : ${servicos}" th:value="${serv.id}"
+										th:text="${serv.nome + '-' + serv.usuario.nome}"></option>
+								</select>
+							</div>
+							
 							<div class="col-sm-6">
 								<label for="usuario" class="form-label">Profissional</label>
 								<select class="form-control" id="usuario" name="usuario">
 									<option th:each="usuario : ${usuarios}" th:value="${usuario.id}"
 										th:text="${usuario.nome}"></option>
 								</select>
-							</div>
-							<div class="col-sm-6">
-								<label for="nome" class="form-label">Nome</label>
-								<input type="text" class="form-control" id="nome" th:field="*{nome}" required>
-							</div>
-							<div class="col-sm-6">
-								<label for="email" class="form-label">E-mail</label>
-								<input type="email" class="form-control" id="email" th:field="*{email}"
-									placeholder="nome@exemplo.com" required>
 							</div>
 
 							<div class="col-sm-6">
@@ -141,11 +141,6 @@
 								<label for="data" class="form-label">Data</label>
 								<input type="datetime-local" class="form-control" id="data" th:field="*{data}" required>
 							</div>
-
-
-
-
-
 
 							<br>
 
