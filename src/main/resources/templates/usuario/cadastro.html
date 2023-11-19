@@ -47,7 +47,7 @@
 								Profissionais</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="servicos.html">
+							<a class="nav-link" th:href="@{/servicos}">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 									class="bi bi-tools" viewBox="0 0 16 16">
 									<path
@@ -67,18 +67,10 @@
 								Cadastre-se
 							</a>
 						</li>
+
+
 						<li class="nav-item">
-							<a class="nav-link" aria-current="page" href="/usuario">
-								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-									class="bi bi-people" viewBox="0 0 16 16">
-									<path
-										d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8Zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022ZM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816ZM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z" />
-								</svg>
-								Usuários
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="entrar.html">
+							<a class="nav-link" th:href="@{/entrar}">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 									class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
 									<path fill-rule="evenodd"
@@ -90,125 +82,140 @@
 							</a>
 						</li>
 					</ul>
+
+					<hr class="group-divider">
+					<div class="dropdown ms-2">
+						<button class="btn btn-outline-light btn-fundo dropdown-toggle " type="button"
+							data-bs-toggle="dropdown" aria-expanded="false">
+							Admin</button>
+						<ul class="dropdown-menu dropdown-menu-end">
+
+							<li><a class="dropdown-item dropdown-link" href="/usuario">Usuários</a></li>
+							<li><a class="dropdown-item dropdown-link" href="/contrato">Contratos</a></li>
+							<li><a class="dropdown-item dropdown-link" href="#">#</a></li>
+							<li><a class="dropdown-item dropdown-link" href="/faleconosco">Fale Conosco</a></li>
+						</ul>
+					</div>
+
 				</div>
 			</div>
 		</nav>
 	</header>
 
-		<div class="position-relative overflow-hidden">
-			<img class="capinha card-img-top mb-3" src="../images/capa01.jpg"
-				alt="Imagem de um homem mecânico em baixo do carro.">
-			<div class="text-center">
-				<h2 class="display-5">CRIE SUA CONTA</h2>
-				<p class="lead">Cadastre-se e feche muitos serviços direto do seu celular</p>
-			</div>
-	
-			<div class="container" style="padding: 20px;">
-	
-				<div class="row">
-					<div class="col-md col-lg">
-						<form method="POST" th:object="${usuario}" enctype="multipart/form-data">
-							<div class="row g-3">
-								<div class="col-sm-6">
-									<label for="nome" class="form-label">Nome</label>
-									<input type="text" class="form-control" id="nome" th:field="*{nome}" required>
-								</div>
-								<div class="col-sm-6">
-									<label for="email" class="form-label">E-mail</label>
-									<input type="email" class="form-control" id="email" th:field="*{email}"
-										placeholder="nome@exemplo.com" required>
-								</div>
-								<div class="col-sm-6">
-									<label for="telefone" class="form-label">Telefone</label>
-									<input type="text" class="form-control" id="telefone" th:field="*{telefone}"
-										placeholder="Ex.: 11 99999-9999" required>
-								</div>
-								<div class="col-sm-6">
-									<label for="cpf" class="form-label">CPF</label>
-									<input type="text" class="form-control" id="cpf" th:field="*{cpf}" required>
-								</div>
-								<div class="col-sm-6">
-									<label for="profissao" class="form-label">Profissão</label>
-									<input type="text" class="form-control" id="profissao" th:field="*{profissao}" required>
-								</div>
-								<div class="col-sm-6">
-									<label for="endereco" class="form-label">Endereço</label>
-									<input type="text" class="form-control" id="endereco" th:field="*{endereco}" required>
-								</div>
-								<div class="col-sm-6">
-									<label for="dataNascimento" class="form-label">Data de Nascimento</label>
-									<input type="date" class="form-control" id="dataNascimento" th:field="*{dataNascimento}"
-										required>
-								</div>
-								<div class="col-sm-6">
-									<label for="senha" class="form-label">Senha</label>
-									<input type="password" class="form-control" id="senha" th:field="*{senha}" required>
-								</div>
-								<div>
-									<label for="bio" class="form-label">Bio</label>
-									<textarea style="resize: none"
-										placeholder="Fale um pouco de você e dos serviços que você pode oferecer." type="text"
-										class="form-control" id="bio" th:field="*{bio}"></textarea>
-								</div>
-	
-								<div class="form-group col-sm-6">
-									<label for="imagem">Foto do usuário</label>
-									<input type="file" class="form-control" id="imagem" name="fileUsuario">
-								</div>
-	
-								<div class="form-group col-sm-6">
-									<label for="capa">Foto de capa do perfil</label>
-									<input type="file" class="form-control" id="capa" name="fileCapa">
-								</div>
-	
-								<br>
-	
-								<button type="submit" class="w-100 btn btn-primary btn-lg">Cadastrar</button>
-	
+	<div class="position-relative overflow-hidden">
+		<img class="capinha card-img-top mb-3" src="../images/capa01.jpg"
+			alt="Imagem de um homem mecânico em baixo do carro.">
+		<div class="text-center">
+			<h2 class="display-5">CRIE SUA CONTA</h2>
+			<p class="lead">Cadastre-se e feche muitos serviços direto do seu celular</p>
+		</div>
+
+		<div class="container" style="padding: 20px;">
+
+			<div class="row">
+				<div class="col-md col-lg">
+					<form method="POST" th:object="${usuario}" enctype="multipart/form-data">
+						<div class="row g-3">
+							<div class="col-sm-6">
+								<label for="nome" class="form-label">Nome</label>
+								<input type="text" class="form-control" id="nome" th:field="*{nome}" required>
 							</div>
-						</form>
+							<div class="col-sm-6">
+								<label for="email" class="form-label">E-mail</label>
+								<input type="email" class="form-control" id="email" th:field="*{email}"
+									placeholder="nome@exemplo.com" required>
+							</div>
+							<div class="col-sm-6">
+								<label for="telefone" class="form-label">Telefone</label>
+								<input type="text" class="form-control" id="telefone" th:field="*{telefone}"
+									placeholder="Ex.: 11 99999-9999" required>
+							</div>
+							<div class="col-sm-6">
+								<label for="cpf" class="form-label">CPF</label>
+								<input type="text" class="form-control" id="cpf" th:field="*{cpf}" required>
+							</div>
+							<div class="col-sm-6">
+								<label for="profissao" class="form-label">Profissão</label>
+								<input type="text" class="form-control" id="profissao" th:field="*{profissao}" required>
+							</div>
+							<div class="col-sm-6">
+								<label for="endereco" class="form-label">Endereço</label>
+								<input type="text" class="form-control" id="endereco" th:field="*{endereco}" required>
+							</div>
+							<div class="col-sm-6">
+								<label for="dataNascimento" class="form-label">Data de Nascimento</label>
+								<input type="date" class="form-control" id="dataNascimento" th:field="*{dataNascimento}"
+									required>
+							</div>
+							<div class="col-sm-6">
+								<label for="senha" class="form-label">Senha</label>
+								<input type="password" class="form-control" id="senha" th:field="*{senha}" required>
+							</div>
+							<div>
+								<label for="bio" class="form-label">Bio</label>
+								<textarea style="resize: none"
+									placeholder="Fale um pouco de você e dos serviços que você pode oferecer."
+									type="text" class="form-control" id="bio" th:field="*{bio}"></textarea>
+							</div>
+
+							<div class="form-group col-sm-6">
+								<label for="imagem">Foto do usuário</label>
+								<input type="file" class="form-control" id="imagem" name="fileUsuario">
+							</div>
+
+							<div class="form-group col-sm-6">
+								<label for="capa">Foto de capa do perfil</label>
+								<input type="file" class="form-control" id="capa" name="fileCapa">
+							</div>
+
+							<br>
+
+							<button type="submit" class="w-100 btn btn-primary btn-lg">Cadastrar</button>
+
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<hr class="my-4">
+
+			<!-- benefícios -->
+			<h2 class="text-center display-6">Benefícios para você</h2>
+
+			<section class="meu-container gap-2">
+
+				<div class="cada-card">
+					<div class="text-center">
+						<img class="img-card" src="../images/celular.jpg" alt="Homem olhado o celular.">
+						<p class="p-cards">Os serviços chegam via notificação no seu celular.</p>
 					</div>
 				</div>
-	
-				<hr class="my-4">
-	
-				<!-- benefícios -->
-				<h2 class="text-center display-6">Benefícios para você</h2>
-	
-				<section class="meu-container gap-2">
-	
-					<div class="cada-card">
-						<div class="text-center">
-							<img class="img-card" src="../images/celular.jpg" alt="Homem olhado o celular.">
-							<p class="p-cards">Os serviços chegam via notificação no seu celular.</p>
-						</div>
+
+				<div class="cada-card">
+					<div class="text-center">
+						<img class="img-card" src="../images/aperto-mao.jpg"
+							alt="Imagem de duas pessoas apertando as mãos.">
+						<p class="p-cards">Faça serviços para as pessoas mais próximas.</p>
 					</div>
-	
-					<div class="cada-card">
-						<div class="text-center">
-							<img class="img-card" src="../images/aperto-mao.jpg"
-								alt="Imagem de duas pessoas apertando as mãos.">
-							<p class="p-cards">Faça serviços para as pessoas mais próximas.</p>
-						</div>
+				</div>
+
+				<div class="cada-card">
+					<div class="text-center">
+						<img class="img-card" src="../images/feed.png"
+							alt="Imagem de um desenho de um celular com um feed na tela.">
+						<p class="p-cards">Publique seus trabalhos e habilidades no seu Feed!</p>
 					</div>
-	
-					<div class="cada-card">
-						<div class="text-center">
-							<img class="img-card" src="../images/feed.png"
-								alt="Imagem de um desenho de um celular com um feed na tela.">
-							<p class="p-cards">Publique seus trabalhos e habilidades no seu Feed!</p>
-						</div>
-					</div>
-	
-				</section> <!-- fim de benefícios -->
-	
-				<p class="text-center display-6">Dúvidas? Atendimento nos dias úteis, das 9 às 18h:</p>
-				<p class="text-center lead">SAC: (85) 3232-3232</p>
-				<p class="text-center lead">Whatsapp: (85) 98758-5885</p>
-				<p class="text-center lead">contato@reconnect.com</p>
-			</div>
+				</div>
+
+			</section> <!-- fim de benefícios -->
+
+			<p class="text-center display-6">Dúvidas? Atendimento nos dias úteis, das 9 às 18h:</p>
+			<p class="text-center lead">SAC: (85) 3232-3232</p>
+			<p class="text-center lead">Whatsapp: (85) 98758-5885</p>
+			<p class="text-center lead">contato@reconnect.com</p>
 		</div>
-	
+	</div>
+
 	<footer>
 		<img src="../images/reconnect-footer.png" alt="Imagem da Logo da Reconnect">
 		<div class="compra-segura">
@@ -221,7 +228,11 @@
 			<strong>CONTATO</strong>
 			<span><i class="ph ph-phone"></i> 85 3232-3232</span>
 			<span><i class="ph ph-at"></i>contato@reconnect.com</span>
-			<span><i class="ph ph-map-pin"></i> Rua Servidor Público, s/n</span>
+			<span><i class="ph ph-chat-centered"></i>
+				<a style="color: white;" th:href="@{/faleconosco/cadastrar}">
+					Fale Conosco
+				</a>
+			</span>
 		</div>
 		<div class="redes-sociais">
 			<strong>REDES SOCIAIS</strong>
