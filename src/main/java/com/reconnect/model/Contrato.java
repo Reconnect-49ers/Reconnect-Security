@@ -23,39 +23,36 @@ public class Contrato {
 	private Long id;
 	
 	@Column(nullable = false)
-	private String nome;
-	
-	@Column(nullable = false)
-	private String email;
-	
-	@Column(nullable = false)
 	private String endereco;
 	
 	@Column(nullable = false, name = "data_hora")
 	@DateTimeFormat(iso = ISO.DATE_TIME)
 	private LocalDateTime data;
 	
-	@Column
+	@Column(columnDefinition = "boolean default false")
 	private boolean concluido;
 	
-//	(cascade = CascadeType.ALL)
 	@ManyToOne
 	@JoinColumn(name="usuario_id", nullable = false)
 	private Usuario usuario;
 	
-	public Contrato(Long id, String nome, String email, String endereco, LocalDateTime data, boolean concluido,
-			Usuario usuario) {
+	@ManyToOne
+	@JoinColumn(name = "servico_id", nullable = false)
+	private Servico servico;
+
+	public Contrato(Long id, String endereco, LocalDateTime data, boolean concluido,
+			Usuario usuario, Servico servico) {
+		super();
 		this.id = id;
-		this.nome = nome;
-		this.email = email;
 		this.endereco = endereco;
 		this.data = data;
 		this.concluido = concluido;
 		this.usuario = usuario;
+		this.servico = servico;
 	}
-
-
+	
 	public Contrato() {
+		
 	}
 
 	public Long getId() {
@@ -64,22 +61,6 @@ public class Contrato {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public String getEndereco() {
@@ -114,10 +95,20 @@ public class Contrato {
 		this.usuario = usuario;
 	}
 
+	public Servico getServico() {
+		return servico;
+	}
+
+	public void setServico(Servico servico) {
+		this.servico = servico;
+	}
+
 	@Override
 	public String toString() {
-		return "Contrato [id=" + id + ", nome=" + nome + ", email=" + email + ", endereco=" + endereco + ", data="
-				+ data + ", concluido=" + concluido + ", usuario=" + usuario + "]";
+		return "Contrato [id=" + id + ", nome=" + usuario.getNome() + ", email=" + usuario.getEmail() + ", endereco=" + endereco + ", data="
+				+ data + ", concluido=" + concluido + ", usuario=" + usuario + ", servico=" + servico + "]";
 	}
+	
+	
 
 }

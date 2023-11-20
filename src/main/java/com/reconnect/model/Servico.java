@@ -1,8 +1,8 @@
 package com.reconnect.model;
 
 import java.util.Arrays;
+import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -32,6 +33,20 @@ public class Servico {
 	@ManyToOne
 	@JoinColumn(name="usuario_id", nullable = false)
 	private Usuario usuario;
+	
+	@OneToMany(mappedBy = "servico")
+	private List<Contrato> contratos;
+	
+	public List<Contrato> getContratos(){
+		return this.contratos;
+	}
+	
+	@OneToMany(mappedBy = "servico")
+	private List<Contato> contatos;
+	
+	public List<Contato> getContato(){
+		return this.contatos;
+	}
 	
 	public Servico() {
 		

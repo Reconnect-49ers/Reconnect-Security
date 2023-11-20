@@ -18,6 +18,7 @@
 </head>
 
 <body>
+
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark">
 			<div class="container-fluid">
@@ -91,11 +92,12 @@
 						<button class="btn btn-outline-light btn-fundo dropdown-toggle " type="button"
 							data-bs-toggle="dropdown" aria-expanded="false">
 							Admin</button>
-						<ul class="dropdown-menu dropdown-menu-end">
+						<ul class="dropdown-menu dropdown-menu-end" style="font-size: 16px;">
 
 							<li><a class="dropdown-item dropdown-link" href="/usuario">Usuários</a></li>
+							<li><a class="dropdown-item dropdown-link" href="/servico">Serviços</a></li>
 							<li><a class="dropdown-item dropdown-link" href="/contrato">Contratos</a></li>
-							<li><a class="dropdown-item dropdown-link" href="#">#</a></li>
+							<li><a class="dropdown-item dropdown-link" href="/contato">Contatos</a></li>
 							<li><a class="dropdown-item dropdown-link" href="/faleconosco">Fale Conosco</a></li>
 						</ul>
 					</div>
@@ -133,20 +135,19 @@
 					</ul>
 				</div>
 				<div class="opcoes-perfil">
-					<!--					<button type="">Trocar capa</button>-->
 					<a th:href="@{/usuario/{id}/editar (id=${usuario.id})}"><i class="fas fa-wrench"></i></a>
 				</div>
 			</div>
 			<div class="menu-perfil">
 				<ul>
-					<li><a href="#" title=""><i class="icone-perfil fas fa-bullhorn"></i> Publicações</a></li>
+					<li><a href="#publicacoes" title=""><i class="icone-perfil fas fa-bullhorn"></i> Publicações</a></li>
 					<li><a data-bs-toggle="modal" th:data-bs-target="'#contato' + ${usuario.id}" title=""><i
 								class="icone-perfil fas fa-info-circle"></i> Contato</a></li>
 
 					<li><a data-bs-toggle="modal" th:data-bs-target="'#contrato' + ${usuario.id}" title=""><i
 								class="icone-perfil fas fa-grin"></i> Contratar</a></li>
 
-					<li><a href="#" title=""><i class="icone-perfil fas fa-camera"></i> Avaliações</a></li>
+					<li><a href="#comentarios" title=""><i class="icone-perfil fas fa-camera"></i> Avaliações</a></li>
 				</ul>
 			</div>
 		</div>
@@ -157,20 +158,62 @@
 	<!--	Feed perfil-->
 	<div class="container">
 
-		<div class="container-perfil" style=" margin: auto;">
+		<div class="container-perfil" style=" margin: auto;" id="publicacoes">
 			<h5>Sobre mim</h5>
+			<p>Profissão: <span th:text="${usuario.profissao}"></span></p>
 			<p style="margin-left: 20px;" class="bio-usuario" th:text="${usuario.bio}"></p>
 
-			<p>Veja meu gracioso trabalho que finalizei hoje:</p>
+			<p>Faço serviços! Me mande mensagem e vamos fechar contrato!</p>
 
 			<img class="img-capa" th:src="|/usuario/capa/${usuario.id}|" alt="img" style="border-radius: 0">
 
 
+			<p class="mt-2">Clique no botão 'Contratar' aí em cima ☝️ e me chame pra te ajudar com os meus serviços!</p>
 			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore earum harum et quis, dolorum, nobis vero
 				alias sit cumque, quos aliquid facilis ipsum? Repudiandae maiores corporis accusantium corrupti
 				assumenda quam.</p>
 
 		</div>
+
+		<!-- Comentários -->
+		<section class="container-perfil card p-4 mb-3" id="comentarios">
+			<div class="d-flex justify-content-between align-items-center">
+				<h4>Comentários sobre <strong th:text="${usuario.nome}"></strong></h4>
+				<div class="stars">
+					<i class="star bi bi-star-fill"></i>
+					<i class="bi bi-star-fill"></i>
+					<i class="bi bi-star-fill"></i>
+					<i class="bi bi-star-fill"></i>
+					<i class="bi bi-star-fill"></i>
+				</div>
+			</div>
+			<div class="row row-cols-1 row-cols-md-2 g-4 mb-3">
+				<div class="col">
+					<div class="card" style="min-height: 200px;">
+						<div class="card-body">
+							<h5 class="card-title">Usuário</h5>
+							<h6 class="card-subtitle mb-2 text-body-secondary">Ótimo serviço!</h6>
+							<p class="card-text">Profissional dedicado! Chegou no horário e cumpriu o prometido. Com
+								certeza irei contratar mais vezes!</p>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card" style="min-height: 200px;">
+						<div class="card-body">
+							<h5 class="card-title">Usuário</h5>
+							<h6 class="card-subtitle mb-2 text-body-secondary">Serviço maravilhoso!</h6>
+							<p class="card-text">Caramba! Eu não imaginava o quanto esse aplicativo de serviços iria me
+								ajudar a encontrar um serviço tão incrível como o seu. Obrigado, Reconnect.. por me
+								ajudar a achar esse serviço diferenciado!</p>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</section> <!-- Fim Comentários -->
+
+
 	</div> <!--	Fim Feed perfil-->
 
 	<!-- Modal Contato -->
@@ -190,18 +233,35 @@
 
 						<div>Profissão: <span th:text="${usuario.profissao}"></span></div>
 						<div>E-mail: <span th:text="${usuario.email}"></span></div>
-						<p>Telefone: <span th:text="${usuario.telefone}"></span></p>
+						<div>Telefone: <span th:text="${usuario.telefone}"></span></div>
 					</div>
 
-					<!-- enviar para a classe contato_serviço aqui:-->
-					<!-- falta colocar o th:field="*{mensagem}"	no textearea-->
+					<form th:action="@{/contato/modal-cadastrar}" method="POST" th:object="${contato}">
+						<div class="col">
+							<label for="servico" class="form-label">Serviço:</label>
+							<select class="form-control" id="servico" name="servico" required>
+								<option th:each="serv:${servicos}" th:text="${serv.nome}" th:value="${serv.id}">
+								</option>
+							</select>
+						</div>
+						<div class="col">
+							<label for="contatonome" class="form-label">Cliente: </label>
+							<input type="text" class="form-control" id="contatonome" th:field="*{nome}" required>
+						</div>
+						<div class="col">
+							<label for="contatoemail" class="form-label">Email:</label>
+							<input type="email" class="form-control" id="contatoemail" th:field="*{email}" required>
+						</div>
 
-					<form method="POST" th:object="${contato}">
 						<div>
 							<label for="mensagem" class="form-label">Mensagem</label>
 							<textarea style="resize: none"
 								placeholder="Agende serviços ou tire dúvidas com o profissional." type="text"
-								class="form-control" id="mensagem" rows="3" required></textarea>
+								class="form-control" id="mensagem" th:field="*{mensagem}" rows="3" required></textarea>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+							<button type="submit" class="btn btn-primary">Enviar</button>
 						</div>
 					</form>
 
@@ -209,10 +269,7 @@
 
 				</div>
 
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-					<button type="button" class="btn btn-primary">Enviar</button>
-				</div>
+
 
 			</div>
 		</div>
@@ -225,41 +282,47 @@
 			<div class="modal-content">
 
 				<div class="modal-header">
-					<h1 class="modal-title fs-5">Cantrate os serviços de <span
-							th:text="${usuario.nome}"></span></h1>
+					<h1 class="modal-title fs-5">Cantrate os serviços de <span th:text="${usuario.nome}"></span></h1>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 
 				<div class="modal-body">
-					<form method="POST" th:action="@{/contrato/cadastrar}" th:object="${contrato}">
+					<form method="POST" th:action="@{/contrato/modal-cadastrar}" th:object="${contrato}">
 						<div class="row g-3">
+
 							<div class="col-sm-6">
-<!--								<input type="hidden" th:field="*{id}">-->
 								<label for="usuario" class="form-label">Profissional</label>
-								<select class="form-control" id="usuario" name="usuario">
-									<option th:text="${usuario.nome}" th:value="${usuario.id}"></option>
+								<input type="text" id="usuario" class="form-control" th:value="${usuario.nome}"
+									readonly>
+								<input type="hidden" th:value="${usuario.id}" readonly>
+							</div>
+
+							<div class="col-sm-6">
+								<label for="servico" class="form-label">Serviço:</label>
+								<select class="form-control" id="servico" name="servico" required>
+									<option th:each="serv:${servicos}" th:text="${serv.nome}" th:value="${serv.id}">
+									</option>
 								</select>
 							</div>
-							
+
 							<div class="col-sm-6">
 								<label for="profissao" class="form-label">Profissão: </label>
-								<p th:text="${usuario.profissao}"></p>
+								<input type="text" class="form-control" th:value="${usuario.profissao}" readonly>
 							</div>
-							
+
 							<div class="col-sm-6">
-								<label for="nome" class="form-label">Nome</label>
-								<input type="text" class="form-control" id="nome" th:field="*{nome}" required>
-							</div>
-							<div class="col-sm-6">
-								<label for="email" class="form-label">E-mail</label>
-								<input type="email" class="form-control" id="email" th:field="*{email}"
-									placeholder="nome@exemplo.com" required>
+								<label for="cliente" class="form-label">Cliente: </label>
+								<select class="form-control" id="cliente" name="idCliente">
+									<option th:each="cli : ${usuarios}" th:text="${cli.nome}" th:value="${cli.id}">
+									</option>
+								</select>
 							</div>
 
 							<div class="col-sm-6">
 								<label for="endereco" class="form-label">Endereço</label>
 								<input type="text" class="form-control" id="endereco" th:field="*{endereco}" required>
 							</div>
+
 							<div class="col-sm-6">
 								<label for="data" class="form-label">Data</label>
 								<input type="datetime-local" class="form-control" id="data" th:field="*{data}" required>
@@ -279,7 +342,7 @@
 	</div> <!--	fim do modal-->
 
 	<footer>
-		<img src="../../images/reconnect-footer.png" alt="Imagem da Logo da Reconnect">
+		<img src="../images/reconnect-footer.png" alt="Imagem da Logo da Reconnect">
 		<div class="compra-segura">
 			<strong>SERVIÇOS</strong>
 			<a href="profissionais.html">Profissionais</a>
@@ -290,7 +353,11 @@
 			<strong>CONTATO</strong>
 			<span><i class="ph ph-phone"></i> 85 3232-3232</span>
 			<span><i class="ph ph-at"></i>contato@reconnect.com</span>
-			<span><i class="ph ph-map-pin"></i> Rua Servidor Público, s/n</span>
+			<span><i class="ph ph-chat-centered"></i>
+				<a style="color: white;" th:href="@{/faleconosco/cadastrar}">
+					Fale Conosco
+				</a>
+			</span>
 		</div>
 		<div class="redes-sociais">
 			<strong>REDES SOCIAIS</strong>

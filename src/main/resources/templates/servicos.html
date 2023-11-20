@@ -2,19 +2,19 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <link href="carousel.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles/style.css">
-    <link rel="stylesheet" href="styles/mediaquery.css">
-    <script src="https://unpkg.com/@phosphor-icons/web"></script>
-    <title>Reconnect - Serviços</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+	<link href="carousel.css" rel="stylesheet">
+	<link rel="stylesheet" href="styles/style.css">
+	<link rel="stylesheet" href="styles/mediaquery.css">
+	<script src="https://unpkg.com/@phosphor-icons/web"></script>
+	<title>Reconnect - Serviços</title>
 </head>
 
 <body>
-		<header>
+	<header>
 		<nav class="navbar navbar-expand-md navbar-dark">
 			<div class="container-fluid">
 				<a class="navbar-brand" th:href="@{/}">
@@ -87,17 +87,15 @@
 						<button class="btn btn-outline-light btn-fundo dropdown-toggle " type="button"
 							data-bs-toggle="dropdown" aria-expanded="false">
 							Admin</button>
-						<ul class="dropdown-menu dropdown-menu-end">
+						<ul class="dropdown-menu dropdown-menu-end" style="font-size: 16px;">
 
 							<li><a class="dropdown-item dropdown-link" href="/usuario">Usuários</a></li>
+							<li><a class="dropdown-item dropdown-link" href="/servico">Serviços</a></li>
 							<li><a class="dropdown-item dropdown-link" href="/contrato">Contratos</a></li>
-							<li><a class="dropdown-item dropdown-link" href="#">#</a></li>
+							<li><a class="dropdown-item dropdown-link" href="/contato">Contatos</a></li>
 							<li><a class="dropdown-item dropdown-link" href="/faleconosco">Fale Conosco</a></li>
 						</ul>
 					</div>
-
-
-
 
 				</div>
 			</div>
@@ -105,132 +103,149 @@
 	</header>
 
 
-    <main>
+	<main>
 
-        <div class="position-relative overflow-hidden text-center ">
-            <img class="capinha card-img-top" src="images/capa03.jpg" alt="Imagem de um homem olhando o celular.">
-            <div class="col-md-5 p-lg-3 mx-auto my-0">
-                <h3 class="display-4 font-weight-normal">Nossos Serviços!</h3>
-                <p class="lead font-weight-normal">Variedades de serviços a um clique.</p>
-            </div>
-        </div>
+		<div class="position-relative overflow-hidden text-center ">
+			<img class="capinha card-img-top" src="images/capa03.jpg" alt="Imagem de um homem olhando o celular.">
+			<div class="col-md-5 p-lg-3 mx-auto my-0">
+				<h3 class="display-4 font-weight-normal">Nossos Serviços!</h3>
+				<p class="lead font-weight-normal">Variedades de serviços a um clique.</p>
+			</div>
+		</div>
 
-        <div class="container text-center">
+		<div class="container text-center">
 
-            <div class="row">
-                <div class="col-lg-4 col-sm-6">
-                    <img width="140" height="140" src="images/servicos/limpeza.jpg" alt="imagem de uma mulher limpando a janela" class="rounded-circle" title="Limpeza">
-                    <h2 class="fw-normal">Limpeza</h2>
-                    <p>Serviços de Diaristas</p>
-                    <p><a class="btn btn-primary" href="profissionais.html">Listar profissionais &raquo;</a></p>
-                </div>
+			<div class="row">
+				<div class="col-lg-4 col-sm-6">
+					<img width="140" height="140" src="images/servicos/limpeza.jpg"
+						alt="imagem de uma mulher limpando a janela" class="rounded-circle" title="Limpeza">
+					<h2 class="fw-normal">Limpeza</h2>
+					<p>Serviços de Diaristas</p>
+					<p><a class="btn btn-primary" href="profissionais.html">Listar profissionais &raquo;</a></p>
+				</div>
 
-                <div class="col-lg-4 col-sm-6">                  
-                    <img width="140" height="140" src="images/servicos/reforma.jpg" alt="imagem de um homem reformando uma casa" class="rounded-circle" title="Reforma">
+				<div class="col-lg-4 col-sm-6">
+					<img width="140" height="140" src="images/servicos/reforma.jpg"
+						alt="imagem de um homem reformando uma casa" class="rounded-circle" title="Reforma">
 
-                    <h2 class="fw-normal">Reforma</h2>
-                    <p>Serviços de Pedreiros</p>
-                    <p><a class="btn btn-primary" href="profissionais.html">Listar profissionais &raquo;</a></p>
-                </div>
+					<h2 class="fw-normal">Reforma</h2>
+					<p>Serviços de Pedreiros</p>
+					<p><a class="btn btn-primary" href="profissionais.html">Listar profissionais &raquo;</a></p>
+				</div>
 
-                <div class="col-lg-4 col-sm-6">
-                    <img width="140" height="140" src="images/servicos/mudanca.jpg" alt="imagem de duas pessoas segurando caixas de mudanças" class="rounded-circle" title="Mudança">
+				<div class="col-lg-4 col-sm-6">
+					<img width="140" height="140" src="images/servicos/mudanca.jpg"
+						alt="imagem de duas pessoas segurando caixas de mudanças" class="rounded-circle"
+						title="Mudança">
 
-                    <h2 class="fw-normal">Mudança</h2>
-                    <p>Serviços de Mudanças</p>
-                    <p><a class="btn btn-primary" href="profissionais.html">Listar profissionais &raquo;</a></p>
-                </div>
-                          
-                <div class="col-lg-4 col-sm-6">
-                    <img width="140" height="140" src="images/servicos/eletricista.jpg" alt="imagem de um eletricista" class="rounded-circle" title="Eletricista">
+					<h2 class="fw-normal">Mudança</h2>
+					<p>Serviços de Mudanças</p>
+					<p><a class="btn btn-primary" href="profissionais.html">Listar profissionais &raquo;</a></p>
+				</div>
 
-                    <h2 class="fw-normal">Eletricista</h2>
-                    <p>Serviços de Eletricistas</p>
-                    <p><a class="btn btn-primary" href="profissionais.html">Listar profissionais &raquo;</a></p>
-                </div>
-    
-                <div class="col-lg-4 col-sm-6">
-                    <img width="140" height="140" src="images/servicos/pintor.jpg" alt="imagem de uma moça pintando uma parede com a cor branca" class="rounded-circle" title="Pintura">
+				<div class="col-lg-4 col-sm-6">
+					<img width="140" height="140" src="images/servicos/eletricista.jpg" alt="imagem de um eletricista"
+						class="rounded-circle" title="Eletricista">
 
-                    <h2 class="fw-normal">Pintura</h2>
-                    <p>Serviços de pinturas</p>
-                    <p><a class="btn btn-primary" href="profissionais.html">Listar profissionais &raquo;</a></p>
-                </div>
-                
-                <div class="col-lg-4 col-sm-6">
-                    <img width="140" height="140" src="images/servicos/montagem.jpg" alt="imagem de um homem montando móvel" class="rounded-circle" title="Montagem">
+					<h2 class="fw-normal">Eletricista</h2>
+					<p>Serviços de Eletricistas</p>
+					<p><a class="btn btn-primary" href="profissionais.html">Listar profissionais &raquo;</a></p>
+				</div>
 
-                    <h2 class="fw-normal">Montagem</h2>
-                    <p>Serviços de montagens</p>
-                    <p><a class="btn btn-primary" href="profissionais.html">Listar profissionais &raquo;</a></p>
-                </div>
+				<div class="col-lg-4 col-sm-6">
+					<img width="140" height="140" src="images/servicos/pintor.jpg"
+						alt="imagem de uma moça pintando uma parede com a cor branca" class="rounded-circle"
+						title="Pintura">
 
-                <div class="col-lg-4 col-sm-6">
-                    <img width="140" height="140" src="images/servicos/professor.jpg" alt="imagem de um professor escrevendo em um  quadro branco" class="rounded-circle" title="Ensino">
+					<h2 class="fw-normal">Pintura</h2>
+					<p>Serviços de pinturas</p>
+					<p><a class="btn btn-primary" href="profissionais.html">Listar profissionais &raquo;</a></p>
+				</div>
 
-                    <h2 class="fw-normal">Ensino</h2>
-                    <p>Serviços de professores</p>
-                    <p><a class="btn btn-primary" href="profissionais.html">Listar profissionais &raquo;</a></p>
-                </div>
-    
-                <div class="col-lg-4 col-sm-6">
-                    <img width="140" height="140" src="images/servicos/costura.jpg" alt="imagem de duas mãos costurando em uma máquina de costura" class="rounded-circle" title="Moda">
+				<div class="col-lg-4 col-sm-6">
+					<img width="140" height="140" src="images/servicos/montagem.jpg"
+						alt="imagem de um homem montando móvel" class="rounded-circle" title="Montagem">
 
-                    <h2 class="fw-normal">Moda</h2>
-                    <p>Serviços de costura</p>
-                    <p><a class="btn btn-primary" href="profissionais.html">Listar profissionais &raquo;</a></p>
-                </div>
-                
-                <div class="col-lg-4 col-sm-6">
-                    <img width="140" height="140" src="images/servicos/mecanico.jpg" alt="imagem de um mecânico em baixo de um carro" class="rounded-circle" title="Mecânico">
+					<h2 class="fw-normal">Montagem</h2>
+					<p>Serviços de montagens</p>
+					<p><a class="btn btn-primary" href="profissionais.html">Listar profissionais &raquo;</a></p>
+				</div>
 
-                    <h2 class="fw-normal">Mecânico</h2>
-                    <p>Serviços de mecânicos</p>
-                    <p><a class="btn btn-primary" href="profissionais.html">Listar profissionais &raquo;</a></p>
-                </div>
-           
-            </div>
-   
-        </div>
+				<div class="col-lg-4 col-sm-6">
+					<img width="140" height="140" src="images/servicos/professor.jpg"
+						alt="imagem de um professor escrevendo em um  quadro branco" class="rounded-circle"
+						title="Ensino">
+
+					<h2 class="fw-normal">Ensino</h2>
+					<p>Serviços de professores</p>
+					<p><a class="btn btn-primary" href="profissionais.html">Listar profissionais &raquo;</a></p>
+				</div>
+
+				<div class="col-lg-4 col-sm-6">
+					<img width="140" height="140" src="images/servicos/costura.jpg"
+						alt="imagem de duas mãos costurando em uma máquina de costura" class="rounded-circle"
+						title="Moda">
+
+					<h2 class="fw-normal">Moda</h2>
+					<p>Serviços de costura</p>
+					<p><a class="btn btn-primary" href="profissionais.html">Listar profissionais &raquo;</a></p>
+				</div>
+
+				<div class="col-lg-4 col-sm-6">
+					<img width="140" height="140" src="images/servicos/mecanico.jpg"
+						alt="imagem de um mecânico em baixo de um carro" class="rounded-circle" title="Mecânico">
+
+					<h2 class="fw-normal">Mecânico</h2>
+					<p>Serviços de mecânicos</p>
+					<p><a class="btn btn-primary" href="profissionais.html">Listar profissionais &raquo;</a></p>
+				</div>
+
+			</div>
+
+		</div>
 
 
-        <footer>
-            <img src="images/reconnect-footer.png" alt="Imagem da Logo Reconnect">
-            <div class="compra-segura">
-                <strong>SERVIÇOS</strong>
-                <a href="profissionais.html">Profissionais</a>
-                <a href="servicos.html">Moda e Beleza</a>
-                <a href="servicos.html">Serviços Domésticos</a>
-            </div>
-            <div class="contato">
-                <strong>CONTATO</strong>
-                <span><i class="ph ph-phone"></i> 85 3232-3232</span>
-                <span><i class="ph ph-at"></i>contato@reconnect.com</span>
-                <span><i class="ph ph-map-pin"></i> Rua Servidor Público, s/n</span>
-            </div>
-            <div class="redes-sociais">
-                <strong>REDES SOCIAIS</strong>
-                <div>
-                    <span>
-                        <a href="https://github.com/PatsFerrer/49ers" target="_blank"><i
-                                class="ph ph-instagram-logo"></i></a>
-                    </span>
-                    <span>
-                        <a href="https://github.com/PatsFerrer/49ers" target="_blank"><i
-                                class="ph ph-twitter-logo"></i></a>
-                    </span>
-                    <span>
-                        <a href="https://github.com/PatsFerrer/49ers" target="_blank"><i
-                                class="ph ph-github-logo"></i></a>
-                    </span>
-                </div>
-            </div>
-        </footer>
+		<footer>
+			<img src="../images/reconnect-footer.png" alt="Imagem da Logo da Reconnect">
+			<div class="compra-segura">
+				<strong>SERVIÇOS</strong>
+				<a href="profissionais.html">Profissionais</a>
+				<a href="servicos.html">Moda e Beleza</a>
+				<a href="servicos.html">Serviços Domésticos</a>
+			</div>
+			<div class="contato">
+				<strong>CONTATO</strong>
+				<span><i class="ph ph-phone"></i> 85 3232-3232</span>
+				<span><i class="ph ph-at"></i>contato@reconnect.com</span>
+				<span><i class="ph ph-chat-centered"></i>
+					<a style="color: white;" th:href="@{/faleconosco/cadastrar}">
+						Fale Conosco
+					</a>
+				</span>
+			</div>
+			<div class="redes-sociais">
+				<strong>REDES SOCIAIS</strong>
+				<div>
+					<span>
+						<a href="https://github.com/PatsFerrer/49ers" target="_blank"><i
+								class="ph ph-instagram-logo"></i></a>
+					</span>
+					<span>
+						<a href="https://github.com/PatsFerrer/49ers" target="_blank"><i
+								class="ph ph-twitter-logo"></i></a>
+					</span>
+					<span>
+						<a href="https://github.com/PatsFerrer/49ers" target="_blank"><i
+								class="ph ph-github-logo"></i></a>
+					</span>
+				</div>
+			</div>
+		</footer>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
-            crossorigin="anonymous"></script>
-    </main>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+			crossorigin="anonymous"></script>
+	</main>
 </body>
 
 </html>
