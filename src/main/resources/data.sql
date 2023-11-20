@@ -95,4 +95,4 @@ insert into servico values(null, 8, "Serviços de Beleza", "Beleza",
 );
 
 insert into contrato(id, usuario_id, servico_id, endereco, data_hora, concluido)
-    values(null, 5, 1, "casa da mão joana", "2023-11-20 18:00:00", false);
+	values(null, 5, 1, "casa da mão joana", "2023-11-20 18:00:00", false);
