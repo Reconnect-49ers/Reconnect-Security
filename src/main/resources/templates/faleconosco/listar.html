@@ -15,7 +15,7 @@
 </head>
 
 <body class="min-vh-100 d-flex flex-column justify-content-between">
-<!--	INICIO HEADER-->
+	<!--	INICIO HEADER-->
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark">
 			<div class="container-fluid">
@@ -81,24 +81,24 @@
 							</a>
 					</ul>
 					<hr class="group-divider">
-							<div class="dropdown ms-2">
-								<button class="btn btn-outline-light btn-fundo dropdown-toggle "
-									type="button" data-bs-toggle="dropdown" aria-expanded="false">
-									Admin</button>
-								<ul class="dropdown-menu dropdown-menu-end">
-									
-									<li><a class="dropdown-item dropdown-link" href="/usuario">Usuários</a></li>
-									<li><a class="dropdown-item dropdown-link" href="/servico">Serviços</a></li>
-									<li><a class="dropdown-item dropdown-link" href="/contrato">Contratos</a></li>
-									<li><a class="dropdown-item dropdown-link" href="/contato">Contatos</a></li>
-									<li><a class="dropdown-item dropdown-link" href="/faleconosco">Fale Conosco</a></li>
-								</ul>
-							</div>
+					<div class="dropdown ms-2">
+						<button class="btn btn-outline-light btn-fundo dropdown-toggle " type="button"
+							data-bs-toggle="dropdown" aria-expanded="false">
+							Admin</button>
+						<ul class="dropdown-menu dropdown-menu-end">
+
+							<li><a class="dropdown-item dropdown-link" href="/usuario">Usuários</a></li>
+							<li><a class="dropdown-item dropdown-link" href="/servico">Serviços</a></li>
+							<li><a class="dropdown-item dropdown-link" href="/contrato">Contratos</a></li>
+							<li><a class="dropdown-item dropdown-link" href="/contato">Contatos</a></li>
+							<li><a class="dropdown-item dropdown-link" href="/faleconosco">Fale Conosco</a></li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</nav>
 	</header>
-<!--	FIM HEADER-->
+	<!--	FIM HEADER-->
 
 	<main class="container">
 		<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
@@ -140,11 +140,11 @@
 
 							<td>
 								<button data-bs-toggle="modal" class="btn btn-primary btn-edit mb-1"
-											th:data-bs-target="'#editar' + ${faleconosco.id}">
-				
-											Editar
-										</button>
-									
+									th:data-bs-target="'#editar' + ${faleconosco.id}">
+
+									Editar
+								</button>
+
 								</a>
 								<a th:href="@{/faleconosco/{id}/excluir (id=${faleconosco.id})}"
 									class="btn btn-danger btn-edit mb-1"
@@ -153,57 +153,67 @@
 								</a>
 							</td>
 							<!-- Modal -->
-			<div class="modal fade" th:id="'editar' + ${faleconosco.id}" tabindex="-1">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<h1 class="modal-title fs-5">Deseja mudar o Status para Resolvido?</h1>
-							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-						</div>
-						<div class="modal-body">
-					     <form th:action="@{'/faleconosco/editar'}" method="post" th:object="${faleconoscoedit}">
-							 
-							 
-							 
-							 <input type="hidden" id="id" name="id" class="form-control" th:value="${faleconosco.id}" readonly/>
-							 <br/>
-							 <label>Nome:</label>
-							 <input type="text" id="nome" name="nome" class="form-control" th:value="${faleconosco.nome}" readonly/> 
-							 <br/>
-							 <label>Email:</label>
-							 <input type="email" id="email" name="email" class="form-control" th:value="${faleconosco.email}" readonly/>
-							 <br/>
-							 <label>Mensagem:</label>
-							 <input type="text" id="mensagem" name="mensagem" class="form-control" th:value="${faleconosco.mensagem}" readonly/>
-							 <br/>
-							 <label>Resolvido:</label>
-							 <input type="text" id="status" name="status" class="form-control" th:value="${faleconosco.status ? 'true':'false'}" />
-							 <br/>
-								<button type="submit"
-									class="btn btn-primary btn-edit mb-1"
-									onclick="return confirm('Tem certeza que deseja editar o Status?');">
-									salvar
-								</button>	
-								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-				          </form>
-						</div>
-						<div class="modal-footer">
-							
-							
-						
-										
-						</div>
-					</div>
-				</div>
-			</div>
-<!--			FIM MODAL-->
+							<div class="modal fade" th:id="'editar' + ${faleconosco.id}" tabindex="-1">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h1 class="modal-title fs-5">Deseja mudar o Status para Resolvido?</h1>
+											<button type="button" class="btn-close" data-bs-dismiss="modal"
+												aria-label="Close"></button>
+										</div>
+										<div class="modal-body">
+											<form th:action="@{'/faleconosco/editar'}" method="post"
+												th:object="${faleconoscoedit}">
+
+
+
+												<input type="hidden" id="id" name="id" class="form-control"
+													th:value="${faleconosco.id}" readonly />
+													
+												<div class="form-group">
+													<label class="form-label">Nome:</label>
+													<input type="text" id="nome" name="nome" class="form-control"
+														th:value="${faleconosco.nome}" readonly />
+												</div>
+												
+												<div class="form-group">
+													<label class="form-label">Email:</label>
+													<input type="email" id="email" name="email" class="form-control"
+														th:value="${faleconosco.email}" readonly />
+												</div>
+												
+												<div class="form-group">
+													<label>Mensagem:</label>
+													<input type="text" id="mensagem" name="mensagem"
+														class="form-control" th:value="${faleconosco.mensagem}"
+														readonly />
+												</div>
+												
+												<div class="form-group">
+													<label>Resolvido:</label>
+													<input type="text" id="status" class="form-control"
+														th:value="${faleconosco.status ? 'Sim':'Não'}" readonly/>
+												</div>
+												
+												<div class="form-group">
+													<button type="submit" class="btn btn-primary w-100"
+														onclick="return confirm('Tem certeza que deseja editar o Status?');">
+														salvar
+													</button>
+												</div>
+											</form>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!--			FIM MODAL-->
 						</tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
 
-		
+
 
 	</main>
 
@@ -222,15 +232,17 @@
 			<span><i class="ph ph-phone"></i> 85 3232-3232</span>
 			<span><i class="ph ph-at"></i>contato@reconnect.com</span>
 			<span>
-							<a class="nav-link" th:href="@{/faleconosco/cadastrar}">
-						        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffffff" 
-						        class="bi bi-people" viewBox="0 0 256 256"><path d="M88,104a8,8,0,0,1,8-8h64a8,8,0,0,1,0,16H96A8,8,0,0,1,88,104Zm8,40h64a8,8,0,0,0,0-16H96a8,8,0,0,0,0,16ZM232,56V184a16,16,0,0,1-16,16H156.53l-14.84,24.29a16,16,0,0,1-27.41-.06L99.47,200H40a16,16,0,0,1-16-16V56A16,16,0,0,1,40,40H216A16,16,0,0,1,232,56Zm-16,0H40V184H99.47a16.08,16.08,0,0,1,13.7,7.73L128,216l14.82-24.32A16.07,16.07,0,0,1,156.53,184H216Z">	
-								</path>
-								</svg>
-								Fale Conosco
-							</a>
-						</span>
-			
+				<a class="nav-link" th:href="@{/faleconosco/cadastrar}">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#ffffff" class="bi bi-people"
+						viewBox="0 0 256 256">
+						<path
+							d="M88,104a8,8,0,0,1,8-8h64a8,8,0,0,1,0,16H96A8,8,0,0,1,88,104Zm8,40h64a8,8,0,0,0,0-16H96a8,8,0,0,0,0,16ZM232,56V184a16,16,0,0,1-16,16H156.53l-14.84,24.29a16,16,0,0,1-27.41-.06L99.47,200H40a16,16,0,0,1-16-16V56A16,16,0,0,1,40,40H216A16,16,0,0,1,232,56Zm-16,0H40V184H99.47a16.08,16.08,0,0,1,13.7,7.73L128,216l14.82-24.32A16.07,16.07,0,0,1,156.53,184H216Z">
+						</path>
+					</svg>
+					Fale Conosco
+				</a>
+			</span>
+
 		</div>
 		<div class="redes-sociais">
 			<strong>REDES SOCIAIS</strong>
