@@ -88,11 +88,12 @@
 						<button class="btn btn-outline-light btn-fundo dropdown-toggle " type="button"
 							data-bs-toggle="dropdown" aria-expanded="false">
 							Admin</button>
-						<ul class="dropdown-menu dropdown-menu-end">
+						<ul class="dropdown-menu dropdown-menu-end" style="font-size: 16px;">
 
 							<li><a class="dropdown-item dropdown-link" href="/usuario">Usuários</a></li>
+							<li><a class="dropdown-item dropdown-link" href="/servico">Serviços</a></li>
 							<li><a class="dropdown-item dropdown-link" href="/contrato">Contratos</a></li>
-							<li><a class="dropdown-item dropdown-link" href="#">#</a></li>
+							<li><a class="dropdown-item dropdown-link" href="/contato">Contatos</a></li>
 							<li><a class="dropdown-item dropdown-link" href="/faleconosco">Fale Conosco</a></li>
 						</ul>
 					</div>
@@ -102,25 +103,26 @@
 		</nav>
 	</header>
 
+
 	<main class="container" style="padding: 20px;">
 		<div class="row">
 			<div class="col-sm-12" style="text-align: center;">
 				<i style="font-size: 40px;" class="bi bi-person-circle"></i>
 				<h1>Atualizar Usuário</h1>
 				<div class="avatar-perfil">
-					
-					<img alt="Image" style="overflow: hidden; border-radius: 50%;" class="perfil-usuario-img" height="200px" width="200px"
-									th:src="|/usuario/imagem/${usuario.id}|" />
+
+					<img alt="Image" style="overflow: hidden; border-radius: 50%;" class="perfil-usuario-img"
+						height="200px" width="200px" th:src="|/usuario/imagem/${usuario.id}|" />
 				</div>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="class="col-md col-lg"">
+			<div class="class=" col-md col-lg"">
 				<form method="POST" th:object="${usuario}" enctype="multipart/form-data">
 					<div class="row g-3">
 						<input type="hidden" th:field="*{id}">
-	
+
 						<div class="col-sm-6">
 							<label for="nome" class="form-label">Nome</label>
 							<input type="text" class="form-control" id="nome" th:field="*{nome}">
@@ -131,7 +133,8 @@
 						</div>
 						<div class="col-sm-6">
 							<label for="senha" class="form-label">Senha</label>
-							<input type="password" class="form-control" id="senha" th:value="*{senha}" th:field="*{senha}" required>
+							<input type="password" class="form-control" id="senha" th:value="*{senha}"
+								th:field="*{senha}" required>
 						</div>
 						<div class="col-sm-6">
 							<label for="telefone" class="form-label">Telefone</label>
@@ -151,7 +154,8 @@
 						</div>
 						<div class="col-sm-6">
 							<label for="dataNascimento" class="form-label">Data de Nascimento</label>
-							<input required type="date" class="form-control" id="dataNascimento" th:field="*{dataNascimento}">
+							<input required type="date" class="form-control" id="dataNascimento"
+								th:field="*{dataNascimento}">
 						</div>
 						<div>
 							<label for="bio" class="form-label">Bio</label>
@@ -159,17 +163,17 @@
 								placeholder="Fale um pouco de você e dos serviços que você pode oferecer." type="text"
 								class="form-control" id="bio" th:field="*{bio}"></textarea>
 						</div>
-						
+
 						<div class="mb-3 col-sm-6">
 							<label for="imagem">Foto do usuário</label>
 							<input type="file" class="form-control" id="imagem" name="fileUsuario" required>
 						</div>
-						
+
 						<div class="mb-3 col-sm-6">
 							<label for="capa">Foto da Capa</label>
 							<input type="file" class="form-control" id="capa" name="fileCapa" required>
 						</div>
-	
+
 						<div class="d-flex justify-content-end gap-1">
 							<a href="/usuario" class=" btn btn-danger">Cancelar</a>
 							<button type="submit" class="btn btn-primary">Salvar</button>
@@ -181,7 +185,7 @@
 	</main>
 
 	<footer>
-		<img src="../../images/reconnect-footer.png" alt="Imagem da Logo da Reconnect">
+		<img src="../images/reconnect-footer.png" alt="Imagem da Logo da Reconnect">
 		<div class="compra-segura">
 			<strong>SERVIÇOS</strong>
 			<a href="profissionais.html">Profissionais</a>
@@ -192,7 +196,11 @@
 			<strong>CONTATO</strong>
 			<span><i class="ph ph-phone"></i> 85 3232-3232</span>
 			<span><i class="ph ph-at"></i>contato@reconnect.com</span>
-			<span><i class="ph ph-map-pin"></i> Rua Servidor Público, s/n</span>
+			<span><i class="ph ph-chat-centered"></i>
+				<a style="color: white;" th:href="@{/faleconosco/cadastrar}">
+					Fale Conosco
+				</a>
+			</span>
 		</div>
 		<div class="redes-sociais">
 			<strong>REDES SOCIAIS</strong>
