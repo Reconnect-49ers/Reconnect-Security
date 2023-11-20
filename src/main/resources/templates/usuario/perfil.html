@@ -195,7 +195,7 @@
 					<form th:action="@{/contato/modal-cadastrar}" method="POST" th:object="${contato}">
 						<div class="col">
 							<label for="servico" class="form-label">Serviço:</label>
-							<select class="form-control" id="servico" name="servico">
+							<select class="form-control" id="servico" name="servico" required>
 								<option th:each="serv:${servicos}"  th:text="${serv.nome}" th:value="${serv.id}"></option>
 							</select>
 						</div>
@@ -254,7 +254,7 @@
 							
 							<div class="col-sm-6">
 								<label for="servico" class="form-label">Serviço:</label>
-								<select class="form-control" id="servico" name="servico">
+								<select class="form-control" id="servico" name="servico" required>
 									<option th:each="serv:${servicos}"  th:text="${serv.nome}" th:value="${serv.id}"></option>
 								</select>
 							</div>
