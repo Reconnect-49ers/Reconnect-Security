@@ -190,24 +190,24 @@
 
 						<div>Profissão: <span th:text="${usuario.profissao}"></span></div>
 						<div>E-mail: <span th:text="${usuario.email}"></span></div>
-						<p>Telefone: <span th:text="${usuario.telefone}"></span></p>
+						<div>Telefone: <span th:text="${usuario.telefone}"></span></div>
 					</div>
 
 					<!-- enviar para a classe contato_serviço aqui:-->
 					<!-- falta colocar o th:field="*{mensagem}"	no textearea-->
 
 					<form th:action="@{/contato/modal-cadastrar}" method="POST" th:object="${contato}">
-						<div class="col-sm-6">
+						<div class="col">
 							<label for="servico" class="form-label">Serviço:</label>
 							<select class="form-control" id="servico" name="servico">
 								<option th:each="serv:${servicos}"  th:text="${serv.nome}" th:value="${serv.id}"></option>
 							</select>
 						</div>
-						<div class="col-sm-6">
+						<div class="col">
 							<label for="contatonome" class="form-label">Cliente: </label>
 							<input type="text" class="form-control" id="contatonome" th:field="*{nome}" required>
 						</div>
-						<div class="col-sm-6">
+						<div class="col">
 							<label for="contatoemail" class="form-label">Email:</label>
 							<input type="email" class="form-control" id="contatoemail" th:field="*{email}" required>
 						</div>
@@ -266,7 +266,8 @@
 							
 							<div class="col-sm-6">
 								<label for="profissao" class="form-label">Profissão: </label>
-								<p th:text="${usuario.profissao}"></p>
+								<input type="text" class="form-control" th:value="${usuario.profissao}" readonly>
+<!--								<p th:text="${usuario.profissao}"></p>-->
 							</div>
 							
 							
