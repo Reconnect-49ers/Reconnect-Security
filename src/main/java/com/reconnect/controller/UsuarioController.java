@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.reconnect.model.Contato;
 import com.reconnect.model.Contrato;
 import com.reconnect.model.Servico;
 import com.reconnect.model.Usuario;
@@ -128,6 +129,9 @@ public class UsuarioController {
 			
 			List<Servico> servicos = usuario.getServico();
 			modelAndView.addObject("servicos", servicos);
+			
+			Contato contato = new Contato();
+			modelAndView.addObject("contato", contato);
 			
 			Contrato contrato = new Contrato();
 			modelAndView.addObject("contrato", contrato);

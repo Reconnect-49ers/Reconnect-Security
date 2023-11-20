@@ -66,6 +66,19 @@ public class ContratoController {
 		return modelAndView;
 	}
 	
+	@PostMapping("/modal-cadastrar")
+	public ModelAndView cadastrarPerfil(Contrato contrato, @RequestParam("idCliente") Long idCliente,
+			@RequestParam("servico") Long idServico) throws IOException {
+		ModelAndView modelAndView = new ModelAndView("redirect:/contrato");
+		
+		contrato.setUsuario(usuarioRepository.findById(idCliente).orElse(null));
+		contrato.setServico(servicoRepository.findById(idServico).orElse(null));
+		
+		contratoRepository.save(contrato);
+ 
+		return modelAndView;
+	}
+	
 	@PostMapping("/editar")
 	public String editar(Contrato contrato, @RequestParam("usuario") Long id, @RequestParam("servico") Long idserv) {	
 		Usuario usu = usuarioRepository.findById(id).orElse(null);

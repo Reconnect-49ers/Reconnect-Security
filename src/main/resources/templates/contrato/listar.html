@@ -124,6 +124,7 @@
                             <th scope="col">Data/Hora</th>
                             <th scope="col">Endereço do Cliente</th>
                             <th scope="col">Profissional</th>
+                            <th scope="col">Serviço</th>
                             <th scope="col">Concluído</th>
                             <th scope="col">Ações</th>
                         </tr>
@@ -136,6 +137,7 @@
                             <td th:text="${contrato.data}"></td>
                             <td th:text="${contrato.endereco}"></td>
                             <td th:text="${contrato.servico.usuario.nome}"> </td>
+                            <td th:text="${contrato.servico.nome}"> </td>
                             <td>
                                 <p th:text="${contrato.concluido ? 'Sim':'Não'}"></p>
                             </td>

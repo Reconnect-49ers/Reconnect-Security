@@ -34,11 +34,18 @@ public class Servico {
 	@JoinColumn(name="usuario_id", nullable = false)
 	private Usuario usuario;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "servico")
 	private List<Contrato> contratos;
 	
 	public List<Contrato> getContratos(){
 		return this.contratos;
+	}
+	
+	@OneToMany(mappedBy = "servico")
+	private List<Contato> contatos;
+	
+	public List<Contato> getContato(){
+		return this.contatos;
 	}
 	
 	public Servico() {
