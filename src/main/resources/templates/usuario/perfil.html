@@ -18,6 +18,7 @@
 </head>
 
 <body>
+
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark">
 			<div class="container-fluid">
@@ -91,11 +92,12 @@
 						<button class="btn btn-outline-light btn-fundo dropdown-toggle " type="button"
 							data-bs-toggle="dropdown" aria-expanded="false">
 							Admin</button>
-						<ul class="dropdown-menu dropdown-menu-end">
+						<ul class="dropdown-menu dropdown-menu-end" style="font-size: 16px;">
 
 							<li><a class="dropdown-item dropdown-link" href="/usuario">Usuários</a></li>
+							<li><a class="dropdown-item dropdown-link" href="/servico">Serviços</a></li>
 							<li><a class="dropdown-item dropdown-link" href="/contrato">Contratos</a></li>
-							<li><a class="dropdown-item dropdown-link" href="#">#</a></li>
+							<li><a class="dropdown-item dropdown-link" href="/contato">Contatos</a></li>
 							<li><a class="dropdown-item dropdown-link" href="/faleconosco">Fale Conosco</a></li>
 						</ul>
 					</div>
@@ -196,7 +198,8 @@
 						<div class="col">
 							<label for="servico" class="form-label">Serviço:</label>
 							<select class="form-control" id="servico" name="servico" required>
-								<option th:each="serv:${servicos}"  th:text="${serv.nome}" th:value="${serv.id}"></option>
+								<option th:each="serv:${servicos}" th:text="${serv.nome}" th:value="${serv.id}">
+								</option>
 							</select>
 						</div>
 						<div class="col">
@@ -207,7 +210,7 @@
 							<label for="contatoemail" class="form-label">Email:</label>
 							<input type="email" class="form-control" id="contatoemail" th:field="*{email}" required>
 						</div>
-						
+
 						<div>
 							<label for="mensagem" class="form-label">Mensagem</label>
 							<textarea style="resize: none"
@@ -224,7 +227,7 @@
 
 				</div>
 
-				
+
 
 			</div>
 		</div>
@@ -237,37 +240,39 @@
 			<div class="modal-content">
 
 				<div class="modal-header">
-					<h1 class="modal-title fs-5">Cantrate os serviços de <span
-							th:text="${usuario.nome}"></span></h1>
+					<h1 class="modal-title fs-5">Cantrate os serviços de <span th:text="${usuario.nome}"></span></h1>
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 
 				<div class="modal-body">
 					<form method="POST" th:action="@{/contrato/modal-cadastrar}" th:object="${contrato}">
 						<div class="row g-3">
-												
+
 							<div class="col-sm-6">
 								<label for="usuario" class="form-label">Profissional</label>
-								<input type="text" id="usuario" class="form-control" th:value="${usuario.nome}" readonly>
+								<input type="text" id="usuario" class="form-control" th:value="${usuario.nome}"
+									readonly>
 								<input type="hidden" th:value="${usuario.id}" readonly>
 							</div>
-							
+
 							<div class="col-sm-6">
 								<label for="servico" class="form-label">Serviço:</label>
 								<select class="form-control" id="servico" name="servico" required>
-									<option th:each="serv:${servicos}"  th:text="${serv.nome}" th:value="${serv.id}"></option>
+									<option th:each="serv:${servicos}" th:text="${serv.nome}" th:value="${serv.id}">
+									</option>
 								</select>
 							</div>
-							
+
 							<div class="col-sm-6">
 								<label for="profissao" class="form-label">Profissão: </label>
 								<input type="text" class="form-control" th:value="${usuario.profissao}" readonly>
 							</div>
-							
+
 							<div class="col-sm-6">
 								<label for="cliente" class="form-label">Cliente: </label>
 								<select class="form-control" id="cliente" name="idCliente">
-									<option th:each="cli : ${usuarios}"  th:text="${cli.nome}" th:value="${cli.id}"></option>
+									<option th:each="cli : ${usuarios}" th:text="${cli.nome}" th:value="${cli.id}">
+									</option>
 								</select>
 							</div>
 
@@ -275,7 +280,7 @@
 								<label for="endereco" class="form-label">Endereço</label>
 								<input type="text" class="form-control" id="endereco" th:field="*{endereco}" required>
 							</div>
-							
+
 							<div class="col-sm-6">
 								<label for="data" class="form-label">Data</label>
 								<input type="datetime-local" class="form-control" id="data" th:field="*{data}" required>
@@ -295,7 +300,7 @@
 	</div> <!--	fim do modal-->
 
 	<footer>
-		<img src="../../images/reconnect-footer.png" alt="Imagem da Logo da Reconnect">
+		<img src="../images/reconnect-footer.png" alt="Imagem da Logo da Reconnect">
 		<div class="compra-segura">
 			<strong>SERVIÇOS</strong>
 			<a href="profissionais.html">Profissionais</a>
@@ -306,7 +311,11 @@
 			<strong>CONTATO</strong>
 			<span><i class="ph ph-phone"></i> 85 3232-3232</span>
 			<span><i class="ph ph-at"></i>contato@reconnect.com</span>
-			<span><i class="ph ph-map-pin"></i> Rua Servidor Público, s/n</span>
+			<span><i class="ph ph-chat-centered"></i>
+				<a style="color: white;" th:href="@{/faleconosco/cadastrar}">
+					Fale Conosco
+				</a>
+			</span>
 		</div>
 		<div class="redes-sociais">
 			<strong>REDES SOCIAIS</strong>
