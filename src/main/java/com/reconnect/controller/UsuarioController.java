@@ -137,5 +137,5 @@ public class UsuarioController {
 			modelAndView.addObject("contrato", contrato);
 	 
 			return modelAndView;
-		}
+		}	
 }

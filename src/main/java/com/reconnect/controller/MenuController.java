@@ -6,11 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.reconnect.model.Servico;
+import com.reconnect.model.Usuario;
 import com.reconnect.repository.ServicoRepository;
 import com.reconnect.repository.UsuarioRepository;
 
@@ -42,16 +42,34 @@ public class MenuController {
 		ModelAndView modelAndView = new ModelAndView("index.html");
 		
 		List<Servico> servicos = servicoRepository.findAll();
+		List<Usuario> usuarios = usuarioRepository.findAll();
 		modelAndView.addObject("servicos", servicos);
+		modelAndView.addObject("usuarios", usuarios);
  
 		return modelAndView;
 	}
+//	@GetMapping
+//	public ModelAndView listarUsuarios() {
+//		ModelAndView modelAndView = new ModelAndView("index.html");
+//		
+//		List<Usuario> usuarios = usuarioRepository.findAll();
+//		modelAndView.addObject("usuarios", usuarios);
+//		
+//		return modelAndView;
+//	}
 	
-	@GetMapping("/imagem/{id}")
+	@GetMapping("/serv/imagem/{id}")
 	@ResponseBody
-	public byte[] exibirImagen(@PathVariable("id") Long id) {
+	public byte[] exibirImagenServico(@PathVariable("id") Long id) {
 		Servico servico = this.servicoRepository.getReferenceById(id);
 		return servico.getImagem();
+	}
+	
+	@GetMapping("/user/imagem/{id}")
+	@ResponseBody
+	public byte[] exibirImagenUser(@PathVariable("id") Long id) {
+		Usuario usuario = this.usuarioRepository.getReferenceById(id);
+		return usuario.getImagem();
 	}
 
 }

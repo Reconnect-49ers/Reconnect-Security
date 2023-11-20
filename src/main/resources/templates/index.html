@@ -178,10 +178,12 @@
 			<div class="row">
 				
 				<div th:each="serv : ${servicos}" class="col-lg col-sm-6">
-					<img width="140" height="140" th:src="|/imagem/${serv.id}|"
-						alt="imagem de uma mulher limpando a janela" class="rounded-circle" title="Limpeza">
-					<h2 class="fw-normal" th:text="${serv.nome}">Limpeza</h2>
-					<p><a class="btn btn-primary" href="profissionais.html">Listar profissionais &raquo;</a></p>
+					
+					<img width="140" height="140" th:src="|/serv/imagem/${serv.id}|"
+						alt="imagem de serviço" class="rounded-circle" title="serviço">
+						
+					<h2 class="fw-normal" th:text="${serv.nome}"></h2>
+					<p><a class="btn btn-primary" th:href="@{/servicos}">Serviços &raquo;</a></p>
 				</div>
 
 			</div>
@@ -196,11 +198,12 @@
 
 		<section class="sessao-profissionais container mb-3">
 
-			<div class="card-pessoa efeito">
+			<div class="card-pessoa efeito" th:each="usuario : ${usuarios}">
 				<div class="body-card">
-					<h6 class="text-center">Diarista</h6>
+					<h6 class="text-center" th:text="${usuario.profissao}"></h6>
 					<div class="header-card">
-						<img class="foto-perfil" src="images/perfis/perfil10.jpg" alt="Imagem de perfil">
+						<img width="100" height="100" class="foto-perfil rounded-circle" th:src="|/user/imagem/${usuario.id}|" alt="Imagem de perfil">
+						
 						<div class="stars-p">
 							<div class="stars">
 								<i class="star bi bi-star-fill"></i>
@@ -210,255 +213,25 @@
 								<i class="bi bi-star-fill"></i>
 							</div>
 							<div>
-								<strong>Pietra M.</strong>
+								<strong th:text="${usuario.nome}"></strong>
 							</div>
 						</div>
 					</div>
 					<div class="footer-card">
-						<p class="text-center">Limpo de tudo. Agenda livre para fins de semana!</p>
+						<p class="text-center" th:text="${usuario.bio}"></p>
 						<div class="botoes-card">
 							<div class="btn-group">
-								<a class="btn btn-primary" href="#">Ver perfil</a>
+								<a class="btn btn-primary" th:href="@{/usuario/{id} (id=${usuario.id})}">Ver perfil</a>
 							</div>
-							<div class="btn-group">
-								<button class="btn btn-primary" type="button" data-bs-toggle="modal"
-									data-bs-target="#exampleModal">Solicitar orçamento</button>
-							</div>
+<!--							<div class="btn-group">-->
+<!--								<button class="btn btn-primary" type="button" data-bs-toggle="modal"-->
+<!--									data-bs-target="#exampleModal">Solicitar orçamento</button>-->
+<!--							</div>-->
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> <!--	card profissionais fim-->
 
-			<div class="card-pessoa efeito">
-				<div class="body-card">
-					<h6 class="text-center">Mecânico</h6>
-					<div class="header-card">
-						<img class="foto-perfil" src="images/perfis/perfil03.jpg" alt="Imagem de perfil">
-						<div class="stars-p">
-							<div class="stars">
-								<i class="star bi bi-star-fill"></i>
-								<i class="bi bi-star-fill"></i>
-								<i class="bi bi-star-fill"></i>
-								<i class="bi bi-star-fill"></i>
-								<i class="bi bi-star-fill"></i>
-							</div>
-							<div>
-								<strong>Marco R.</strong>
-							</div>
-						</div>
-					</div>
-					<div class="footer-card">
-						<p class="text-center">Sou profissional de motos, mais de 20 anos de experiência.</p>
-						<div class="botoes-card">
-							<div class="btn-group">
-								<a class="btn btn-primary" href="#">Ver perfil</a>
-							</div>
-							<div class="btn-group">
-								<button class="btn btn-primary" type="button" data-bs-toggle="modal"
-									data-bs-target="#exampleModal">Solicitar orçamento</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="card-pessoa efeito">
-				<div class="body-card">
-					<h6 class="text-center">Encanador</h6>
-					<div class="header-card">
-						<img class="foto-perfil" src="images/perfis/perfil04.jpg" alt="Imagem de perfil">
-						<div class="stars-p">
-							<div class="stars">
-								<i class="star bi bi-star-fill"></i>
-								<i class="bi bi-star-fill"></i>
-								<i class="bi bi-star-fill"></i>
-								<i class="bi bi-star-fill"></i>
-								<i class="bi bi-star-fill"></i>
-							</div>
-							<div>
-								<strong>Mário B.</strong>
-							</div>
-						</div>
-					</div>
-					<div class="footer-card">
-						<p class="text-center">Melhor encanador do bairro! Aceito todo tipo de trabalho.</p>
-						<div class="botoes-card">
-							<div class="btn-group">
-								<a class="btn btn-primary" href="#">Ver perfil</a>
-							</div>
-							<div class="btn-group">
-								<button class="btn btn-primary" type="button" data-bs-toggle="modal"
-									data-bs-target="#exampleModal">Solicitar orçamento</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="card-pessoa efeito">
-				<div class="body-card">
-					<h6 class="text-center">Personal Trainer</h6>
-					<div class="header-card">
-						<img class="foto-perfil" src="images/perfis/perfil06.jpg" alt="Imagem de perfil">
-						<div class="stars-p">
-							<div class="stars">
-								<i class="star bi bi-star-fill"></i>
-								<i class="bi bi-star-fill"></i>
-								<i class="bi bi-star-fill"></i>
-								<i class="bi bi-star-fill"></i>
-								<i class="bi bi-star-fill"></i>
-							</div>
-							<div>
-								<strong>Pricila P.</strong>
-							</div>
-						</div>
-					</div>
-					<div class="footer-card">
-						<p class="text-center">Personal trainer para emagrecimento e definição.</p>
-						<div class="botoes-card">
-							<div class="btn-group">
-								<a class="btn btn-primary" href="#">Ver perfil</a>
-							</div>
-							<div class="btn-group">
-								<button class="btn btn-primary" type="button" data-bs-toggle="modal"
-									data-bs-target="#exampleModal">Solicitar orçamento</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="card-pessoa efeito">
-				<div class="body-card">
-					<h6 class="text-center">Marmiteira</h6>
-					<div class="header-card">
-						<img class="foto-perfil" src="images/perfis/perfil09.png" alt="Imagem de perfil">
-						<div class="stars-p">
-							<div class="stars">
-								<i class="star bi bi-star-fill"></i>
-								<i class="bi bi-star-fill"></i>
-								<i class="bi bi-star-fill"></i>
-								<i class="bi bi-star-fill"></i>
-								<i class="bi bi-star-fill"></i>
-							</div>
-							<div>
-								<strong>Patricia F.</strong>
-							</div>
-						</div>
-					</div>
-					<div class="footer-card">
-						<p class="text-center">Cozinho com amor! Aceito encomendas, ganha brinde.</p>
-						<div class="botoes-card">
-							<div class="btn-group">
-								<a class="btn btn-primary" href="#">Ver perfil</a>
-							</div>
-							<div class="btn-group">
-								<button class="btn btn-primary" type="button" data-bs-toggle="modal"
-									data-bs-target="#exampleModal">Solicitar orçamento</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="card-pessoa efeito">
-				<div class="body-card" id="professora">
-					<h6 class="text-center">Professora de Balé</h6>
-					<div class="header-card">
-						<img class="foto-perfil" src="images/perfis/perfil11.jpg" alt="Imagem de perfil">
-						<div class="stars-p">
-							<div class="stars">
-								<i class="star bi bi-star-fill"></i>
-								<i class="bi bi-star-fill"></i>
-								<i class="bi bi-star-fill"></i>
-								<i class="bi bi-star-fill"></i>
-								<i class="bi bi-star-fill"></i>
-							</div>
-							<div>
-								<strong>Marlene F.</strong>
-							</div>
-						</div>
-					</div>
-					<div class="footer-card">
-						<p class="text-center">Ensino balé e danças para crianças e adolescentes.</p>
-						<div class="botoes-card">
-							<div class="btn-group">
-								<a class="btn btn-primary" href="#">Ver perfil</a>
-							</div>
-							<div class="btn-group">
-								<button class="btn btn-primary" type="button" data-bs-toggle="modal"
-									data-bs-target="#exampleModal">Solicitar orçamento</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="card-pessoa efeito">
-				<div class="body-card">
-					<h6 class="text-center">Cabeleireira</h6>
-					<div class="header-card">
-						<img class="foto-perfil" src="images/perfis/perfil01.jpg" alt="Imagem de perfil">
-						<div class="stars-p">
-							<div class="stars">
-								<i class="star bi bi-star-fill"></i>
-								<i class="bi bi-star-fill"></i>
-								<i class="bi bi-star-fill"></i>
-								<i class="bi bi-star-fill"></i>
-								<i class="bi bi-star"></i>
-							</div>
-							<div>
-								<strong>Isabela M.</strong>
-							</div>
-						</div>
-					</div>
-					<div class="footer-card">
-						<p class="text-center">Sou trancista faço lindas tranças box de linha. Preço acessível!</p>
-						<div class="botoes-card">
-							<div class="btn-group">
-								<a class="btn btn-primary" href="#">Ver perfil</a>
-							</div>
-							<div class="btn-group">
-								<button class="btn btn-primary" type="button" data-bs-toggle="modal"
-									data-bs-target="#exampleModal">Solicitar orçamento</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="card-pessoa efeito" id="motorista">
-				<div class="body-card">
-					<h6 class="text-center">Motorista Particular</h6>
-					<div class="header-card">
-						<img class="foto-perfil" src="images/perfis/perfil00.jpg" alt="Imagem de perfil">
-						<div class="stars-p">
-							<div class="stars">
-								<i class="star bi bi-star-fill"></i>
-								<i class="bi bi-star-fill"></i>
-								<i class="bi bi-star-fill"></i>
-								<i class="bi bi-star-fill"></i>
-								<i class="bi bi-star"></i>
-							</div>
-							<div>
-								<strong>Irineu Jr.</strong>
-							</div>
-						</div>
-					</div>
-					<div class="footer-card">
-						<p class="text-center">Faço transporte particular para eventos, viagens e empresas.</p>
-						<div class="botoes-card">
-							<div class="btn-group">
-								<a class="btn btn-primary" href="#">Ver perfil</a>
-							</div>
-							<div class="btn-group">
-								<button class="btn btn-primary" type="button" data-bs-toggle="modal"
-									data-bs-target="#exampleModal">Solicitar orçamento</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 
 			<!-- modal -->
 			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
