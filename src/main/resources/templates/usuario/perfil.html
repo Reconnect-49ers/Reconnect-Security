@@ -133,7 +133,6 @@
 					</ul>
 				</div>
 				<div class="opcoes-perfil">
-					<!--					<button type="">Trocar capa</button>-->
 					<a th:href="@{/usuario/{id}/editar (id=${usuario.id})}"><i class="fas fa-wrench"></i></a>
 				</div>
 			</div>
@@ -190,18 +189,34 @@
 
 						<div>Profissão: <span th:text="${usuario.profissao}"></span></div>
 						<div>E-mail: <span th:text="${usuario.email}"></span></div>
-						<p>Telefone: <span th:text="${usuario.telefone}"></span></p>
+						<div>Telefone: <span th:text="${usuario.telefone}"></span></div>
 					</div>
 
-					<!-- enviar para a classe contato_serviço aqui:-->
-					<!-- falta colocar o th:field="*{mensagem}"	no textearea-->
-
-					<form method="POST" th:object="${contato}">
+					<form th:action="@{/contato/modal-cadastrar}" method="POST" th:object="${contato}">
+						<div class="col">
+							<label for="servico" class="form-label">Serviço:</label>
+							<select class="form-control" id="servico" name="servico">
+								<option th:each="serv:${servicos}"  th:text="${serv.nome}" th:value="${serv.id}"></option>
+							</select>
+						</div>
+						<div class="col">
+							<label for="contatonome" class="form-label">Cliente: </label>
+							<input type="text" class="form-control" id="contatonome" th:field="*{nome}" required>
+						</div>
+						<div class="col">
+							<label for="contatoemail" class="form-label">Email:</label>
+							<input type="email" class="form-control" id="contatoemail" th:field="*{email}" required>
+						</div>
+						
 						<div>
 							<label for="mensagem" class="form-label">Mensagem</label>
 							<textarea style="resize: none"
 								placeholder="Agende serviços ou tire dúvidas com o profissional." type="text"
-								class="form-control" id="mensagem" rows="3" required></textarea>
+								class="form-control" id="mensagem" th:field="*{mensagem}" rows="3" required></textarea>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+							<button type="submit" class="btn btn-primary">Enviar</button>
 						</div>
 					</form>
 
@@ -209,10 +224,7 @@
 
 				</div>
 
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-					<button type="button" class="btn btn-primary">Enviar</button>
-				</div>
+				
 
 			</div>
 		</div>
@@ -231,42 +243,39 @@
 				</div>
 
 				<div class="modal-body">
-					<form method="POST" th:action="@{/contrato/cadastrar}" th:object="${contrato}">
+					<form method="POST" th:action="@{/contrato/modal-cadastrar}" th:object="${contrato}">
 						<div class="row g-3">
+												
 							<div class="col-sm-6">
-<!--								<input type="hidden" th:field="*{id}">-->
 								<label for="usuario" class="form-label">Profissional</label>
-								<select class="form-control" id="usuario" name="usuario">
-									<option th:text="${usuario.nome}" th:value="${usuario.id}"></option>
+								<input type="text" id="usuario" class="form-control" th:value="${usuario.nome}" readonly>
+								<input type="hidden" th:value="${usuario.id}" readonly>
+							</div>
+							
+							<div class="col-sm-6">
+								<label for="servico" class="form-label">Serviço:</label>
+								<select class="form-control" id="servico" name="servico">
+									<option th:each="serv:${servicos}"  th:text="${serv.nome}" th:value="${serv.id}"></option>
 								</select>
 							</div>
 							
-<!--							<div class="col-sm-6">-->
-<!--								<label for="servico" class="form-label">Serviço ID</label>-->
-<!--								<select class="form-control" id="servico" name="usuario">-->
-<!--									<option  th:text="${servico.nome}" th:value="${servico.id}"></option>-->
-<!--								</select>-->
-<!--							</div>-->
-							
 							<div class="col-sm-6">
 								<label for="profissao" class="form-label">Profissão: </label>
-								<p th:text="${usuario.profissao}"></p>
+								<input type="text" class="form-control" th:value="${usuario.profissao}" readonly>
 							</div>
 							
 							<div class="col-sm-6">
-								<label for="nome" class="form-label">Nome</label>
-								<input type="text" class="form-control" id="nome" th:field="*{nome}" required>
-							</div>
-							<div class="col-sm-6">
-								<label for="email" class="form-label">E-mail</label>
-								<input type="email" class="form-control" id="email" th:field="*{email}"
-									placeholder="nome@exemplo.com" required>
+								<label for="cliente" class="form-label">Cliente: </label>
+								<select class="form-control" id="cliente" name="idCliente">
+									<option th:each="cli : ${usuarios}"  th:text="${cli.nome}" th:value="${cli.id}"></option>
+								</select>
 							</div>
 
 							<div class="col-sm-6">
 								<label for="endereco" class="form-label">Endereço</label>
 								<input type="text" class="form-control" id="endereco" th:field="*{endereco}" required>
 							</div>
+							
 							<div class="col-sm-6">
 								<label for="data" class="form-label">Data</label>
 								<input type="datetime-local" class="form-control" id="data" th:field="*{data}" required>

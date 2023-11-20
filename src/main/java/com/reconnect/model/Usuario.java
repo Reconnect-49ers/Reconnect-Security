@@ -58,7 +58,7 @@ public class Usuario {
 	@OneToMany(mappedBy = "usuario")
 	private List<Servico> servicos;
 	
-	@OneToMany
+	@OneToMany(mappedBy = "usuario")
 	private List<Contrato> contratos;
 	
 	public List<Servico> getServico(){

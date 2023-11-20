@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.reconnect.model.Contato;
 import com.reconnect.model.Contrato;
+import com.reconnect.model.Servico;
 import com.reconnect.model.Usuario;
 import com.reconnect.repository.UsuarioRepository;
 
@@ -120,9 +122,19 @@ public class UsuarioController {
 			ModelAndView modelAndView = new ModelAndView("usuario/perfil.html");
 	 
 			Usuario usuario = usuarioRepository.getReferenceById(id);
+			modelAndView.addObject("usuario", usuario);
+			
+			List<Usuario> usuarios = usuarioRepository.findAll();
+			modelAndView.addObject("usuarios", usuarios);
+			
+			List<Servico> servicos = usuario.getServico();
+			modelAndView.addObject("servicos", servicos);
+			
+			Contato contato = new Contato();
+			modelAndView.addObject("contato", contato);
+			
 			Contrato contrato = new Contrato();
 			modelAndView.addObject("contrato", contrato);
-			modelAndView.addObject("usuario", usuario);
 	 
 			return modelAndView;
 		}

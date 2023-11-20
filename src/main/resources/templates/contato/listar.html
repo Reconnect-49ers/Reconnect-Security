@@ -6,11 +6,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 	<link rel="stylesheet" href="styles/style.css">
 	<link rel="stylesheet" href="styles/mediaquery.css">
 	<script src="https://unpkg.com/@phosphor-icons/web"></script>
-	<title>Reconnect - Usuários</title>
+	<title>Reconnect - Contato</title>
 </head>
 
 <body class="min-vh-100 d-flex flex-column justify-content-between">
@@ -67,7 +67,7 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link active" aria-current="page" href="/usuario">
+							<a class="nav-link" aria-current="page" href="/usuario">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
 									class="bi bi-people" viewBox="0 0 16 16">
 									<path
@@ -96,10 +96,9 @@
 
 	<main class="container">
 		<div style="display: flex; justify-content: center; align-items: center; gap: 5px;">
-			<i style="font-size: 40px;" class="bi bi-people"></i>
-			<div class="container" style="display: flex; align-items: center; justify-content: space-between;">
-				<h1>Usuários</h1>
-				<a th:href="@{/contato/cadastrar}" class="btn btn-primary">Cadastrar</a>
+			<div class="container" style="display: flex; align-items: center; justify-content: start;">
+			<i style="font-size: 40px;" class="bi bi-mailbox-flag me-2"></i>
+				<h1>Contatos</h1>
 			</div>
 		</div>
 
@@ -109,30 +108,24 @@
 					<thead>
 						<tr>
 							<th scope="col">#</th>
-							<th scope="col">Nome</th>
+							<th scope="col">Cliente</th>
 							<th scope="col">E-mail</th>
+							<th scope="col">Profissional</th>
+							<th scope="col">Serviço</th>
 							<th scope="col">Mensagem</th>
 							<th scope="col">Ações</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr th:each="contato : ${contatos}">
-							<th scope="row" th:text="${contato.id}"></th>
-							<td th:text="${contato.nome}">
-							</td>
+							<th scope="row" th:text="${contato.id}"> </th>
+							<td th:text="${contato.nome}"> </td>
+							<td th:text="${contato.email}"> </td>
+							<td th:text="${contato.servico.usuario.nome}"> </td>
+							<td th:text="${contato.servico.nome}"> </td>
+							<td th:text="${contato.mensagem}"> </td>
 							
 							<td>
-								<a th:text="${contato.email}"></a>
-							</td>
-							<td>
-								<a th:text="${contato.mensagem}"></a>
-							</td>
-							
-							
-							<td>
-								<a th:href="@{/contato/{id}/editar (id=${contato.id})}" class="btn btn-primary btn-edit mb-1">
-									Editar
-								</a>
 								<a th:href="@{/contato/{id}/excluir (id=${contato.id})}" class="btn btn-danger btn-edit mb-1"
 									onclick="return confirm('Tem certeza que deseja excluir o contato?');">
 									Excluir
