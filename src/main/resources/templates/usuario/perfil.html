@@ -133,7 +133,6 @@
 					</ul>
 				</div>
 				<div class="opcoes-perfil">
-					<!--					<button type="">Trocar capa</button>-->
 					<a th:href="@{/usuario/{id}/editar (id=${usuario.id})}"><i class="fas fa-wrench"></i></a>
 				</div>
 			</div>
@@ -193,9 +192,6 @@
 						<div>Telefone: <span th:text="${usuario.telefone}"></span></div>
 					</div>
 
-					<!-- enviar para a classe contato_serviço aqui:-->
-					<!-- falta colocar o th:field="*{mensagem}"	no textearea-->
-
 					<form th:action="@{/contato/modal-cadastrar}" method="POST" th:object="${contato}">
 						<div class="col">
 							<label for="servico" class="form-label">Serviço:</label>
@@ -254,7 +250,6 @@
 								<label for="usuario" class="form-label">Profissional</label>
 								<input type="text" id="usuario" class="form-control" th:value="${usuario.nome}" readonly>
 								<input type="hidden" th:value="${usuario.id}" readonly>
-								
 							</div>
 							
 							<div class="col-sm-6">
@@ -267,9 +262,7 @@
 							<div class="col-sm-6">
 								<label for="profissao" class="form-label">Profissão: </label>
 								<input type="text" class="form-control" th:value="${usuario.profissao}" readonly>
-<!--								<p th:text="${usuario.profissao}"></p>-->
 							</div>
-							
 							
 							<div class="col-sm-6">
 								<label for="cliente" class="form-label">Cliente: </label>
