@@ -4,12 +4,6 @@ USE Reconnect;
 
 -- Não é necessário executar o código abaixo --
 
-CREATE DATABASE Reconnect;
-
-USE Reconnect;
-
--- Não é necessário executar o código abaixo --
-
 CREATE TABLE `usuario` (
   `data_nascimento` date NOT NULL,
   `id` bigint NOT NULL AUTO_INCREMENT,
