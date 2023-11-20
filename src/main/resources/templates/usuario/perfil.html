@@ -140,14 +140,14 @@
 			</div>
 			<div class="menu-perfil">
 				<ul>
-					<li><a href="#" title=""><i class="icone-perfil fas fa-bullhorn"></i> Publicações</a></li>
+					<li><a href="#publicacoes" title=""><i class="icone-perfil fas fa-bullhorn"></i> Publicações</a></li>
 					<li><a data-bs-toggle="modal" th:data-bs-target="'#contato' + ${usuario.id}" title=""><i
 								class="icone-perfil fas fa-info-circle"></i> Contato</a></li>
 
 					<li><a data-bs-toggle="modal" th:data-bs-target="'#contrato' + ${usuario.id}" title=""><i
 								class="icone-perfil fas fa-grin"></i> Contratar</a></li>
 
-					<li><a href="#" title=""><i class="icone-perfil fas fa-camera"></i> Avaliações</a></li>
+					<li><a href="#comentarios" title=""><i class="icone-perfil fas fa-camera"></i> Avaliações</a></li>
 				</ul>
 			</div>
 		</div>
@@ -158,20 +158,62 @@
 	<!--	Feed perfil-->
 	<div class="container">
 
-		<div class="container-perfil" style=" margin: auto;">
+		<div class="container-perfil" style=" margin: auto;" id="publicacoes">
 			<h5>Sobre mim</h5>
+			<p>Profissão: <span th:text="${usuario.profissao}"></span></p>
 			<p style="margin-left: 20px;" class="bio-usuario" th:text="${usuario.bio}"></p>
 
-			<p>Veja meu gracioso trabalho que finalizei hoje:</p>
+			<p>Faço serviços! Me mande mensagem e vamos fechar contrato!</p>
 
 			<img class="img-capa" th:src="|/usuario/capa/${usuario.id}|" alt="img" style="border-radius: 0">
 
 
+			<p class="mt-2">Clique no botão 'Contratar' aí em cima ☝️ e me chame pra te ajudar com os meus serviços!</p>
 			<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore earum harum et quis, dolorum, nobis vero
 				alias sit cumque, quos aliquid facilis ipsum? Repudiandae maiores corporis accusantium corrupti
 				assumenda quam.</p>
 
 		</div>
+
+		<!-- Comentários -->
+		<section class="container-perfil card p-4 mb-3" id="comentarios">
+			<div class="d-flex justify-content-between align-items-center">
+				<h4>Comentários sobre <strong th:text="${usuario.nome}"></strong></h4>
+				<div class="stars">
+					<i class="star bi bi-star-fill"></i>
+					<i class="bi bi-star-fill"></i>
+					<i class="bi bi-star-fill"></i>
+					<i class="bi bi-star-fill"></i>
+					<i class="bi bi-star-fill"></i>
+				</div>
+			</div>
+			<div class="row row-cols-1 row-cols-md-2 g-4 mb-3">
+				<div class="col">
+					<div class="card" style="min-height: 200px;">
+						<div class="card-body">
+							<h5 class="card-title">Usuário</h5>
+							<h6 class="card-subtitle mb-2 text-body-secondary">Ótimo serviço!</h6>
+							<p class="card-text">Profissional dedicado! Chegou no horário e cumpriu o prometido. Com
+								certeza irei contratar mais vezes!</p>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card" style="min-height: 200px;">
+						<div class="card-body">
+							<h5 class="card-title">Usuário</h5>
+							<h6 class="card-subtitle mb-2 text-body-secondary">Serviço maravilhoso!</h6>
+							<p class="card-text">Caramba! Eu não imaginava o quanto esse aplicativo de serviços iria me
+								ajudar a encontrar um serviço tão incrível como o seu. Obrigado, Reconnect.. por me
+								ajudar a achar esse serviço diferenciado!</p>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</section> <!-- Fim Comentários -->
+
+
 	</div> <!--	Fim Feed perfil-->
 
 	<!-- Modal Contato -->
