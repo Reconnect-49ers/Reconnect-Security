@@ -1,6 +1,8 @@
 <p align="center">
 </p>
 
+TESTE
+
 ## 🖥️ Projeto Reconnect - Squad 49
 Esse é um projeto Full Stack que criamos para o curso Recode Pro. 😁 <br>
 Alunos: <br>
