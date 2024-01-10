@@ -121,6 +121,7 @@
 		<div class="row">
 			<div class="col-sm-12">
 				<form method="POST" th:object="${faleconosco}">
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 					<div class="mb-3">
 						<label for="nome" class="form-label">Nome</label>
 						<input type="text" class="form-control" id="nome" th:field="*{nome}" required>

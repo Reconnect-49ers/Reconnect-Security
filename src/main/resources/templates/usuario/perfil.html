@@ -237,6 +237,7 @@
 					</div>
 
 					<form th:action="@{/contato/modal-cadastrar}" method="POST" th:object="${contato}">
+						<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 						<div class="col">
 							<label for="servico" class="form-label">Serviço:</label>
 							<select class="form-control" id="servico" name="servico" required>
@@ -288,6 +289,7 @@
 
 				<div class="modal-body">
 					<form method="POST" th:action="@{/contrato/modal-cadastrar}" th:object="${contrato}">
+						<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 						<div class="row g-3">
 
 							<div class="col-sm-6">
