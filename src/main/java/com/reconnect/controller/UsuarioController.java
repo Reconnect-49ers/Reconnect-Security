@@ -20,6 +20,8 @@ import com.reconnect.model.Servico;
 import com.reconnect.model.Usuario;
 import com.reconnect.repository.UsuarioRepository;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 @RequestMapping("/usuario")
 public class UsuarioController {
@@ -29,7 +31,7 @@ public class UsuarioController {
 	
 	// lista todos os dados do banco usuario
 		@GetMapping
-		public ModelAndView listar() {
+		public ModelAndView listar(HttpSession session) {
 			ModelAndView modelAndView = new ModelAndView("usuario/listar.html");
 	 
 			List<Usuario> usuarios = usuarioRepository.findAll();

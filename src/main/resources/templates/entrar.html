@@ -108,23 +108,37 @@
 
 			<!-- caixinha -->
 			<div class="container cadastro-cliente">
-				<form class="needs-validation" novalidate>
+				<form method="POST" th:action="@{/login}">
+					<h3 th:if="${usuario != null}" th:text="${usuario.nome}"></h3>
+<!--					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">-->
+					
+<!--					<input type="hidden" th:field="*{id}">-->
+					
 					<div class="row g-3">
 
 						<div class="col-12">
-							<input type="text" class="form-control" id="email" placeholder="Email ou telefone">
+<!--							<input type="text" class="form-control" id="email" placeholder="Email ou telefone">-->
+							<input type="email" class="form-control" placeholder="irineu@exemplo.com" name="email" required>
+<!--							<input type="email" class="form-control" placeholder="E-mail" name="username" required>-->
 							<div class="invalid-feedback">
 								Insira um endereço de e-mail ou um celular válido.
 							</div>
 						</div>
+
+
 						<div class="col-12 mb-3">
-							<input type="password" class="form-control" id="email" placeholder="Senha">
+<!--							<input type="password" class="form-control" id="senha" placeholder="Senha">-->
+							<input type="password" class="form-control" placeholder="Senha" name="senha" required>
 							<div class="invalid-feedback">
 								Insira uma senha válida.
 							</div>
 						</div>
+
+						
+
 					</div>
-					<a href="/" class="w-100 btn btn-primary btn-lg mb-2" type="button">Entrar</button>
+<!--					<a href="/" class="w-100 btn btn-primary btn-lg mb-2" type="button">Entrar</button>-->
+					<button type="submit" class="w-100 btn btn-primary btn-lg mb-2">Entrar</button>
 						<a href=" #">Esqueceu a senha?</a>
 						<hr class="my-2">
 						<a class="w-100 btn btn-primary btn-lg btn-criar" type="button"

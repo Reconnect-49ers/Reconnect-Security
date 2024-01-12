@@ -14,6 +14,8 @@ import com.reconnect.model.Usuario;
 import com.reconnect.repository.ServicoRepository;
 import com.reconnect.repository.UsuarioRepository;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class MenuController {
 
@@ -32,19 +34,20 @@ public class MenuController {
 		return "servicos";
 	}
 	
-	@GetMapping("/entrar")
-	public String showEntrarPage() {
-		return "entrar";
-	}
+//	@GetMapping("/entrar")
+//	public String showEntrarPage() {
+//		return "entrar";
+//	}
   
 	@GetMapping
-	public ModelAndView listar() {
+	public ModelAndView listar(HttpSession session) {
 		ModelAndView modelAndView = new ModelAndView("index.html");
 		
 		List<Servico> servicos = servicoRepository.findAll();
 		List<Usuario> usuarios = usuarioRepository.findAll();
 		modelAndView.addObject("servicos", servicos);
 		modelAndView.addObject("usuarios", usuarios);
+		modelAndView.addObject("usuario", session.getAttribute("usuario"));
  
 		return modelAndView;
 	}
