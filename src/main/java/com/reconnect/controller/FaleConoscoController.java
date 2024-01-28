@@ -61,7 +61,7 @@ public class FaleConoscoController {
 	public ModelAndView cadastrar(FaleConosco faleConosco) throws IOException {
 
 		
-		ModelAndView modelAndView = new ModelAndView("redirect:/faleconosco");
+		ModelAndView modelAndView = new ModelAndView("redirect:/index");
 
 		faleConoscoRepository.save(faleConosco);
 
