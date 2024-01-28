@@ -1,15 +1,12 @@
 <p align="center">
 </p>
 
-TESTE
-
 ## 🖥️ Projeto Reconnect - Squad 49
 Esse é um projeto Full Stack que criamos para o curso Recode Pro. 😁 <br>
 Alunos: <br>
 [Patricia Ferrer](https://github.com/PatsFerrer) <br>
 [Adrian Roger](https://github.com/AdrianRoger) <br>
 [Pierre Lins](https://github.com/PI3RRE1) <br>
-[Rafael Martins](https://github.com/frontmartins)
 
 ## 🚀 Tecnologias
 Esse projeto foi desenvolvido com as seguintes tecnologias:
