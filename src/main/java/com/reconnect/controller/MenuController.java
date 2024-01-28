@@ -1,5 +1,6 @@
 package com.reconnect.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,48 +19,53 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class MenuController {
+	
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	@Autowired
 	private ServicoRepository servicoRepository;
 	
-  @GetMapping("/profissionais")
-  public String showProfissionaisPage() {
-    return "profissionais";
-  }
-	
-	@GetMapping("/servicos")
-	public String showServicosPage() {
-		return "servicos";
+	@GetMapping("/profissionais")
+	public ModelAndView showProfissionaisPage(Principal principal) {
+		ModelAndView modelAndView = new ModelAndView("profissionais");
+		
+		if (principal != null) {
+			Usuario usuarioPrincipal = usuarioRepository.findByEmail(principal.getName());
+			modelAndView.addObject("usuarioPrincipal", usuarioPrincipal);
+		}
+		
+	  return modelAndView;
 	}
 	
-//	@GetMapping("/entrar")
-//	public String showEntrarPage() {
-//		return "entrar";
-//	}
-  
-	@GetMapping
-	public ModelAndView listar(HttpSession session) {
-		ModelAndView modelAndView = new ModelAndView("index.html");
+	@GetMapping("/servicos")
+	public ModelAndView showServicosPage(Principal principal) {
+		ModelAndView modelAndView = new ModelAndView("servicos");
 		
+		if (principal != null) {
+			Usuario usuarioPrincipal = usuarioRepository.findByEmail(principal.getName());
+			modelAndView.addObject("usuarioPrincipal", usuarioPrincipal);
+		}
+		
+		return modelAndView;
+	}
+  
+	@GetMapping({"/index", "/"})
+	public ModelAndView listar(HttpSession session, Principal principal) {
+		ModelAndView modelAndView = new ModelAndView("index.html");
+
+		if (principal != null) {
+			Usuario usuarioPrincipal = usuarioRepository.findByEmail(principal.getName());
+			modelAndView.addObject("usuarioPrincipal", usuarioPrincipal);
+		}
+	
 		List<Servico> servicos = servicoRepository.findAll();
 		List<Usuario> usuarios = usuarioRepository.findAll();
 		modelAndView.addObject("servicos", servicos);
 		modelAndView.addObject("usuarios", usuarios);
-		modelAndView.addObject("usuario", session.getAttribute("usuario"));
  
 		return modelAndView;
 	}
-//	@GetMapping
-//	public ModelAndView listarUsuarios() {
-//		ModelAndView modelAndView = new ModelAndView("index.html");
-//		
-//		List<Usuario> usuarios = usuarioRepository.findAll();
-//		modelAndView.addObject("usuarios", usuarios);
-//		
-//		return modelAndView;
-//	}
 	
 	@GetMapping("/serv/imagem/{id}")
 	@ResponseBody

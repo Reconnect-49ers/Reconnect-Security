@@ -171,6 +171,12 @@ body {
     background-color: #132a58;
     color: #fff;
 }
+.perfil-usuario .menu-perfil a.disabled-link {
+    pointer-events: none;
+    color: #999; /* Opcional: pode ser usado para alterar a cor do link desativado */
+    text-decoration: none; /* Opcional: pode ser usado para remover a decoração do link desativado */
+    cursor: default; /* Opcional: pode ser usado para definir o cursor para o padrão */
+}
 .perfil-usuario .icone-perfil {
     display: none;
     margin-right: .75rem;

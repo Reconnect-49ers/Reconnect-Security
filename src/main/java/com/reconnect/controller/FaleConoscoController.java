@@ -1,6 +1,7 @@
 package com.reconnect.controller;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.reconnect.model.FaleConosco;
+import com.reconnect.model.Usuario;
 import com.reconnect.repository.FaleConoscoRepository;
+import com.reconnect.repository.UsuarioRepository;
 
 @Controller
 @RequestMapping("/faleconosco")
@@ -20,11 +23,16 @@ public class FaleConoscoController {
 
 	@Autowired
 	private FaleConoscoRepository faleConoscoRepository;
+	@Autowired 
+	private UsuarioRepository usuarioRepository;
 
 	// lista todos os dados do banco usuario
 	@GetMapping
-	public ModelAndView listar() {
+	public ModelAndView listar(Principal principal) {
 		ModelAndView modelAndView = new ModelAndView("faleconosco/listar.html");
+		
+		Usuario usuarioPrincipal = usuarioRepository.findByEmail(principal.getName());
+		modelAndView.addObject("usuarioPrincipal", usuarioPrincipal);
 
 		List<FaleConosco> faleconosco = faleConoscoRepository.findAll();
 		modelAndView.addObject("faleconosco", faleconosco);
@@ -36,8 +44,13 @@ public class FaleConoscoController {
 
 	// chama a view cadastrar e passa um objeto vazio
 	@GetMapping("/cadastrar")
-	public ModelAndView cadastrar() {
+	public ModelAndView cadastrar(Principal principal) {
 		ModelAndView modelAndView = new ModelAndView("faleconosco/cadastro");
+		
+		if (principal != null) {
+			Usuario usuarioPrincipal = usuarioRepository.findByEmail(principal.getName());
+			modelAndView.addObject("usuarioPrincipal", usuarioPrincipal);
+		}
 
 		modelAndView.addObject("faleconosco", new FaleConosco());
 

@@ -1,6 +1,7 @@
 package com.reconnect.controller;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,19 +32,28 @@ public class ServicoController {
 	
 	// lista todos os dados do banco servico
 	@GetMapping
-	public ModelAndView listar() {
+	public ModelAndView listar(Principal principal) {
 		ModelAndView modelAndView = new ModelAndView("servico/listar.html");
+		
+		Usuario usuarioPrincipal = usuarioRepository.findByEmail(principal.getName());
+		modelAndView.addObject("usuarioPrincipal", usuarioPrincipal);
  
 		List<Servico> servicos = servicoRepository.findAll();
 		modelAndView.addObject("servicos", servicos);
+		
+		List<Servico> servicosUser = servicoRepository.findByUserId(usuarioPrincipal.getId());
+		modelAndView.addObject("servicosUser", servicosUser);
  
 		return modelAndView;
 	}
 	
 	// chama a view cadastrar e passa um objeto vazio
 	@GetMapping("/cadastrar")
-	public ModelAndView cadastrar() {
+	public ModelAndView cadastrar(Principal principal) {
 		ModelAndView modelAndView = new ModelAndView("servico/cadastro");
+		
+		Usuario usuarioPrincipal = usuarioRepository.findByEmail(principal.getName());
+		modelAndView.addObject("usuarioPrincipal", usuarioPrincipal);
 		
 		List<Usuario> usuarios = usuarioRepository.findAll();
 		
@@ -84,8 +94,11 @@ public class ServicoController {
 	}
 	
 	@GetMapping("/{id}/editar")
-	public ModelAndView editar(@PathVariable Long id) {
+	public ModelAndView editar(@PathVariable Long id, Principal principal) {
 		ModelAndView modelAndView = new ModelAndView("servico/editar");
+		
+		Usuario usuarioPrincipal = usuarioRepository.findByEmail(principal.getName());
+		modelAndView.addObject("usuarioPrincipal", usuarioPrincipal);
 		
 		List<Usuario> usuarios = usuarioRepository.findAll();
 		modelAndView.addObject("listUsuarios", usuarios);

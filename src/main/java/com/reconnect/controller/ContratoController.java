@@ -1,6 +1,7 @@
 package com.reconnect.controller;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +32,17 @@ public class ContratoController {
 	private ServicoRepository servicoRepository;
 
 	@GetMapping
-	public ModelAndView listar() {
+	public ModelAndView listar(Principal principal) {
 		ModelAndView modelAndView = new ModelAndView("contrato/listar.html");
+		
+		Usuario usuarioPrincipal = usuarioRepository.findByEmail(principal.getName());
+		modelAndView.addObject("usuarioPrincipal", usuarioPrincipal);
 
-		List<Contrato> contrato = contratoRepository.findAll();
-		modelAndView.addObject("contrato", contrato);
+		List<Contrato> contratosUser = contratoRepository.findByUserId(usuarioPrincipal.getId());
+		modelAndView.addObject("contratosUser", contratosUser);
+		
+		List<Contrato> contratos = contratoRepository.findAll();
+		modelAndView.addObject("contratos", contratos);
 		
 		modelAndView.addObject("contratoedit", new Contrato());
 
@@ -43,8 +50,11 @@ public class ContratoController {
 	}
 
 	@GetMapping("/cadastrar")
-	public ModelAndView cadastrar() {
+	public ModelAndView cadastrar(Principal principal) {
 		ModelAndView modelAndView = new ModelAndView("contrato/cadastro");
+		
+		Usuario usuarioPrincipal = usuarioRepository.findByEmail(principal.getName());
+		modelAndView.addObject("usuarioPrincipal", usuarioPrincipal);
 		
 		List<Usuario> usuarios = usuarioRepository.findAll();
 		List<Servico> servicos = servicoRepository.findAll();
