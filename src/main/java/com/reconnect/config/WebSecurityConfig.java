@@ -44,7 +44,8 @@ public class WebSecurityConfig {
             .formLogin(formLogin -> formLogin
                 .loginPage("/login")
                 .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/usuario/perfil", true)
+//                .defaultSuccessUrl("/usuario/perfil", true)
+                .defaultSuccessUrl("/index", true)
                 .permitAll()
             )
             .logout((logout) -> logout
