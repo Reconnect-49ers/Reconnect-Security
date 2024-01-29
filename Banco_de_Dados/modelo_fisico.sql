@@ -20,7 +20,7 @@ CREATE TABLE `usuario` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_5171l57faosmj8myawaucatdw` (`email`),
   UNIQUE KEY `UK_692bsnqxa8m9fmx7m1yc6hsui` (`cpf`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `servico` (
   `id` bigint NOT NULL AUTO_INCREMENT,
@@ -56,7 +56,7 @@ CREATE TABLE `contato` (
   PRIMARY KEY (`id`),
   KEY `FKoik6ny143egs93hxxqqp9tew` (`servico_id`),
   CONSTRAINT `FKoik6ny143egs93hxxqqp9tew` FOREIGN KEY (`servico_id`) REFERENCES `servico` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE `fale_conosco` (
   `status` bit(1) DEFAULT NULL,
@@ -65,4 +65,20 @@ CREATE TABLE `fale_conosco` (
   `mensagem` varchar(255) NOT NULL,
   `nome` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `roles` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_ofx66keruapi6vyqpv6f2or37` (`name`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `users_roles` (
+  `role_id` bigint NOT NULL,
+  `usuario_id` bigint NOT NULL,
+  KEY `FKj6m8fwv7oqv74fcehir1a9ffy` (`role_id`),
+  KEY `FKppi5s6rour78ju1e11y1nt9ke` (`usuario_id`),
+  CONSTRAINT `FKj6m8fwv7oqv74fcehir1a9ffy` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`),
+  CONSTRAINT `FKppi5s6rour78ju1e11y1nt9ke` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
